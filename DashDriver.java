@@ -3,7 +3,7 @@
 import java.io.File;
 import java.util.Scanner;
 
-public class MovieDatabase {
+public class DashDriver {
     public static void main(String[] args) throws Exception{
         int numBuckets = 26; //Choose whatever
         //Hash<Product> p = new Hash<Product>(numBuckets);
