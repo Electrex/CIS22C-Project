@@ -13,7 +13,7 @@ public class Product implements Comparable<Product>{
      * @param cost the amount costs
      */
     public Product(double unitPrice, String name;
-            string productId, double cost) {
+            String productId, double cost) {
         this.unitPrice = unitPrice;
         this.name = name;
         this.productId = productId;
