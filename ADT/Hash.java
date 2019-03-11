@@ -1,3 +1,4 @@
+package ADT;
 /**
  * Hash.java
  * @author Eugene Kim
@@ -79,14 +80,12 @@ public class Hash<T extends Comparable<T>> {
      * or -1 if t is not in the Table
      */
     public int search(T t) {
-        for(int i = 0; i < Table.size(); i++)
+        int bucket = hash(t);
+        
+        if(Table.get(bucket).linearSearch(t) != -1) 
         {
-            if(Table.get(i).linearSearch(t) != -1) 
-            {
-                return i;
-            }
+            return bucket;
         }
-
         return -1;
     }
 

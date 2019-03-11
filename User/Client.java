@@ -1,12 +1,20 @@
 package User;
 
+import ADT.*;
+
 public class Client {
 	
-	private ArrayList<Customer> customerlist; 
+	private static BST<Customer> customerlist; 
+	private static PriorityQueue<Order> orderslist; 
+	private static Hash<Product> productlist; 
+	private static List<Employee> employeelist; 
 	
 	public Client()
 	{
-		
+		customerlist = new BST<Customer>();
+		orderslist = new PriorityQueue<Order>();
+		productlist = new Hash<Product>();
+		employeelist = new List<Employee>();
 	}
 	
 	

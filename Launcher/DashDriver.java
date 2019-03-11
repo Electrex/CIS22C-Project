@@ -1,7 +1,10 @@
+package Launcher;
 //Driver class for program
 
 import java.io.File;
 import java.util.Scanner;
+
+import Modules.Product;
 
 public class DashDriver {
     public static void main(String[] args) throws Exception{
