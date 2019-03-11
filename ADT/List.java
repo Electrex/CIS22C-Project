@@ -1,4 +1,4 @@
-package Modules;
+package ADT;
 /**
  * Defines a generic doubly-linked list class
  * @author Mia Skinner

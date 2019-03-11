@@ -1,19 +1,20 @@
 package User;
 
 import ADT.*;
+import Modules.*; 
 
 public class Client {
 	
-	private static BST<Customer> customerlist; 
-	private static PriorityQueue<Order> orderslist; 
-	private static Hash<Product> productlist; 
+	private static Hash<Customer> customerlist; 
+	private static PriorityQueue orderslist; 
+	private static BST<Product> productlist; 
 	private static List<Employee> employeelist; 
 	
 	public Client()
 	{
-		customerlist = new BST<Customer>();
+		customerlist = new Hash<Customer>();
 		orderslist = new PriorityQueue<Order>();
-		productlist = new Hash<Product>();
+		productlist = new BST<Product>();
 		employeelist = new List<Employee>();
 	}
 	
@@ -25,7 +26,10 @@ public class Client {
 	
 	public static boolean verifyLogInInformation(String username, String password)
 	{
+		boolean isvalidusername = false; 
+		boolean isvalidpassword = false; 
 		
+		return isvalidpassword && isvalidusername; 
 	}
 	
 	public static void createnewaccount()

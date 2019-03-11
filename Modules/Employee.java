@@ -1,6 +1,6 @@
 package Modules;
 
-public class Employee {
+public class Employee{
 	
 	
 	private String username, password; 
@@ -66,6 +66,11 @@ public class Employee {
 	public String toString() {
 		return "Employee [username=" + username + ", password=" + password + "]";
 	}
-	
+
+	public int compareTo(Object o) {
+
+
+		return 0;
+	}
 	
 }

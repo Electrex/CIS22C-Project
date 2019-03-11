@@ -9,6 +9,7 @@ public class OrderIO {
 	public CustomerIO(String fname)
 	{
 		super(fname);
+		
 		orderslist = new PriorityQueue<Order>();
 	}
 	
