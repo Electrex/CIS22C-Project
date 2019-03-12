@@ -144,6 +144,46 @@ public class Product implements Comparable<Product>{
     }
 
     /**
+     * Compares two Product objects by primary key to determine ordering
+     * Returns 0 if the two items are equal
+     * Return -1 if this Product's name comes alphabetically
+     * before the other Product's name.
+     * Returns 1 if the other Product's name comes
+     * alphabetically before this Product's name
+     * @param the other Product object to compare to this
+     * @return 0 (same Product), -1 (this Product ordered first)
+     * or 1 (the other Product ordered first)
+     */
+    public int compareToPrimary(Product otherProduct) {
+        if (name.compareTo(otherProduct.getName()) == 0)
+            return 0;
+        else if (this.name.compareTo(otherProduct.getName()) < 0)
+            return -1;
+        else if (name.compareTo(otherProduct.getName()) > 0)
+            return 1;
+    }
+
+    /**
+     * Compares two Product objects by secondary key to determine ordering
+     * Returns 0 if the two items are equal
+     * Return -1 if this Product's productid comes alphabetically
+     * before the other Product's productid.
+     * Returns 1 if the other Product's productId comes
+     * alphabetically before this Product's productId
+     * @param the other Product object to compare to this
+     * @return 0 (same Product), -1 (this Product ordered first)
+     * or 1 (the other Product ordered first)
+     */
+    public int compareToSecondary(Product otherProduct) {
+        if (productId.compareTo(otherProduct.getProductId()) == 0)
+            return 0;
+        else if (productId.compareTo(otherProduct.getProductId()) > 0)
+            return 1;
+        else if (productId.compareTo(otherProduct.getProductId()) < 0)
+            return -1;
+    }
+
+    /**
      * Returns a consistent hash code for
      * each Product by summing the Unicode values
      * of each character in the key

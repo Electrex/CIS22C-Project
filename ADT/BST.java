@@ -224,6 +224,80 @@ public class BST<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Searches for a specified value
+     * in the tree
+     * @param data the value to search for
+     * @return whether the value is stored
+     * in the tree
+     */
+    public boolean searchByPrimary(T data) {
+        if (isEmpty())
+            return false;
+        else
+            return searchByPrimary(data, root);
+    }
+
+    /**
+     * Helper method for the search method
+     * @param data the data to search for
+     * @param node the current node to check
+     * @return whether the data is stored
+     * in the tree
+     */
+    private boolean searchByPrimary(T data, Node node) {
+        if (data.compareToPrimary(node.data) == 0)
+            return true;
+        if (data.compareToPrimary(node.data) < 0) {
+            if (node.left == null)
+                return false;
+            else
+                return searchByPrimary(data, node.left);
+        } else {
+            if (node.right == null)
+                return false;
+            else
+                return searchByPrimary(data, node.right);
+        }
+    }
+
+    /**
+     * Searches for a specified value
+     * in the tree
+     * @param data the value to search for
+     * @return whether the value is stored
+     * in the tree
+     */
+    public boolean searchBySecondary(T data) {
+        if (isEmpty())
+            return false;
+        else
+            return searchBySecondary(data, root);
+    }
+
+    /**
+     * Helper method for the search method
+     * @param data the data to search for
+     * @param node the current node to check
+     * @return whether the data is stored
+     * in the tree
+     */
+    private boolean searchByPrimary(T data, Node node) {
+        if (data.compareToSecondary(node.data) == 0)
+            return true;
+        if (data.compareToSecondary(node.data) < 0) {
+            if (node.left == null)
+                return false;
+            else
+                return searchBySecondary(data, node.left);
+        } else {
+            if (node.right == null)
+                return false;
+            else
+                return searchBySecondary(data, node.right);
+        }
+    }
+
 
     /**
      * Determines whether two trees store
