@@ -9,10 +9,10 @@ public class BST<T extends Comparable<T>> {
         private Node left;
         private Node right;
 
-        public Node(T data) {
-            this.data = data;
-            left = null;
-            right = null;
+        public Node(T data) {     
+            this.data = data;    
+            left = null;        
+            right = null;        
         }
     }
 
@@ -24,19 +24,19 @@ public class BST<T extends Comparable<T>> {
      * Default constructor for BST
      * sets root to null
      */
-    public BST() {
-        root = null;
-    }
-
-    /**
-     * Copy constructor for BST
-     * @param bst the BST to make
-     * a copy of 
-     */
-    public BST(BST<T> bst) {
-        if (bst.root == null)
-            root = null;
-        else {
+    public BST() {        
+        root = null;         
+    }                
+                   
+    /**                                  
+     * Copy constructor for BST             
+     * @param bst the BST to make        
+     * a copy of                   
+     */               
+    public BST(BST<T> bst) {          
+        if (bst.root == null)           
+            root = null;             
+        else {            
             copyHelper(bst.root);
         }
     }
@@ -314,7 +314,7 @@ public class BST<T extends Comparable<T>> {
      * @param node the current node
      * @return an updated reference variable
      */
-    Node remove(T data, Node node)
+    public Node remove(T data, Node node)
     {
         if(node == null)
         {
@@ -329,23 +329,23 @@ public class BST<T extends Comparable<T>> {
             node.right = remove(data, node.right);
         }
         else
-        if(node.left == null && node.right == null)
-        {
-            node = null;
-        }
-        else if(node.left != null && node.right == null)
-        {
-            node = node.left;
-        }
-        else if(node.left == null && node.right != null)
-        {
-            node = node.right;
-        }
-        else
-        {
-            node.data = findMin(node.right);
-            node.right = remove(node.data, node.right);
-        }
+	        if(node.left == null && node.right == null)
+	        {
+	            node = null;
+	        }
+	        else if(node.left != null && node.right == null)
+	        {
+	            node = node.left;
+	        }
+	        else if(node.left == null && node.right != null)
+	        {
+	            node = node.right;
+	        }
+	        else
+	        {
+	            node.data = findMin(node.right);
+	            node.right = remove(node.data, node.right);
+	        }
         return node;
     }
 

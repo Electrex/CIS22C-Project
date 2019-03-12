@@ -3,28 +3,32 @@ package IO;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import ADT.*;
 import Modules.*;
 
-public class CustomerIO{
+public class CustomerIO {
 	
 	private static Hash<Customer> customerlist; 
 	private String filename; 
-	private File file;
 	private Scanner scanner; 
 
 	
 	public CustomerIO(String fname)
 	{
 		filename = fname; 
-		file = new File(filename); 
 		customerlist = new Hash<Customer>();
 		scanner = new Scanner(System.in);
 	}
 	
+	/********
+	 * 
+	 * @return a completed hash. 
+	 */
 	public Hash<Customer> readfile()
 	{
 		boolean readable = false;
@@ -33,8 +37,6 @@ public class CustomerIO{
 		FileReader filereader;
 
 		try {
-			
-			
 			filereader = new FileReader(filename);
 			buff = new BufferedReader(filereader);
 			String line;
@@ -59,12 +61,27 @@ public class CustomerIO{
 		return customerlist; 
 	}
 	
+	/********
+	* overwrite the entire file. 
+	*/
 	public void rewritefile()
 	{
+		boolean isinvalid = true;           
+		FileWriter output = new FileWriter(filename);   
+		PrintWriter filewriter = new PrintWriter(output); 
 		
+		filewriter.write(customerlist.toString()); 
+		// @Todo Eugene write a tostring that matches the format people like. 
+			
+		try {
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void Findstr() { // This function searches the text for the    string
+	/*
+	 public void Findstr() { // This function searches the text 
 		Scanner kb = new Scanner(System.in);
 		System.out.println(" enter the content you looking for");
 		String name = kb.next();
@@ -85,4 +102,5 @@ public class CustomerIO{
 		        System.out.println(" cannot write to file " + file.toString());
 		}
 	}
+	 */
 }
