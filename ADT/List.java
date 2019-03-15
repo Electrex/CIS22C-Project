@@ -523,10 +523,9 @@ public class List<T extends Comparable<T>> {
     	while(temp!= null)
     	{
     		// For the purposes of this Lab, we will simply have the data items displayed on a single line, each separated by a blank space.
-    		result += temp.data + " ";
+    		result += temp.data + "\n ";
     		temp = temp.next; 
     	}
-    	result += "\n";
        return result;
     }
     

@@ -12,7 +12,7 @@ import Modules.Product;
 
 public class ProductIO {
 	
-	private static BST<Product> productlist; 
+	private BST<Product> productlist; 
 	private String filename; 
 	private Scanner scanner; 
 
@@ -23,7 +23,14 @@ public class ProductIO {
 		productlist = new BST<Product>();
 		scanner = new Scanner(System.in);
 	}
-	
+
+	public ProductIO(String fname, BST<Product> list)
+	{
+		filename = fname; 
+		productlist = list;
+		scanner = new Scanner(System.in);
+	}
+
 	/********
 	 * 
 	 * @return a completed hash. 
@@ -49,8 +56,10 @@ public class ProductIO {
 					break;
 				}
 				
+				
 				String[] vertices = line.split(",");
-				productlist.insert(new Product()); // @TODO Product(STUFF INSIDE)
+				productlist.insert(new Product(Double.parseDouble(vertices[0]), vertices[1], 
+						vertices[2], Double.parseDouble(vertices[3])));
 			}
 			buff.close();
 		} catch (IOException e) {
@@ -69,7 +78,7 @@ public class ProductIO {
 		FileWriter output = new FileWriter(filename);   
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		filewriter.write(productlist.toString()); 
+		filewriter.write(productlist.toString()); // @TODO change the format of tostring. 
 			
 		try {
 			output.close();

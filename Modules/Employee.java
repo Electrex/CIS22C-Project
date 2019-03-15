@@ -1,6 +1,6 @@
 package Modules;
 
-public class Employee{
+public class Employee implements Comparable<Employee>{
 	
 	private String fullname; 
 	private String username, password; 
@@ -15,6 +15,13 @@ public class Employee{
 	public Employee(String fullname, String username, String password)
 	{
 		this.fullname = fullname;
+		this.username = username; 
+		this.password = password; 
+	}
+	
+	public Employee(String username, String password)
+	{
+		this.fullname = "";
 		this.username = username; 
 		this.password = password; 
 	}
@@ -116,7 +123,7 @@ public class Employee{
      * @return the hash code
      */
 	@Override public int hashCode() {
-		String output = fullname+username; 
+		String output = username+password; 
 		int result = 0; 
 		
 		for (int i = 0; i < output.length(); i++)
@@ -126,10 +133,4 @@ public class Employee{
 		
 		return result;
 	}
-
-	public int compareTo(Object o) {
-
-		return 0;
-	}
-	
 }

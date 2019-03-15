@@ -13,8 +13,7 @@ public class Product implements Comparable<Product>{
      * @param unitPrice the unitPrice the Product was released
      * @param cost the amount costs
      */
-    public Product(double unitPrice, String name;
-            String productId, double cost) {
+    public Product(double unitPrice, String name, String productId, double cost) {
         this.unitPrice = unitPrice;
         this.name = name;
         this.productId = productId;
@@ -99,7 +98,7 @@ public class Product implements Comparable<Product>{
         String result = "Name: " + name
                 + "\nUnit Price: $" + unitPrice
                 + "\nCost: $" + cost
-                + "\nProduct ID: " + costMillions;
+                + "\nProduct ID: " + productId;
         return result;
     }
 
@@ -159,7 +158,7 @@ public class Product implements Comparable<Product>{
             return 0;
         else if (this.name.compareTo(otherProduct.getName()) < 0)
             return -1;
-        else if (name.compareTo(otherProduct.getName()) > 0)
+        else // if (name.compareTo(otherProduct.getName()) > 0)
             return 1;
     }
 
@@ -179,9 +178,9 @@ public class Product implements Comparable<Product>{
             return 0;
         else if (productId.compareTo(otherProduct.getProductId()) > 0)
             return 1;
-        else if (productId.compareTo(otherProduct.getProductId()) < 0)
+        else //(productId.compareTo(otherProduct.getProductId()) < 0)
             return -1;
-    }
+	}
 
     /**
      * Returns a consistent hash code for

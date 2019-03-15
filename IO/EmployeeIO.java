@@ -1,26 +1,89 @@
 package IO;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+import ADT.*;
+import Modules.*; 
+
 public class EmployeeIO {
 	
 	private String filename; 
 	
-	private PriorityQueue<Order> orderslist; 
+	private List<Employee> employeelist; 
+	Scanner scanner; 
 	// private String filename; 
 	
 	public EmployeeIO(String fname)
 	{
-		super(fname);
-		
-		orderslist = new PriorityQueue<Order>();
+		filename = fname; 		
+		scanner = new Scanner(System.in); 
+		employeelist = new List<Employee>();
 	}
 	
-	public Hash<Employee> readfile()
+	public EmployeeIO(String fname, List<Employee> list)
 	{
-		
+		filename = fname; 
+		employeelist = list;
+		scanner = new Scanner(System.in);
+	}
+
+	/********
+	 * 
+	 * @return a completed hash. 
+	 */
+	public List<Employee> readfile()
+	{
+		boolean readable = false;
+		boolean doneLoadingGraph = false;
+		BufferedReader buff;
+		FileReader filereader;
+
+		try {
+			filereader = new FileReader(filename);
+			buff = new BufferedReader(filereader);
+			String line;
+
+			
+			while (readable) {
+				line = buff.readLine();
+				if (line == null) // finished reading
+				{
+					readable = false;
+					break;
+				}
+				
+				
+				String[] vertices = line.split(",");
+				employeelist.addLast(new Employee(vertices[0], vertices[1], vertices[2]));
+			}
+			buff.close();
+		} catch (IOException e) {
+			System.out.println("readfile(): Problem reading file. " + e.toString());
+		}
+		return employeelist; 
 	}
 	
-	public void writefile()
+	/********
+	* overwrite the entire file. 
+	 * @throws IOException 
+	*/
+	public void rewritefile() throws IOException
 	{
+		boolean isinvalid = true;           
+		FileWriter output = new FileWriter(filename);   
+		PrintWriter filewriter = new PrintWriter(output); 
 		
+		filewriter.write(employeelist.toString()); 
+			
+		try {
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

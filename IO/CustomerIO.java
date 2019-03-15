@@ -13,7 +13,7 @@ import Modules.*;
 
 public class CustomerIO {
 	
-	private static Hash<Customer> customerlist; 
+	private Hash<Customer> customerlist; 
 	private String filename; 
 	private Scanner scanner; 
 
@@ -21,7 +21,14 @@ public class CustomerIO {
 	public CustomerIO(String fname)
 	{
 		filename = fname; 
-		customerlist = new Hash<Customer>();
+		customerlist = new Hash<Customer>(50);
+		scanner = new Scanner(System.in);
+	}
+	
+	public CustomerIO(String fname, Hash<Customer> list)
+	{
+		filename = fname; 
+		customerlist = list;
 		scanner = new Scanner(System.in);
 	}
 	

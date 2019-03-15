@@ -28,33 +28,33 @@ public class PriorityQueue {
 	 */
 	private void heapify(ArrayList<Integer> A, int i){
 		
-	int index_of_max = i;
-	int left = (int) i * 2; //get the index of the left child of A[i] and store as l
-	int right = (int) (i * 2) + 1; //get the index of the right child of A[i] and store r
+		int index_of_max = i;
+		int left = (int) i * 2; //get the index of the left child of A[i] and store as l
+		int right = (int) (i * 2) + 1; //get the index of the right child of A[i] and store r
 
-
-	//Check if l is off the end of the array (heap) AND compare A[i] to its left child
-	if (left <= heap_size(A) && A.get(left) > A.get(i)) {
-
-	    index_of_max = left; //update index_of_max if left is bigger
+	
+		//Check if l is off the end of the array (heap) AND compare A[i] to its left child
+		if (left <= heap_size(A) && A.get(left) > A.get(i)) {
+	
+		    index_of_max = left; //update index_of_max if left is bigger
+		}
+	
+		//Check if r is off the end of the array (heap) AND compare A[r] to current max value
+	
+		if (right <= heap_size(A) && A.get(right) > A.get(index_of_max)) {
+	
+			index_of_max = right; //update index_of_max if right is bigger
+		}
+	
+		if (i != index_of_max) {//if A[i] was not bigger than its two children
+			int oldMax = A.get(index_of_max);
+			int newMax = A.get(i);
+		    A.set(index_of_max, newMax); //swap, so now A[i] stored at A[index_of_max]
+		    A.set(i, oldMax);
+	
+		    heapify(A, index_of_max); //recursively move through tree until restore heap property
+		}
 	}
-
-	//Check if r is off the end of the array (heap) AND compare A[r] to current max value
-
-	if (right <= heap_size(A) && A.get(right) > A.get(index_of_max)) {
-
-		index_of_max = right; //update index_of_max if right is bigger
-	}
-
-	if (i != index_of_max) {//if A[i] was not bigger than its two children
-		int oldMax = A.get(index_of_max);
-		int newMax = A.get(i);
-	    A.set(index_of_max, newMax); //swap, so now A[i] stored at A[index_of_max]
-	    A.set(i, oldMax);
-
-	    heapify(A, index_of_max); //recursively move through tree until restore heap property
-	}
-}
 	
 	private void heapIncreaseKey(int i, int key) {
 		//TODO heapIncreaseKey
