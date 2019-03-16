@@ -23,7 +23,7 @@ public class Order {
 	private int quantity;
 	private String shipmentType;
 	private boolean isShipped;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 	
 	private int shipSpeedHelper() {
 		int OVERNIGHT = 10;
@@ -232,11 +232,16 @@ public class Order {
      */
 	public int compareTo(Order otherOrder) {
 		//TODO compareTo()
-
+		
+		
+		if (otherOrder == null) {
+			return 1;
+		}
+		
 		int orderScore = this.daysOldHelper() + this.shipSpeedHelper();
-		System.out.println(orderScore);
+		System.out.println("orderScore: " + orderScore);
 		int otherOrderScore = otherOrder.daysOldHelper() + otherOrder.shipSpeedHelper();
-		System.out.println(otherOrderScore);
+		System.out.println("otherOrderScore: " + otherOrderScore);
 		if (orderScore < otherOrderScore) {
 			return -1;
 		}

@@ -97,7 +97,7 @@ public class PriorityQueue {
 		
 		//TODO do we need to increment if get_size is automatic with ArrayList.size?
 	   // Heap_size(A)++ //adding a new value to the heap
-	   // A[get_size()] = –infinity //make space at end of array for new value
+	   // A[get_size()] = ï¿½infinity //make space at end of array for new value
 		heap_size++;
 		heap.add(null);
 		
@@ -180,8 +180,8 @@ public class PriorityQueue {
 	
 	public void displayArray() {
 		//TODO how do we want to display Orders in PriorityQueue displayArray?
-		for (int i=1; i < get_size(); i++) {
-			System.out.println(heap.get(i).getOrderDate() + " + " + heap.get(i).getShipmentType() + ", ");
+		for (int i=1; i <= get_size(); i++) {
+			System.out.println(i + ": " + heap.get(i).getOrderDate() + " + " + heap.get(i).getShipmentType());
 		}
 	}
 
