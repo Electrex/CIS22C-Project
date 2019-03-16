@@ -1,10 +1,10 @@
-package ADT;
 /**
  * Hash.java
  * @author Eugene Kim
- * @author Adharaa Kinani
  * CIS 22C, Lab 7
  */
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Hash<T extends Comparable<T>> {
@@ -189,5 +189,29 @@ public class Hash<T extends Comparable<T>> {
                 System.out.println();
             }
         }
+    }
+    
+    public void writeToFile(String filename) throws FileNotFoundException
+    {
+        PrintWriter outfile = new PrintWriter(filename);
+        outfile.write(this.toString());
+        outfile.close();
+    }
+    
+    @Override 
+    public String toString()
+    {
+        String result = "";
+        for(int i = 0; i < Table.size(); i++)
+        {
+            for(int j = 0; j < Table.get(i).getLength(); j++)
+            {
+                Table.get(i).pointIterator();
+                result += (Table.get(i).getIterator()) + "\n";
+                Table.get(i).advanceIterator();
+            }
+        }
+        
+        return result;
     }
 }
