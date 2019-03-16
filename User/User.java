@@ -200,7 +200,7 @@ public class User {
 	{
 		// sort product by secondary key
 		User.setProductlist(User.getproducts()); // TODO Yusuf: need to figure out a way to sort by secondary key
-												 // TODO Yusuf: need to figure out a way to return the BST
+												 // TODO Yusuf: need to figure out a way to return the BST in arraylist format
 				
 		return User.getproducts(); 
 	}

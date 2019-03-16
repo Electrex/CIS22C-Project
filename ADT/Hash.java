@@ -1,3 +1,5 @@
+package ADT;
+
 /**
  * Hash.java
  * @author Eugene Kim
