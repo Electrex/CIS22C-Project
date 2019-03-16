@@ -2,6 +2,8 @@ package ADT;
 
 import java.util.ArrayList;
 
+import Modules.Order;
+
 /**
  * Heap ADT that prioritizes Orders into a priority queue
  * @author Mia Skinner
@@ -12,11 +14,6 @@ public class PriorityQueue {
 	private int heap_size;
 	private ArrayList<Order> heap;
 	
-	public PriorityQueue(){
-		heap_size = 0;
-		heap = new ArrayList<Order>();
-	}
-
 	/**
 	 * Given a valid max heap (except for a single node i), heapify processes the 
 	 * tree with the max-heapify algorithm to rearrange node i and its 
@@ -26,113 +23,166 @@ public class PriorityQueue {
 	 * @param A, a tree which is already a valid Max Heap (except for node i)
 	 * @param i
 	 */
-	private void heapify(ArrayList<Integer> A, int i){
+	private void heapify(int i){
 		
 		int index_of_max = i;
-		int left = (int) i * 2; //get the index of the left child of A[i] and store as l
-		int right = (int) (i * 2) + 1; //get the index of the right child of A[i] and store r
+		int left = get_left(i); //get the index of the left child of A[i] and store as l
+		int right = get_right(i); //get the index of the right child of A[i] and store r
 
 	
 		//Check if l is off the end of the array (heap) AND compare A[i] to its left child
-		if (left <= heap_size(A) && A.get(left) > A.get(i)) {
+		if (left <= get_size() && heap.get(left).compareTo(heap.get(i)) > 0) {
 	
 		    index_of_max = left; //update index_of_max if left is bigger
 		}
 	
 		//Check if r is off the end of the array (heap) AND compare A[r] to current max value
 	
-		if (right <= heap_size(A) && A.get(right) > A.get(index_of_max)) {
+		if (right <= get_size() && heap.get(right).compareTo(heap.get(index_of_max)) > 0) {
 	
 			index_of_max = right; //update index_of_max if right is bigger
 		}
 	
 		if (i != index_of_max) {//if A[i] was not bigger than its two children
-			int oldMax = A.get(index_of_max);
-			int newMax = A.get(i);
-		    A.set(index_of_max, newMax); //swap, so now A[i] stored at A[index_of_max]
-		    A.set(i, oldMax);
+			Order oldMax = heap.get(index_of_max);
+			Order newMax = heap.get(i);
+		    heap.set(index_of_max, newMax); //swap, so now A[i] stored at A[index_of_max]
+		    heap.set(i, oldMax);
 	
-		    heapify(A, index_of_max); //recursively move through tree until restore heap property
+		    heapify(index_of_max); //recursively move through tree until restore heap property
 		}
 	}
 	
-	private void heapIncreaseKey(int i, int key) {
-		//TODO heapIncreaseKey
+	private void heapIncreaseKey(int i, Order key) {
+	    if(key.compareTo(heap.get(i)) > 0) {
+
+	        heap.set(i, key); //write over existing value at i with key
+
+		    while (i > 1 && heap.get(get_parent(i)).compareTo(heap.get(i)) < 0) {
+	
+		    	//while the parent is smaller and you are not at the root node
+	
+		    	//Swap parent and child
+		    	Order parent = heap.get(get_parent(i));
+		    	heap.set(get_parent(i), heap.get(i));
+		    	heap.set(i, parent);
+
+		       i = get_parent(i); //keep track of current index of the key
+		    }
+	    }
 	}
 	
-	public void buildHeap(ArrayList<Integer> A) {
+	/**Constructors*/
+	
+	public PriorityQueue(){
+		heap_size = 0;
+		heap = new ArrayList<Order>();
+		heap.add(null); // fill in placeholder for index zero
+	}
 
-		int n = getSize();
+	/**Mutators*/
+	
+	public void build_heap() {
 
-		for (int i = getSize(A)/2; i >= 1; i--) {//start at floor(n/2); we can ignore leaf nodes
+		int n = get_size();
+
+		for (int i = get_size()/2; i >= 1; i--) {//start at floor(n/2); we can ignore leaf nodes
 
 			System.out.printf("Calling MaxH with %d as i\n", i);
-			heapify(A, i); //call heapify helper function
+			heapify(i); //call heapify helper function
 		}
-		
 	}
 	
-	public void insert(Order order) {
-		//TODO insert
+	public void insert(Order key) {	
+		
+		//TODO do we need to increment if get_size is automatic with ArrayList.size?
+	   // Heap_size(A)++ //adding a new value to the heap
+	   // A[get_size()] = –infinity //make space at end of array for new value
+		heap_size++;
+		heap.add(null);
+		
+		heapIncreaseKey(get_size(), key); //start at the last index, i=Heap_size(A)
 	}
 	
 	public void remove(int index) {
-		//TODO remove
+		//TODO remove - no notes on this method?? 
+		heap.remove(index);
+		heap_size--;
+		build_heap();	
 	}
 	
 	public ArrayList<Order> sort(){
 		//TODO sort
-		
-		return ArrayList<Order>;
+	    int n = get_size();
+	    Order first;
+	    
+	    for (int i = n; i >= 2; i--) {
+	    	
+	    	// swap values at index 1 and i
+	    	first = heap.get(1);
+	    	heap.set(1, heap.get(i));
+	    	heap.set(i, first);
+	        
+	    	n--; //consider your heap to be one smaller
+
+	        heapify(1); //restore max heap property
+	    }	
+		return heap;
 	}
 	
-	public int getMax() {
-		//TODO get_max
+	 /**Accessors*/
+	
+	public Order get_max() {
 		
 		//root heap[1]
-		return int;
+		return heap.get(1);
 	}
 	
-	public int getParent(int i) {
-		//TODO getParent
+	public int get_parent(int i) {
 		
 		// A[i] = A[floor(i/2)]
-		return int;
+		return (int) i / 2;
 	}
 	
-	public int getLeft(int i) {
-		//TODO getLeft
+	public int get_left(int i) {
+		
 		//A[2i]
-		return int;
+		return (int) i * 2;
 	}
 	
-	public int getRight(int i) {
-		//TODO getRight
+	public int get_right(int i) {
+		
 		//A[2i + 1]
-		return int;
+		return (int) (i * 2) + 1;
 	}
 	
 
-	public int heapSize() {
-		// TODO size
-		return heap.size() - 1;
+	public int get_size() {
+		
+		//return heap.size() - 1;
+		return heap_size;
 	}
 	
-	public int getElement(int i) {
-		//TODO getElement
+	public Order get_element(int i) {
+		
 		return heap.get(i);
 	}
 
 	
+	 /**Additional Operations*/
+	
 	@Override
 	public String toString() {
-		//TODO toString
-		return "PriorityQueue [sort()=" + sort() + ", get_max()=" + get_max() + ", size()=" + size() + "]";
+		//TODO toString - how do we want to convert to string?
+		return "PriorityQueue [sort()=" + sort() + ", get_max()=" + get_max() + ", get_size()=" + get_size() + "]";
 	}
 	
 	
 	public void displayArray() {
-		//TODO displayArray
+		//TODO how do we want to display Orders in PriorityQueue displayArray?
+		for (int i=1; i < get_size(); i++) {
+			System.out.println(heap.get(i).getOrderDate() + " + " + heap.get(i).getShipmentType() + ", ");
+		}
 	}
 
 	
