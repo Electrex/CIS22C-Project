@@ -16,7 +16,7 @@ public class User {
 	{
 		productlist = new BST<Product>();
 		orderslist = new PriorityQueue();
-		customerlist = new Hash<Customer>();
+		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
 	}
 	
@@ -24,7 +24,7 @@ public class User {
 	{
 		productlist = new BST<Product>();
 		orderslist = new PriorityQueue();
-		customerlist = new Hash<Customer>();
+		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
 		this.filename = Filename; 
 	}
@@ -117,7 +117,7 @@ public class User {
 				break;
 			case "p":
 			case "P":
-				// orderslist.remove(orderslist.);// TODO HOW does remove work in this
+				// orderslist.remove(orderslist.);// TODO Mia: HOW does remove work in this
 				break;
 			case "h":
 			case "H":

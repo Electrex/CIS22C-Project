@@ -46,26 +46,17 @@ public class Server {
 	/******
 	 * Search the customer by the full name 
 	 * If the customer name is not found or is in a different format, then return null. 
-	 * @param name 
+	 * @param firstname
+	 * @param lastname
 	 * @return
 	 */
-	public static Customer searchCustomer(String fullname)
+	public static Customer searchCustomer(String firstname, String lastname)
 	{
-		if (!fullname.contains(" "))
+
+		if (User.getcustomers().search(new Customer(firstname, lastname)) != -1)
 		{
-			if (User.getcustomers().search(fullname) != -1)
-			{
-				  // TODO Eugene: Either choose the key to be search by customer fullname 
-				  // or search by username/password. We can check username/password by searching 
-				  // through the file instead. 
-				
-				  // TODO Eugene: we need to modify the Hash class. 
-			} 	
-			else
-			{
-				return null; 
-			}
-		}
+					
+		} 	
 		else
 		{
 			return null; 

@@ -5,9 +5,11 @@ import Modules.*;
 
 public class Client {
 	
+	private boolean isloggedin;
+	
 	public Client()
 	{
-
+		isloggedin = false; 
 	}
 	
 	/**********
@@ -34,6 +36,16 @@ public class Client {
 			else
 				continue;
 		return false;
+	}
+	
+	public void login()
+	{
+		isloggedin = true; 
+	}
+	
+	public void logout()
+	{
+		isloggedin = false; 
 	}
 	
 	/********
