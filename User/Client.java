@@ -1,5 +1,7 @@
 package User;
 
+import java.util.ArrayList;
+
 import ADT.*;
 import Modules.*; 
 
@@ -21,7 +23,7 @@ public class Client {
 	 */
 	public static boolean verifyLogInInformation(String username, String password)
 	{	
-		Customer searchvalue = new Customer(username, password);
+		Customer searchvalue = new Customer("", "", username, password);
 		
 		for (int i = 0; i < User.getcustomers().getNumElements(); i ++)
 			if (User.getcustomers().search(searchvalue) != -1)
@@ -52,18 +54,18 @@ public class Client {
 	 * create a new customer object using the information passed into the parameter
 	 * Insert the object into the customer list 
 	 */
-	public static void createnewaccount(/* take customer properties */)
+	public static void createnewaccount(String firstname, String lastname, String username, String password, String address)
 	{
-		// TODO Albert: fill up the parameter and complete the method
+		User.adddata("h", new Customer(firstname, lastname, username, password, address));
 	}
 	
 	/***************
 	 * create a new order object using the information passed into the parameter
 	 * Insert the object into the order list 
 	 */
-	public static void placeOrder(/* take a order properties */)
+	public static void placeOrder(ArrayList<Product> prod, ArrayList<Integer> qty, String shipType)
 	{
-		// TODO Albert: fill up the parameter and complete the method
+		User.adddata("p", new Order(prod, qty, shipType));
 	}
 	
 	/************

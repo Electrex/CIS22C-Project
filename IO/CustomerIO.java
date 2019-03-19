@@ -74,7 +74,14 @@ public class CustomerIO {
 	public void rewritefile()
 	{
 		boolean isinvalid = true;           
-		FileWriter output = new FileWriter(filename);   
+		FileWriter output = null;
+		try {
+			output = new FileWriter(filename);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}   
+		
 		PrintWriter filewriter = new PrintWriter(output); 
 		
 		filewriter.write(customerlist.toString()); 

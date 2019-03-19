@@ -88,6 +88,7 @@ public class Hash<T extends Comparable<T>> {
         {
             return bucket;
         }
+        
         return -1;
     }
 
@@ -213,7 +214,6 @@ public class Hash<T extends Comparable<T>> {
                 Table.get(i).advanceIterator();
             }
         }
-        
         return result;
     }
 }

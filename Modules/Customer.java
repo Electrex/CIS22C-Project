@@ -4,21 +4,25 @@ package Modules;
  * @author Eugene Kim
  * CIS 22C
  */
+
 public class Customer implements Comparable<Customer> {
     private String firstName;
     private String lastName;
     private String address;
     private String username;
     private String password;
-    private List<Order> orders;
+
+    private PriorityQueue<Order> orders;
     
     public Customer()
     {
         firstName = lastName = address = username = password = "";
-        orders = new List<Order>();
+
+            
+        orders = new PriorityQueue<Order>();
         
     }
-    
+
     public Customer(String fname, String lname, String add, String userN, String pass)
     {
         firstName = fname;
@@ -26,7 +30,8 @@ public class Customer implements Comparable<Customer> {
         address= add;
         username = userN;
         password = pass;
-        orders = new List<Order>();
+
+        orders = new PriorityQueue<Order>();
     }
     
     public String getFullName()
@@ -86,11 +91,25 @@ public class Customer implements Comparable<Customer> {
     {
         this.address = address;
     }
+
+    public void insertOrder(Order o)
+    {
+        orders.insert(o);
+    }
     
     @Override 
     public int hashCode()
     {
-        String key = firstName + lastName + username;
+        String key = "";
+        if(!firstName.equals("") && !lastName.equals(""))
+        {
+            key = firstName + lastName;
+        }
+        else
+        {
+            key = username + password;
+        }
+        
         int sum = 0;
         
         for(int i = 0; i < key.length(); i++)
@@ -116,6 +135,18 @@ public class Customer implements Comparable<Customer> {
             else
             {
                 return 1;
+        else if(!c.getFullName().equals("")) 
+        {
+            if(c.getFullName().equals(this.getFullName()))
+            {
+                if(this.getFullName().compareTo(c.getFullName()) < 0)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 1;
+                }
             }
         }
         else

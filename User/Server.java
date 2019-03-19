@@ -35,12 +35,22 @@ public class Server {
 
 	}
 	
-	/****************
-	 * Display Customer list
+	/******** 
+	 * Returns an arraylist of customers 
+	 * @return an arraylist that holds all the customers. 
 	 */
 	public static ArrayList<Customer> displayCustomer()
 	{
-		return ;// TODO Eugene: Use printBucket method to return the Customer list in the order they are being stored. 
+		String[] datas = User.getcustomers().toString().split("\n"); // Call toString method of the hash map 
+		String[] data;
+		ArrayList<Customer> customers = new ArrayList<Customer>();
+		for (int i = 0; i < datas.length; i++)
+		{
+			data = datas[i].split(","); 		// Parse through the string and get customer properties
+			customers.add(new Customer(data[0], data[1], data[2], data[3], data[4])); // Add the customer object to the list
+		}
+		
+		return customers;
 	}
 	
 	/******
@@ -53,9 +63,9 @@ public class Server {
 	public static Customer searchCustomer(String firstname, String lastname)
 	{
 
-		if (User.getcustomers().search(new Customer(firstname, lastname)) != -1)
+		if (User.getcustomers().search(new Customer(firstname, lastname, "", "")) != -1) // leaving username password empty
 		{
-					
+			// TODO Search will return the index, but I can't really do anything with the index. 
 		} 	
 		else
 		{
@@ -70,11 +80,11 @@ public class Server {
 	public static PriorityQueue viewOrders()
 	{	
 		PriorityQueue orders = new PriorityQueue();
-		for (int i = 0; i < User.getorders().heapSize(); i++)
+		for (int i = 0; i < User.getorders().get_size(); i++)
 		{
-			if (!User.getorders().getElement(i).getisshipped()) // it is false means that the order is not yet being shipped
+			if (!User.getorders().get_element(i).getIsShipped()) // it is false means that the order is not yet being shipped
 			{
-				orders.insert(User.getorders().getElement(i));
+				orders.insert(User.getorders().get_element(i));
 			}
 		}
 		return orders;

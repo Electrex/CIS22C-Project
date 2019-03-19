@@ -1,11 +1,13 @@
 package User;
 
+import java.util.ArrayList;
+
 import ADT.*;
 import IO.*;
 import Modules.*;
 
 public class User {
-	private static BST<Product> productlist; 
+	private static BST productlist; 
 	private static PriorityQueue orderslist; 
 	private static Hash<Customer> customerlist; 
 	private static List<Employee> employeelist;
@@ -14,7 +16,7 @@ public class User {
 	
 	public User()
 	{
-		productlist = new BST<Product>();
+		productlist = new BST();
 		orderslist = new PriorityQueue();
 		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
@@ -22,7 +24,7 @@ public class User {
 	
 	public User(String[] Filename)
 	{
-		productlist = new BST<Product>();
+		productlist = new BST();
 		orderslist = new PriorityQueue();
 		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
@@ -136,20 +138,19 @@ public class User {
 	/*******
 	 * Search for the product using the primary key 
 	 * @param input that the user has entered in. 
-	 * @return a list of products that contains the input in their primary key (name) 
+	 * @return the product that contains the input in its primary key (name) 
 	 */
-	public static List<Product> primaryProductSearch(String input)
+	public static Product primaryProductSearch(String input) // should be product name 
 	{
-		List<Product> list = new List<Product>();
+		Product product = new Product(0.0, input, "", 0.0); 
 		
-		// TODO Yusuf: Sort the BST by primary key
+		User.getproducts().sortByPrimary();
 		
-		for (int i = 0; i < User.getproducts().getSize(); i ++)
+
+		if (User.getproducts().searchByPrimary(product)) // if it can be found
 		{
-			if (User.getproducts().searchByPrimary(input)) // if it is found
-			{
-				list.addLast(User.getproducts().getproduct); // TODO Yusuf: need get product method 
-			}
+			for ()
+			User.getproducts().getProducts().get(product);  
 		}
 		
 		return list;
@@ -158,20 +159,17 @@ public class User {
 	/*******
 	 * Search for the product using the secondary key 
 	 * @param input that the user has entered in. 
-	 * @return a list of products that contains the input in their secondary key (ID) 
+	 * @return the product that contains the input in its secondary key (ID) 
 	 */
-	public static List<Product> secondaryProductSearch(String input)
+	public static ArrayList<Product> secondaryProductSearch(String input) // should be ID number 
 	{
-		List<Product> list = new List<Product>();
+		ArrayList<Product> list = new ArrayList<Product>();
 		
-		// TODO Yusuf: Sort the BST by secondary key
+		User.getproducts().sortBySecondary();
 		
-		for (int i = 0; i < User.getproducts().getSize(); i ++)
+		if (User.getproducts().searchByPrimary(new Product(0.0, "", input, 0.0))) // if it can be found
 		{
-			if (User.getproducts().searchBySecondary(input)) // if it is found
-			{
-				list.addLast(User.getproducts().search()); // TODO Yusuf: need get product method. 
-			}
+			list.add(User.getproducts().getProducts().indexOf(new Product(0.0, "", input, 0.0))); 
 		}
 		
 		return list;
@@ -182,7 +180,7 @@ public class User {
 	 * @postcondition The productlist will be sorted by the primary key. 
 	 * @return The productlist that is being sorted by the primary key. 
 	 */
-	public static BST<Product> displayProductPrimarily()
+	public static BST displayProductPrimarily()
 	{
 		// sort product by primary key
 		User.setProductlist(User.getproducts()); // TODO Yusuf: Need to figure out a way to sort by primary key. 
@@ -196,7 +194,7 @@ public class User {
 	 * @postcondition The productlist will be sorted by the secondary key. 
 	 * @return The productlist that is being sorted by the secondary key. 
 	 */
-	public static BST<Product> displayProductSecondary()
+	public static BST displayProductSecondary()
 	{
 		// sort product by secondary key
 		User.setProductlist(User.getproducts()); // TODO Yusuf: need to figure out a way to sort by secondary key
@@ -210,12 +208,12 @@ public class User {
 	 * getter for product list
 	 * @return productlist
 	 */
-	public static BST<Product> getproducts() {
+	public static BST getproducts() {
 
 		return productlist;
 	}
 	
-	public static void setProductlist(BST<Product> productlist) {
+	public static void setProductlist(BST productlist) {
 		User.productlist = productlist;
 	}
 	
