@@ -1,7 +1,10 @@
 package ADT;
 //Yusuf
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
+
+import Modules.Product;
 
 public class BST{
     private class Node {
@@ -35,7 +38,7 @@ public class BST{
      * @param bst the BSProduct to make
      * a copy of
      */
-    public BST(BSProduct bst) {
+    public BST(BST bst) {
         if (bst.root == null)
             root = null;
         else {

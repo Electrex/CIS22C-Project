@@ -12,7 +12,7 @@ import Modules.Product;
 
 public class ProductIO {
 	
-	private BST<Product> productlist; 
+	private BST productlist; 
 	private String filename; 
 	private Scanner scanner; 
 
@@ -20,11 +20,11 @@ public class ProductIO {
 	public ProductIO(String fname)
 	{
 		filename = fname; 
-		productlist = new BST<Product>();
+		productlist = new BST();
 		scanner = new Scanner(System.in);
 	}
 
-	public ProductIO(String fname, BST<Product> list)
+	public ProductIO(String fname, BST list)
 	{
 		filename = fname; 
 		productlist = list;
@@ -35,7 +35,7 @@ public class ProductIO {
 	 * 
 	 * @return a completed hash. 
 	 */
-	public BST<Product> readfile()
+	public BST readfile()
 	{
 		boolean readable = false;
 		boolean doneLoadingGraph = false;

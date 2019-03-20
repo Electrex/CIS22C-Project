@@ -30,9 +30,26 @@ import Modules.*;
 
 public class Server {
 	
+	private static boolean isloggedin = false;
+	
 	public Server ()
 	{	
 
+	}
+	
+	public static void login()
+	{
+		isloggedin = true; 
+	}
+
+	public static boolean isloggedin()
+	{
+		return isloggedin; 
+	}
+	
+	public static void logout()
+	{
+		isloggedin = false; 
 	}
 	
 	/******** 
@@ -53,6 +70,24 @@ public class Server {
 		return customers;
 	}
 	
+	/**********
+	 * verify the logging in information that the user has passed in. 
+	 * @param username the username that is being passed in. 
+	 * @param password the password that is being passed in. 
+	 * @return true if the passed in username and password is found
+	 * 		   false if the passed in username and password is not found 
+	 */
+	public static boolean verifyLogInInformation(String username, String password)
+	{	
+		Employee searchvalue1 = new Employee(username, password);
+		for (int i = 0; i < User.getemployees().getLength(); i++)
+			if (User.getemployees().linearSearch(searchvalue1) != -1)
+				return true;
+			else
+				continue;
+		return false;
+	}
+	
 	/******
 	 * Search the customer by the full name 
 	 * If the customer name is not found or is in a different format, then return null. 
@@ -65,7 +100,7 @@ public class Server {
 
 		if (User.getcustomers().search(new Customer(firstname, lastname, "", "")) != -1) // leaving username password empty
 		{
-			// TODO Search will return the index, but I can't really do anything with the index. 
+			// TODO Search in Hash will return the index, but I can't really do anything with the index. 
 		} 	
 		else
 		{

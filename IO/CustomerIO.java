@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import ADT.*;
@@ -14,6 +15,7 @@ import Modules.*;
 public class CustomerIO {
 	
 	private Hash<Customer> customerlist; 
+	private static ArrayList<String> customerfileinfo;
 	private String filename; 
 	private Scanner scanner; 
 
@@ -23,6 +25,7 @@ public class CustomerIO {
 		filename = fname; 
 		customerlist = new Hash<Customer>(50);
 		scanner = new Scanner(System.in);
+		customerfileinfo = new ArrayList<String>();
 	}
 	
 	public CustomerIO(String fname, Hash<Customer> list)
@@ -30,6 +33,7 @@ public class CustomerIO {
 		filename = fname; 
 		customerlist = list;
 		scanner = new Scanner(System.in);
+		customerfileinfo = new ArrayList<String>();
 	}
 	
 	/********
@@ -60,12 +64,28 @@ public class CustomerIO {
 				// split line at space to break apart vertices u & v
 				String[] vertices = line.split(",");
 				customerlist.insert(new Customer()); // @TODO To be inserted. 
+				customerfileinfo.add(line);
 			}
 			buff.close();
 		} catch (IOException e) {
 			System.out.println("readfile(): Problem reading file. " + e.toString());
 		}
 		return customerlist; 
+	}
+	
+	public static ArrayList<String> getcustomerfilecontent()
+	{
+		return customerfileinfo;
+	}
+	
+	public static void addtocontent(String s)
+	{
+		customerfileinfo.add(s);
+	}
+	
+	public static void removecontent(String s)
+	{
+		customerfileinfo.remove(customerfileinfo.indexOf(s));
 	}
 	
 	/********

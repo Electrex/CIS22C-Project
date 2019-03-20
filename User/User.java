@@ -1,5 +1,6 @@
 package User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import ADT.*;
@@ -12,7 +13,6 @@ public class User {
 	private static Hash<Customer> customerlist; 
 	private static List<Employee> employeelist;
 	private String[] filename;
-	
 	
 	public User()
 	{
@@ -58,10 +58,14 @@ public class User {
 		OrderIO ordio = new OrderIO(filename[2], orderslist);
 		ProductIO proio = new ProductIO(filename[3], productlist);
 		
-		cusio.rewritefile();
-		empio.rewritefile();
-		proio.rewritefile();
-		ordio.rewritefile();
+		try {
+			ordio.rewritefile();
+			empio.rewritefile();
+			cusio.rewritefile();
+			proio.rewritefile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/******
@@ -88,7 +92,9 @@ public class User {
 				break;
 			case "h":
 			case "H":
-				customerlist.insert((Customer)(data));
+				Customer temp = (Customer)(data);
+				CustomerIO.addtocontent(temp.toString());
+				customerlist.insert(temp);
 				break;
 			case "l":
 			case "L":
@@ -123,7 +129,9 @@ public class User {
 				break;
 			case "h":
 			case "H":
-				customerlist.remove((Customer)(data));
+				Customer temp = (Customer)(data);
+				CustomerIO.removecontent(temp.toString());
+				customerlist.remove(temp);
 				break;
 			case "l":
 			case "L":
@@ -142,18 +150,15 @@ public class User {
 	 */
 	public static Product primaryProductSearch(String input) // should be product name 
 	{
-		Product product = new Product(0.0, input, "", 0.0); 
-		
-		User.getproducts().sortByPrimary();
+		BST temp = productlist;
+		temp.sortByPrimary();
 		
 
-		if (User.getproducts().searchByPrimary(product)) // if it can be found
-		{
-			for ()
-			User.getproducts().getProducts().get(product);  
-		}
-		
-		return list;
+		if (temp.searchByPrimary(new Product(0.0, input, "", 0.0))) // if it can be found
+			for (int i = 0; i < temp.getProducts().size(); i ++)
+				if (temp.getProducts().get(i).getName().equals(input)) // if product name == the ID inputed.     
+					return temp.getProducts().get(i);
+		return null; 
 	}
 	
 	/*******
@@ -161,32 +166,30 @@ public class User {
 	 * @param input that the user has entered in. 
 	 * @return the product that contains the input in its secondary key (ID) 
 	 */
-	public static ArrayList<Product> secondaryProductSearch(String input) // should be ID number 
+	public static Product secondaryProductSearch(String input) // should be ID number 
 	{
-		ArrayList<Product> list = new ArrayList<Product>();
-		
-		User.getproducts().sortBySecondary();
-		
-		if (User.getproducts().searchByPrimary(new Product(0.0, "", input, 0.0))) // if it can be found
-		{
-			list.add(User.getproducts().getProducts().indexOf(new Product(0.0, "", input, 0.0))); 
-		}
-		
-		return list;
+		BST temp = productlist;
+		temp.sortBySecondary();
+
+		if (temp.searchBySecondary(new Product(0.0, "", input, 0.0))) // if it can be found
+			for (int i = 0; i < temp.getProducts().size(); i ++)
+				if (temp.getProducts().get(i).getName().equals(input)) // if product ID == the ID inputed.    
+					return temp.getProducts().get(i);
+		return null; 
 	}
 	
 	/*******
 	 * This will display the productlist that is sorted by the primary key. 
 	 * @postcondition The productlist will be sorted by the primary key. 
-	 * @return The productlist that is being sorted by the primary key. 
+	 * @return the temporary BST will be returned to keep the original BST sorted in its original order 
 	 */
 	public static BST displayProductPrimarily()
 	{
 		// sort product by primary key
-		User.setProductlist(User.getproducts()); // TODO Yusuf: Need to figure out a way to sort by primary key. 
-												 // TODO Yusuf: need to figure out a way to return the BST
+		BST temp = productlist;
+		temp.sortByPrimary();
 		
-		return User.getproducts(); 
+		return temp; 
 	}
 	
 	/*******
@@ -197,10 +200,10 @@ public class User {
 	public static BST displayProductSecondary()
 	{
 		// sort product by secondary key
-		User.setProductlist(User.getproducts()); // TODO Yusuf: need to figure out a way to sort by secondary key
-												 // TODO Yusuf: need to figure out a way to return the BST in arraylist format
+		BST temp = productlist;
+		temp.sortBySecondary();		
 				
-		return User.getproducts(); 
+		return temp; 
 	}
 	
 	
