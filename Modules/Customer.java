@@ -183,12 +183,12 @@ public class Customer implements Comparable<Customer> {
     @Override
     public String toString()
     {
-        String result = "First Name: " + firstName
-                + "\nLast Name: " + lastName
-                + "\nUsername: " + username
-                + "\nPassword: " + password
-                + "\nAddress: " + address
-                + "\nOrders: " + orders;
+        String result = firstName
+                + "," + lastName
+                + "," + username
+                + "," + password
+                + "," + address
+                + "," + orders + "\n";
         return result;
     }
 }
