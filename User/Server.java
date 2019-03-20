@@ -97,10 +97,10 @@ public class Server {
 	 */
 	public static Customer searchCustomer(String firstname, String lastname)
 	{
-
-		if (User.getcustomers().search(new Customer(firstname, lastname, "", "")) != -1) // leaving username password empty
+		// TODO Eugene: create a constructor with only fname and lname
+		if (User.getcustomers().search(new Customer(firstname, lastname)) != -1) 
 		{
-			// TODO Search in Hash will return the index, but I can't really do anything with the index. 
+			// TODO Eugene: Search in Hash will return the index, but I can't really do anything with the index. 
 		} 	
 		else
 		{
@@ -127,12 +127,11 @@ public class Server {
 	
 	/*****
 	 * sending orders, the first order will be sent. 
+	 * 
 	 */
 	public static void sendOrder(Order sentorder) 
 	{
-		PriorityQueue temp = User.getorders();
-		temp.remove(User.getorders().sort().indexOf(sentorder));
-		User.setOrderslist(temp); 
+		sentorder.toggleIsShipped();
 	}
 	
 	/*******

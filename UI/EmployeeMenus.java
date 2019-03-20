@@ -14,7 +14,7 @@ public class EmployeeMenus {
 	{
 		System.out.println("****Sending Orders");
 		String in; 
-
+		
 		for (int i = 0; i < User.getorders().get_size(); i ++)
 		{
 			System.out.println("Order ID: " + User.getorders().get_element(i).getOrderID());
@@ -30,7 +30,6 @@ public class EmployeeMenus {
 				if (in.equals("S"))
 				{
 					Server.sendOrder(User.getorders().get_element(i));
-					User.getorders().get_element(i).toggleIsShipped();
 					System.out.println("The order is sent! ");
 					isvalid = true; 
 				}
@@ -66,7 +65,7 @@ public class EmployeeMenus {
 					break;
 				
 				if (Server.searchCustomer(fname, lname) != null)
-					System.out.println(Server.searchCustomer(fname, lname));
+					System.out.println(Server.searchCustomer(fname, lname).toString());
 				else
 					System.out.println("----The customer is not found");
 			}

@@ -8,7 +8,7 @@ import Modules.*;
 
 public class Client {
 	
-	private static boolean isloggedin = false;;
+	private static boolean isloggedin = false;
 	private static ArrayList<Product> shoppingcart = new ArrayList<Product>();
 	private static ArrayList<Integer> quantities = new ArrayList<Integer>(); 
 	
@@ -47,11 +47,9 @@ public class Client {
 	public static boolean verifyLogInInformation(String username, String password)
 	{			
 		for (int i = 0; i < CustomerIO.getcustomerfilecontent().size(); i ++)
-		{
 			if (CustomerIO.getcustomerfilecontent().get(i).contains(username))
 				if (CustomerIO.getcustomerfilecontent().get(i).contains(password))
 					return true; 
-		}
 			
 		return false;
 	}
@@ -81,12 +79,18 @@ public class Client {
 	}
 	
 	/***************
-	 * create a new order object using the information passed into the parameter
-	 * Insert the object into the order list 
+	 * Create a new order object using the information passed into the parameter
+	 * Insert the object into the order queue 
+	 * Clear the shopping cart by empty out both parallel arrays
 	 */
-	public static void placeOrder(String shipType)
+	public static void placeOrder(String shipType, Customer c)
 	{
-		User.adddata("p", new Order(shoppingcart, quantities, shipType));
+		ArrayList<Product> producttemp = shoppingcart;
+		ArrayList<Integer> quantemp = quantities;
+		User.adddata("p", new Order(producttemp, quantemp, shipType));
+		c.addorders();
+		shoppingcart.clear();     
+		quantities.clear();     
 	}
 	
 	/************
