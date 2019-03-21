@@ -125,7 +125,9 @@ public class User {
 				break;
 			case "p":
 			case "P":
-				// orderslist.remove(orderslist.);// TODO Mia: HOW does remove work in this
+				for (int i = 0; i < orderslist.get_size(); i++)
+					if (orderslist.get_element(i).equals(data))
+						orderslist.remove(i); 
 				break;
 			case "h":
 			case "H":
@@ -153,7 +155,6 @@ public class User {
 		BST temp = productlist;
 		temp.sortByPrimary();
 		
-
 		if (temp.searchByPrimary(new Product(0.0, input, "", 0.0))) // if it can be found
 			for (int i = 0; i < temp.getProducts().size(); i ++)
 				if (temp.getProducts().get(i).getName().equals(input)) // if product name == the ID inputed.     

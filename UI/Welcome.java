@@ -47,9 +47,28 @@ For employee user:
  */
 public class Welcome {
 	
-	private Scanner scanner = new Scanner(System.in); 
+	private Scanner scanner; 
+	private static Client client;
+	private static Server server;
 	
-	public void Welcome()
+	public Welcome()
+	{
+		scanner = new Scanner(System.in); 
+		client = new Client();
+		server = new Server();
+	}
+	
+	public static Client getClient()
+	{
+		return client; 
+	}
+	
+	public static Server getServer()
+	{
+		return server; 
+	}
+	
+	public void welcome()
 	{
 		System.out.println(" *************** Welcome to Dash! *************** ");
 		start();
@@ -58,10 +77,10 @@ public class Welcome {
 	public void start()
 	{
 		while(true)
-			if (Client.isloggedin())
+			if (client.isloggedin())
+				loggedinmenus(); 
+			else if (server.isloggedin())
 				employeeloggedinmenus();
-			else if (Server.isloggedin())
-				loggedinmenus();  
 			else 
 				guestmenus(); 
 	}
@@ -119,7 +138,7 @@ public class Welcome {
 			else if (input.equalsIgnoreCase("Q"))
 			{
 				isvalid = true;
-				Client.logout();
+				client.logout();
 			}
 			else if (input.equalsIgnoreCase("L"))
 			{
@@ -210,7 +229,7 @@ public class Welcome {
 			}
 			else if (input.equalsIgnoreCase("Q"))
 			{
-				Server.logout();
+				server.logout();
 				isvalid = true;
 			}
 			else

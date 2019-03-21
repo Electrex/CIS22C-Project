@@ -66,10 +66,10 @@ public class Employee implements Comparable<Employee>{
     }
     
     /**
-     * Determines whether two Movie objects are 
-     * equal by comparing titles and directors
-     * @param otherMovie the second Movie object
-     * @return whether the Movies are equal
+     * Determines whether two Employee objects are 
+     * equal by comparing username and password
+     * @param the second employee object 
+     * @return whether the employees are equal
      */
     @Override public boolean equals(Object o) {
     	if (o == this)
@@ -86,22 +86,19 @@ public class Employee implements Comparable<Employee>{
     }
     
     /**
-     * Compares two Movie objects to determine ordering
+     * Compares two Employee objects to determine ordering
      * Returns 0 if the two items are equal
-     * Return -1 if this Movie's title comes alphabetically
-     * before the other Movie's title.
-     * Returns 1 if the other Movie's title comes
-     * alphabetically before this movie's title
-     * If the two movie's titles are the same, will
-     * differentiate by director's name (alphabetical
-     * comparison)
-     * @param the other Movie object to compare to this
-     * @return 0 (same movie), -1 (this movie ordered first)
-     * or 1 (the other movie ordered first) 
+     * Return -1 if this Employee's username + password comes alphabetically
+     * before the other Employee's username + password.
+     * Returns 1 if the other Employee's username + password comes
+     * alphabetically before this Employee's username + password
+     * @param the other Employee object to compare to this
+     * @return 0 (same Employee), -1 (this Employee ordered first)
+     * or 1 (the other Employee ordered first) 
      */
     public int compareTo(Employee otherMovie) {
-        String key = fullname + username;
-        String otherKey = otherMovie.fullname + otherMovie.username;
+        String key = username + password;
+        String otherKey = otherMovie.username + otherMovie.password;
         
     	if (key.compareTo(otherKey) == 0) {
     		return 0;

@@ -9,11 +9,10 @@ public class LogIn {
 	
 	private Scanner scanner = new Scanner(System.in);
 	
-	public boolean LogIn()
+	public void LogIn()
 	{
-		String uname, pass, ls;
+		String uname, pass, ls; // log in or sign up 
 		boolean isvalid = false; 
-		boolean isemployee = false; 
 		
 		System.out.println("Press (1) if you need to sign up, press (2) if you want to log in");
 		ls = scanner.next();
@@ -42,14 +41,15 @@ public class LogIn {
 			{
 				if (Client.verifyLogInInformation(uname, pass))
 				{
-					System.out.println("Welcome! ");
+					System.out.println("Welcome! Customer Mode!"); 
+					Welcome.getClient().login(uname, pass);
 					isvalid = true;
 				}
 				else
 				{
-					System.out.println("Welcome! ");
+					System.out.println("Welcome! Employee Mode!"); 
+					Welcome.getServer().login(uname, pass);
 					isvalid = true;
-					isemployee = true; 
 				}
 			}
 			else
@@ -58,8 +58,6 @@ public class LogIn {
 				continue; 
 			}
 		}
-		
-		return isemployee;
 	}
 	
 	public void SignUp()
@@ -84,8 +82,8 @@ public class LogIn {
 			if (password.equals(passwordconfirmation))
 			{
 				System.out.println("You are all set! ");
-				User.adddata("h", new Customer(firstname, lastname, address, username, password));
-				isvalid = true; 
+				Client.createnewaccount(firstname, lastname, username, password, address);
+				isvalid = true;  
 			}
 			else
 			{

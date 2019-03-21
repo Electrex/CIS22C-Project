@@ -12,13 +12,13 @@ public class ShoppingCart {
 		System.out.println("************* Your Shopping Cart **************");
 		System.out.println("****Here is what you have in your shopping cart: ");
 		
-		for (int i = 0; i < Client.getshoppingcart().size(); i ++)
+		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i ++)
 		{
 			System.out.println((i + 1) + ": ");
-			System.out.println("Product Name: " + Client.getshoppingcart().get(i).getName());
-			System.out.println("Product ID: " + Client.getshoppingcart().get(i).getProductId());
-			System.out.println("Product price: " + Client.getshoppingcart().get(i).getUnitPrice());
-			System.out.println("Quantity: " + Client.getquantities().get(i));
+			System.out.println("Product Name: " + Welcome.getClient().getshoppingcart().get(i).getName());
+			System.out.println("Product ID: " + Welcome.getClient().getshoppingcart().get(i).getProductId());
+			System.out.println("Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
+			System.out.println("Quantity: " + Welcome.getClient().getquantities().get(i));
 			System.out.println("-----------------------------------------------------------");
 		}
 		
@@ -55,12 +55,12 @@ public class ShoppingCart {
 		String shipmentmethod = scanner.next();
 		
 		System.out.println("****Okay, " + name + "! You are all set here is your order confirmation: ");
-		for (int i = 0; i < Client.getshoppingcart().size(); i ++)
+		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i ++)
 		{
-			System.out.print("Product Name: " + Client.getshoppingcart().get(i).getName());
-			System.out.print("    Product price: " + Client.getshoppingcart().get(i).getUnitPrice());
-			System.out.print("    Quantity: " + Client.getquantities().get(i) + "\n");
-			totalprice += (Client.getshoppingcart().get(i).getUnitPrice())*(Client.getquantities().get(i)); 
+			System.out.print("Product Name: " + Welcome.getClient().getshoppingcart().get(i).getName());
+			System.out.print("    Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
+			System.out.print("    Quantity: " + Welcome.getClient().getquantities().get(i) + "\n");
+			totalprice += (Welcome.getClient().getshoppingcart().get(i).getUnitPrice())*(Welcome.getClient().getquantities().get(i)); 
 		}	
 		
 		if (shipmentmethod.equals("1"))
