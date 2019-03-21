@@ -11,10 +11,10 @@ import User.*;
 public class DashDriver {
     public static void main(String[] args) throws Exception{
         
-    	String [] files = {"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Customer.txt", 
-    			"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Employee.txt", 
-    			"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Order.txt", 
-    			"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Product.txt"}; 
+    	String [] files = {"Customer.txt", 
+    			"Employee.txt", 
+    			"Order.txt", 
+    			"Product.txt"}; 
     	User user = new User(files);
     	user.loaddata();
     	Welcome initializer = new Welcome();
