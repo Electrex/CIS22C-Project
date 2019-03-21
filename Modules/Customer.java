@@ -24,7 +24,6 @@ public class Customer implements Comparable<Customer> {
 
             
         orders = new PriorityQueue();
-        
     }
     
     public Customer(String fname, String lname)
@@ -177,12 +176,7 @@ public class Customer implements Comparable<Customer> {
     @Override
     public String toString()
     {
-        String result = "First Name: " + firstName
-                + ", Last Name: " + lastName
-                + ", Username: " + username
-                + ", Password: " + password
-                + ", Address: " + address 
-                + "\n";
+        String result = firstName + "," + lastName + "," + username + "," + password + "," + address + "\n";
         return result;
     }
 }

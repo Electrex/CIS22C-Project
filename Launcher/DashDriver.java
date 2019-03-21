@@ -5,10 +5,14 @@ import java.io.File;
 import java.util.Scanner;
 
 import Modules.Product;
+import UI.*; 
 
 public class DashDriver {
     public static void main(String[] args) throws Exception{
+        new Welcome().Welcome();
+    	/*
         int numBuckets = 26; //Choose whatever
+        
         //Hash<Product> p = new Hash<Product>(numBuckets);
         String userChoice = "";
         String name;
@@ -37,5 +41,6 @@ public class DashDriver {
             //Do stuff
         } while ();
         System.out.println("Goodbye!");
+        */
     }
 }

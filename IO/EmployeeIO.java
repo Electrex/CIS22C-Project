@@ -34,12 +34,11 @@ public class EmployeeIO {
 
 	/********
 	 * 
-	 * @return a completed hash. 
+	 * @return a completed List. 
 	 */
 	public List<Employee> readfile()
 	{
 		boolean readable = false;
-		boolean doneLoadingGraph = false;
 		BufferedReader buff;
 		FileReader filereader;
 
@@ -48,7 +47,6 @@ public class EmployeeIO {
 			buff = new BufferedReader(filereader);
 			String line;
 
-			
 			while (readable) {
 				line = buff.readLine();
 				if (line == null) // finished reading
@@ -56,7 +54,6 @@ public class EmployeeIO {
 					readable = false;
 					break;
 				}
-				
 				
 				String[] vertices = line.split(",");
 				employeelist.addLast(new Employee(vertices[0], vertices[1], vertices[2]));
@@ -74,7 +71,6 @@ public class EmployeeIO {
 	*/
 	public void rewritefile() throws IOException
 	{
-		boolean isinvalid = true;           
 		FileWriter output = new FileWriter(filename);   
 		PrintWriter filewriter = new PrintWriter(output); 
 		

@@ -7,48 +7,61 @@ import IO.*;
 import Modules.*;
 
 /******
- * - Search for a customer by name
+- Search for a customer by name      searchCustomer(String firstname, String lastname)
+- Display unsorted customer information, including first and last name, address, order history    displayCustomer() 
+- View Orders by Priority     vieworder()
+- Ship an Order      shiporder()
+- List Database of Products      
+	- List data sorted by primary key
+	- List data sorted by secondary key   
+- Add a new product     addProduct(double unitPrice, String name, String productId, double cost)
+- Remove a product      removeproduct(Product product)
+- Quit         logout() 
 
-- Display unsorted customer information, including first and last name, address, phone number, order history
-
-- View Orders by Priority
-
-- Ship an Order
-
-- List Database of Products
-
-- List data sorted by primary key
-
-- List data sorted by secondary key
-
-         - Add a new product
-         - Remove a product
-         - Quit
  * @author albertliu
  */
 
 
 public class Server {
 	
-	private static boolean isloggedin = false;
+	private boolean isloggedin = false;
+	private Employee employee;
+	
+	public Server (Employee employee)
+	{	
+		this.employee = employee;
+		isloggedin = true; 
+	}
 	
 	public Server ()
 	{	
-
+		this.employee = null;
+		isloggedin = false; 
 	}
 	
-	public static void login()
+	/*****
+	 * initial employee variable
+	 * set isloggedin to true 
+	 * @param username
+	 * @param password
+	 */
+	public void login(String username, String password)
 	{
+		List<Employee> employeelist = User.getemployees();
+		int idx = employeelist.linearSearch(new Employee(username, password));
+		employeelist.moveToIndex(idx);
+		employee = employeelist.getIterator();
 		isloggedin = true; 
 	}
 
-	public static boolean isloggedin()
+	public boolean isloggedin()
 	{
 		return isloggedin; 
 	}
 	
-	public static void logout()
+	public void logout()
 	{
+		employee = null; 
 		isloggedin = false; 
 	}
 	
@@ -97,10 +110,10 @@ public class Server {
 	 */
 	public static Customer searchCustomer(String firstname, String lastname)
 	{
-
-		if (User.getcustomers().search(new Customer(firstname, lastname, "", "")) != -1) // leaving username password empty
+		// TODO Eugene: create a constructor with only fname and lname
+		if (User.getcustomers().search(new Customer(firstname, lastname)) != -1) 
 		{
-			// TODO Search in Hash will return the index, but I can't really do anything with the index. 
+			// TODO Eugene: Search in Hash will return the index, but I can't really do anything with the index. 
 		} 	
 		else
 		{
@@ -127,12 +140,11 @@ public class Server {
 	
 	/*****
 	 * sending orders, the first order will be sent. 
+	 * 
 	 */
 	public static void sendOrder(Order sentorder) 
 	{
-		PriorityQueue temp = User.getorders();
-		temp.remove(User.getorders().sort().indexOf(sentorder));
-		User.setOrderslist(temp); 
+		sentorder.toggleIsShipped();
 	}
 	
 	/*******

@@ -570,10 +570,9 @@ public class List<T extends Comparable<T>> {
         String result = "";
         Node temp = first;
         while(temp != null) {          
-            result+=temp.data + " ";
+            result+=temp.data + "\n";
             temp = temp.next;
         }
-        result+="\n";
         return result;
     }
 
