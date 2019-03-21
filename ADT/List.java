@@ -32,7 +32,7 @@ public class List<T extends Comparable<T>> {
      * Instantiates a new List with default values
      * @postcondition Creates a new list with null values and length = 0
      */
-    public ArrayList() {
+    public List() {
         length = 0;
         first = null;
         last = null;

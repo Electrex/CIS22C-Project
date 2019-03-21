@@ -1,3 +1,5 @@
+package Modules;
+
 /**
  * Customer.java
  * @author Eugene Kim
@@ -14,14 +16,14 @@ public class Customer implements Comparable<Customer> {
     private String username;
     private String password;
 
-    private PriorityQueue<Order> orders;
+    private PriorityQueue orders;
     
     public Customer()
     {
         firstName = lastName = address = username = password = "";
 
             
-        orders = new PriorityQueue<Order>();
+        orders = new PriorityQueue();
         
     }
 
@@ -33,7 +35,7 @@ public class Customer implements Comparable<Customer> {
         username = userN;
         password = pass;
 
-        orders = new PriorityQueue<Order>();
+        orders = new PriorityQueue();
     }
     
     public String getFullName()
@@ -121,7 +123,7 @@ public class Customer implements Comparable<Customer> {
         {
             return 0;
         }
-        else if(c.getFullName().equals(this.getFullName())) 
+        else if(!c.getFullName().equals(this.getFullName())) 
         {
             if(this.getFullName().compareTo(c.getFullName()) < 0)
             {
@@ -130,19 +132,6 @@ public class Customer implements Comparable<Customer> {
             else
             {
                 return 1;
-            }
-        else if(!c.getFullName().equals("")) 
-        {
-            if(c.getFullName().equals(this.getFullName()))
-            {
-                if(this.getFullName().compareTo(c.getFullName()) < 0)
-                {
-                    return -1;
-                }
-                else
-                {
-                    return 1;
-                }
             }
         }
         else
