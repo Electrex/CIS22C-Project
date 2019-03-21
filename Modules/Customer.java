@@ -103,6 +103,15 @@ public class Customer implements Comparable<Customer> {
     }
     
     /**
+     * Accesses the customer's orders
+     * @return the customer's orders
+     */
+    public PriorityQueue getOrders()
+    {
+        return orders;
+    }
+    
+    /**
      * Verifies the password of the customer
      * @param password the password that is being checked 
      * @return whether if password matches with the customer
