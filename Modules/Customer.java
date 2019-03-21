@@ -26,6 +26,16 @@ public class Customer implements Comparable<Customer> {
         orders = new PriorityQueue();
         
     }
+    
+    public Customer(String fname, String lname, String password)
+    {
+        firstName = fname;
+        lastName = lname;
+        this.password = password;
+        address = username = "";
+        
+        orders = new PriorityQueue();
+    }
 
     public Customer(String fname, String lname, String add, String userN, String pass)
     {
