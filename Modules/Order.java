@@ -1,6 +1,4 @@
 package Modules;
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -10,14 +8,14 @@ import java.text.SimpleDateFormat;
 
 /**
  * Orders class - containing order information and customer preferences for a Product
- * @author mia
- *
+ * @author Mia Skinner
  */
 public class Order {
 	
 	
 	private static int orderIDGen; //TODO should I make this custID + timestamp + unique #? -- should we collect custID?
 	private int orderID;
+	private String customerName; 
 	private Timestamp orderDate;
 	private Timestamp shipDate;
 	private ArrayList<Product> product;
@@ -62,6 +60,7 @@ public class Order {
 	/* CONSTRUCTORS */
 	public Order() {
 		orderID = ++orderIDGen;
+		customerName = "";
 		orderDate = new Timestamp(System.currentTimeMillis());
 		shipDate = null;
 		product = null;
@@ -70,21 +69,26 @@ public class Order {
 		isShipped = false;
 	}
 	
-	public Order(ArrayList<Product> prod, ArrayList<Integer> qty, String shipType) {
+	public Order(ArrayList<Product> prod, ArrayList<Integer> qty, String custName, String shipType, boolean isshipped) {
 		//TODO change prod and qty to arrays
 		++orderID;
+		customerName = custName;
 		orderDate = new Timestamp(System.currentTimeMillis());
 		shipDate = null;
 		product = prod;
 		quantity = qty;
 		shipmentType = shipType;
-		isShipped = false;
+		isShipped = isshipped;
 	}
 	
 	/* ACCESSORS */
 	
 	public int getOrderID() {
 		return orderID;
+	}
+	
+	public String getCustomerName() {
+		return customerName;
 	}
 	
 	public String getOrderDate() {
@@ -117,6 +121,10 @@ public class Order {
 	
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
+	}
+	
+	public void setCustomerName(String custName) {
+		this.customerName = custName;
 	}
 
 	/**

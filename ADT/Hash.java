@@ -233,7 +233,7 @@ public class Hash<T extends Comparable<T>> {
             for(int j = 0; j < Table.get(i).getLength(); j++)
             {
                 Table.get(i).pointIterator();
-                result += (Table.get(i).getIterator()) + "\n";
+                result += (Table.get(i).getIterator());
                 Table.get(i).advanceIterator();
             }
         }
