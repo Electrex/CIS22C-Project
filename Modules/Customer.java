@@ -1,17 +1,11 @@
-package Modules;
-  /**
+/**
  * Customer.java
  * @author Eugene Kim
  * CIS 22C
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
  
 import ADT.PriorityQueue;
-=======
->>>>>>> ba6f2152e8154cc6ff0f711f1ed8b1e74171531c
-=======
->>>>>>> ba6f2152e8154cc6ff0f711f1ed8b1e74171531c
 
 public class Customer implements Comparable<Customer> {
     private String firstName;
@@ -136,6 +130,7 @@ public class Customer implements Comparable<Customer> {
             else
             {
                 return 1;
+            }
         else if(!c.getFullName().equals("")) 
         {
             if(c.getFullName().equals(this.getFullName()))
@@ -184,27 +179,12 @@ public class Customer implements Comparable<Customer> {
     @Override
     public String toString()
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         String result = "First Name: " + firstName
                 + ", Last Name: " + lastName
                 + ", Username: " + username
                 + ", Password: " + password
                 + ", Address: " + address 
                 + "\n";
-=======
-=======
->>>>>>> ba6f2152e8154cc6ff0f711f1ed8b1e74171531c
-        String result = firstName
-                + "," + lastName
-                + "," + username
-                + "," + password
-                + "," + address
-                + "," + orders + "\n";
-<<<<<<< HEAD
->>>>>>> ba6f2152e8154cc6ff0f711f1ed8b1e74171531c
-=======
->>>>>>> ba6f2152e8154cc6ff0f711f1ed8b1e74171531c
         return result;
     }
 }
