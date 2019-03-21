@@ -8,6 +8,7 @@ package ADT;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Hash<T extends Comparable<T>> {
 
@@ -90,6 +91,29 @@ public class Hash<T extends Comparable<T>> {
         }
         
         return -1;
+    }
+    
+    public T searchKey(T t)
+    {
+        int bucket = hash(t);
+        
+        int index = Table.get(bucket).linearSearch(t);
+        
+        if(index == -1)
+        {
+            throw new NoSuchElementException("searchKey(): Object does not exist! Cannot return a value.");
+        }
+        else
+        {
+            Table.get(bucket).pointIterator();
+            
+            for(int i = 0; i < index; i++)
+            {
+                Table.get(bucket).advanceIterator();
+            }
+            
+            return Table.get(bucket).getIterator();
+        }
     }
 
 
