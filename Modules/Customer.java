@@ -27,12 +27,11 @@ public class Customer implements Comparable<Customer> {
         
     }
     
-    public Customer(String fname, String lname, String password)
+    public Customer(String fname, String lname)
     {
         firstName = fname;
         lastName = lname;
-        this.password = password;
-        address = username = "";
+        address = username = password = "";
         
         orders = new PriorityQueue();
     }
