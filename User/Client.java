@@ -111,7 +111,7 @@ public class Client {
 	 */
 	public PriorityQueue viewPurchases()
 	{
-		return customer.getorders();
+		return customer.getOrders();
 	}
 	
 	/********

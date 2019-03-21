@@ -154,9 +154,9 @@ public class Server {
 	 * @param productId
 	 * @param cost
 	 */
-	public static void addProduct(double unitPrice, String name, String productId, double cost)
+	public static void addProduct(double unitPrice, String name, String productId, double cost, String description, String manu)
 	{
-		User.adddata("b", new Product(unitPrice, name, productId, cost));
+		User.adddata("b", new Product(unitPrice, name, productId, cost, description, manu));
 	}
 	
 	public static void removeProduct(Product product)

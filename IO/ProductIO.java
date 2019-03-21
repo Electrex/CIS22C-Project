@@ -58,8 +58,9 @@ public class ProductIO {
 				
 				
 				String[] vertices = line.split(",");
+				// double unitPrice, String name, String productId, double cost, String description, String manufacturer
 				productlist.insert(new Product(Double.parseDouble(vertices[0]), vertices[1], 
-						vertices[2], Double.parseDouble(vertices[3])));
+						vertices[2], Double.parseDouble(vertices[3]), vertices[4], vertices[5]));
 			}
 			buff.close();
 		} catch (IOException e) {
