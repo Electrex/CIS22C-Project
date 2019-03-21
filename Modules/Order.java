@@ -277,15 +277,15 @@ public class Order {
 			Timestamp orderdate = null;
 			Timestamp otherOrderDate = null;
 			try {
-				orderdate = (Timestamp) sdf.parse(this.getOrderDate());
-				otherOrderDate = (Timestamp) sdf.parse(otherOrder.getOrderDate());
+				orderdate = new Timestamp(sdf.parse(this.getOrderDate()).getTime());
+				otherOrderDate = new Timestamp(sdf.parse(otherOrder.getOrderDate()).getTime());
 			} catch (ParseException e) {
 				System.out.println("compareTo(): Error parsing dates. " + e.getMessage());
 			}
-			if (orderdate.getTime() < otherOrderDate.getTime()) {
+			if (orderdate.before(otherOrderDate)) {
 				return -1;
 			}
-			else if (orderdate.getTime() > otherOrderDate.getTime()) {
+			else if (orderdate.after(otherOrderDate)) {
 				return 1;
 			}	
 			else { //they have the exact same orderDate Timestamp and shipmentType
