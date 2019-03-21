@@ -93,8 +93,7 @@ public class Hash<T extends Comparable<T>> {
         return -1;
     }
     
-    public T searchKey(T t)
-    {
+    public T searchKey(T t) throws NoSuchElementException {
         int bucket = hash(t);
         
         int index = Table.get(bucket).linearSearch(t);
