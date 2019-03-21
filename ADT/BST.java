@@ -287,7 +287,7 @@ public class BST{
      * @return whether the data is stored
      * in the tree
      */
-    private boolean searchByPrimary(Product data, Node node) {
+    private boolean searchBySecondary(Product data, Node node) {
         if (data.compareToSecondary(node.data) == 0)
             return true;
         if (data.compareToSecondary(node.data) < 0) {
