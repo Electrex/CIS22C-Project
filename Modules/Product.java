@@ -89,16 +89,13 @@ public class Product implements Comparable<Product>{
     /**
      * Formats the Product for display, using
      * the following format:
-     * name: <name>
-     * productId: <productId>
-     * cost in dollars: $<cost>
-     * unitPrice: $<unitPrice>
+     * <name>,<productId>,<unitPrice>,<cost>
      */
     @Override public String toString() {
-        String result = "Name: " + name
-                + "\nUnit Price: $" + unitPrice
-                + "\nCost: $" + cost
-                + "\nProduct ID: " + productId;
+        String result = name
+                + "," + productId
+                + "," + unitPrice
+                + "," + cost + "\n";
         return result;
     }
 

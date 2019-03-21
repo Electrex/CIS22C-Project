@@ -1,9 +1,14 @@
+package Modules;
   /**
  * Customer.java
  * @author Eugene Kim
  * CIS 22C
  */
+<<<<<<< HEAD
  
+import ADT.PriorityQueue;
+=======
+>>>>>>> ba6f2152e8154cc6ff0f711f1ed8b1e74171531c
 
 public class Customer implements Comparable<Customer> {
     private String firstName;
@@ -11,16 +16,18 @@ public class Customer implements Comparable<Customer> {
     private String address;
     private String username;
     private String password;
+
     private PriorityQueue<Order> orders;
     
     public Customer()
     {
         firstName = lastName = address = username = password = "";
+
+            
         orders = new PriorityQueue<Order>();
         
     }
-    
-    
+
     public Customer(String fname, String lname, String add, String userN, String pass)
     {
         firstName = fname;
@@ -28,6 +35,7 @@ public class Customer implements Comparable<Customer> {
         address= add;
         username = userN;
         password = pass;
+
         orders = new PriorityQueue<Order>();
     }
     
@@ -88,7 +96,7 @@ public class Customer implements Comparable<Customer> {
     {
         this.address = address;
     }
-    
+
     public void insertOrder(Order o)
     {
         orders.insert(o);
@@ -98,14 +106,7 @@ public class Customer implements Comparable<Customer> {
     public int hashCode()
     {
         String key = "";
-        if(!firstName.equals("") && !lastName.equals(""))
-        {
-            key = firstName + lastName;
-        }
-        else
-        {
-            key = username + password;
-        }
+        key = firstName + lastName;
         
         int sum = 0;
         
@@ -123,6 +124,15 @@ public class Customer implements Comparable<Customer> {
         {
             return 0;
         }
+        else if(c.getFullName().equals(this.getFullName())) 
+        {
+            if(this.getFullName().compareTo(c.getFullName()) < 0)
+            {
+                return -1;
+            }
+            else
+            {
+                return 1;
         else if(!c.getFullName().equals("")) 
         {
             if(c.getFullName().equals(this.getFullName()))
@@ -171,12 +181,21 @@ public class Customer implements Comparable<Customer> {
     @Override
     public String toString()
     {
+<<<<<<< HEAD
         String result = "First Name: " + firstName
-                + "\nLast Name: " + lastName
-                + "\nUsername: " + username
-                + "\nPassword: " + password
-                + "\nAddress: " + address
-                + "\nOrders: " + orders;
+                + ", Last Name: " + lastName
+                + ", Username: " + username
+                + ", Password: " + password
+                + ", Address: " + address 
+                + "\n";
+=======
+        String result = firstName
+                + "," + lastName
+                + "," + username
+                + "," + password
+                + "," + address
+                + "," + orders + "\n";
+>>>>>>> ba6f2152e8154cc6ff0f711f1ed8b1e74171531c
         return result;
     }
 }

@@ -1,30 +1,32 @@
 package User;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import ADT.*;
 import IO.*;
 import Modules.*;
 
 public class User {
-	private static BST<Product> productlist; 
+	private static BST productlist; 
 	private static PriorityQueue orderslist; 
 	private static Hash<Customer> customerlist; 
 	private static List<Employee> employeelist;
 	private String[] filename;
 	
-	
 	public User()
 	{
-		productlist = new BST<Product>();
+		productlist = new BST();
 		orderslist = new PriorityQueue();
-		customerlist = new Hash<Customer>();
+		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
 	}
 	
 	public User(String[] Filename)
 	{
-		productlist = new BST<Product>();
+		productlist = new BST();
 		orderslist = new PriorityQueue();
-		customerlist = new Hash<Customer>();
+		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
 		this.filename = Filename; 
 	}
@@ -56,10 +58,14 @@ public class User {
 		OrderIO ordio = new OrderIO(filename[2], orderslist);
 		ProductIO proio = new ProductIO(filename[3], productlist);
 		
-		cusio.rewritefile();
-		empio.rewritefile();
-		proio.rewritefile();
-		ordio.rewritefile();
+		try {
+			ordio.rewritefile();
+			empio.rewritefile();
+			cusio.rewritefile();
+			proio.rewritefile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/******
@@ -86,7 +92,9 @@ public class User {
 				break;
 			case "h":
 			case "H":
-				customerlist.insert((Customer)(data));
+				Customer temp = (Customer)(data);
+				CustomerIO.addtocontent(temp.toString());
+				customerlist.insert(temp);
 				break;
 			case "l":
 			case "L":
@@ -117,11 +125,13 @@ public class User {
 				break;
 			case "p":
 			case "P":
-				// orderslist.remove(orderslist.);// TODO HOW does remove work in this
+				// orderslist.remove(orderslist.);// TODO Mia: HOW does remove work in this
 				break;
 			case "h":
 			case "H":
-				customerlist.remove((Customer)(data));
+				Customer temp = (Customer)(data);
+				CustomerIO.removecontent(temp.toString());
+				customerlist.remove(temp);
 				break;
 			case "l":
 			case "L":
@@ -136,59 +146,50 @@ public class User {
 	/*******
 	 * Search for the product using the primary key 
 	 * @param input that the user has entered in. 
-	 * @return a list of products that contains the input in their primary key (name) 
+	 * @return the product that contains the input in its primary key (name) 
 	 */
-	public static List<Product> primaryProductSearch(String input)
+	public static Product primaryProductSearch(String input) // should be product name 
 	{
-		List<Product> list = new List<Product>();
+		BST temp = productlist;
+		temp.sortByPrimary();
 		
-		// TODO Yusuf: Sort the BST by primary key
-		
-		for (int i = 0; i < User.getproducts().getSize(); i ++)
-		{
-			if (User.getproducts().searchByPrimary(input)) // if it is found
-			{
-				list.addLast(User.getproducts().getproduct); // TODO Yusuf: need get product method 
-			}
-		}
-		
-		return list;
+
+		if (temp.searchByPrimary(new Product(0.0, input, "", 0.0))) // if it can be found
+			for (int i = 0; i < temp.getProducts().size(); i ++)
+				if (temp.getProducts().get(i).getName().equals(input)) // if product name == the ID inputed.     
+					return temp.getProducts().get(i);
+		return null; 
 	}
 	
 	/*******
 	 * Search for the product using the secondary key 
 	 * @param input that the user has entered in. 
-	 * @return a list of products that contains the input in their secondary key (ID) 
+	 * @return the product that contains the input in its secondary key (ID) 
 	 */
-	public static List<Product> secondaryProductSearch(String input)
+	public static Product secondaryProductSearch(String input) // should be ID number 
 	{
-		List<Product> list = new List<Product>();
-		
-		// TODO Yusuf: Sort the BST by secondary key
-		
-		for (int i = 0; i < User.getproducts().getSize(); i ++)
-		{
-			if (User.getproducts().searchBySecondary(input)) // if it is found
-			{
-				list.addLast(User.getproducts().search()); // TODO Yusuf: need get product method. 
-			}
-		}
-		
-		return list;
+		BST temp = productlist;
+		temp.sortBySecondary();
+
+		if (temp.searchBySecondary(new Product(0.0, "", input, 0.0))) // if it can be found
+			for (int i = 0; i < temp.getProducts().size(); i ++)
+				if (temp.getProducts().get(i).getName().equals(input)) // if product ID == the ID inputed.    
+					return temp.getProducts().get(i);
+		return null; 
 	}
 	
 	/*******
 	 * This will display the productlist that is sorted by the primary key. 
 	 * @postcondition The productlist will be sorted by the primary key. 
-	 * @return The productlist that is being sorted by the primary key. 
+	 * @return the temporary BST will be returned to keep the original BST sorted in its original order 
 	 */
-	public static BST<Product> displayProductPrimarily()
+	public static BST displayProductPrimarily()
 	{
 		// sort product by primary key
-		User.setProductlist(User.getproducts()); // TODO Yusuf: Need to figure out a way to sort by primary key. 
-												 // TODO Yusuf: need to figure out a way to return the BST
+		BST temp = productlist;
+		temp.sortByPrimary();
 		
-		return User.getproducts(); 
+		return temp; 
 	}
 	
 	/*******
@@ -196,13 +197,13 @@ public class User {
 	 * @postcondition The productlist will be sorted by the secondary key. 
 	 * @return The productlist that is being sorted by the secondary key. 
 	 */
-	public static BST<Product> displayProductSecondary()
+	public static BST displayProductSecondary()
 	{
 		// sort product by secondary key
-		User.setProductlist(User.getproducts()); // TODO Yusuf: need to figure out a way to sort by secondary key
-												 // TODO Yusuf: need to figure out a way to return the BST
+		BST temp = productlist;
+		temp.sortBySecondary();		
 				
-		return User.getproducts(); 
+		return temp; 
 	}
 	
 	
@@ -210,12 +211,12 @@ public class User {
 	 * getter for product list
 	 * @return productlist
 	 */
-	public static BST<Product> getproducts() {
+	public static BST getproducts() {
 
 		return productlist;
 	}
 	
-	public static void setProductlist(BST<Product> productlist) {
+	public static void setProductlist(BST productlist) {
 		User.productlist = productlist;
 	}
 	

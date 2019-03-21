@@ -1,22 +1,26 @@
 package ADT;
 //Yusuf
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class BST<T extends Comparable<T>> {
+import Modules.Product;
+
+public class BST{
     private class Node {
-        private T data;
+        private Product data;
         private Node left;
         private Node right;
 
-        public Node(T data) {     
-            this.data = data;    
-            left = null;        
-            right = null;        
+        public Node(Product data) {
+            this.data = data;
+            left = null;
+            right = null;
         }
     }
 
     private Node root;
+    private ArrayList<Product> list;
 
     /***CONSTRUCTORS***/
 
@@ -24,19 +28,20 @@ public class BST<T extends Comparable<T>> {
      * Default constructor for BST
      * sets root to null
      */
-    public BST() {        
-        root = null;         
-    }                
-                   
-    /**                                  
-     * Copy constructor for BST             
-     * @param bst the BST to make        
-     * a copy of                   
-     */               
-    public BST(BST<T> bst) {          
-        if (bst.root == null)           
-            root = null;             
-        else {            
+    public BST() {
+        root = null;
+        list = new ArrayList<Product>();
+    }
+
+    /**
+     * Copy constructor for BSProduct
+     * @param bst the BSProduct to make
+     * a copy of
+     */
+    public BST(BST bst) {
+        if (bst.root == null)
+            root = null;
+        else {
             copyHelper(bst.root);
         }
     }
@@ -63,7 +68,7 @@ public class BST<T extends Comparable<T>> {
      * @throws NoSuchElementException when
      * preconditon is violated
      */
-    public T getRoot() throws NoSuchElementException{
+    public Product getRoot() throws NoSuchElementException{
         if (isEmpty())
             throw new NoSuchElementException("getRoot(): Tree is empty");
         else
@@ -82,7 +87,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     /**
-     * Returns the current size of the 
+     * Returns the current size of the
      * tree (number of nodes)
      * @return the size of the tree
      */
@@ -140,7 +145,7 @@ public class BST<T extends Comparable<T>> {
      * @throws NoSuchElementException when the
      * precondition is violated
      */
-    public T findMin() throws NoSuchElementException{
+    public Product findMin() throws NoSuchElementException{
         if (isEmpty())
             throw new NoSuchElementException("findMin(): Tree is empty");
         else
@@ -153,7 +158,7 @@ public class BST<T extends Comparable<T>> {
      * if it is the smallest
      * @return the smallest value in the tree
      */
-    private T findMin(Node node) {
+    private Product findMin(Node node) {
         if (node.left != null)
             return findMin(node.left);
         else
@@ -167,7 +172,7 @@ public class BST<T extends Comparable<T>> {
      * @throws NoSuchElementException when the
      * precondition is violated
      */
-    public T findMax() throws NoSuchElementException{
+    public Product findMax() throws NoSuchElementException{
         if (isEmpty())
             throw new NoSuchElementException("findMax(): Tree is empty");
         else
@@ -180,7 +185,7 @@ public class BST<T extends Comparable<T>> {
      * if it is the largest
      * @return the largest value in the tree
      */
-    private T findMax(Node node) {
+    private Product findMax(Node node) {
         if (node.right != null)
             return findMax(node.right);
         else
@@ -194,7 +199,7 @@ public class BST<T extends Comparable<T>> {
      * @return whether the value is stored
      * in the tree
      */
-    public boolean search(T data) {
+    public boolean search(Product data) {
         if (isEmpty())
             return false;
         else
@@ -208,7 +213,7 @@ public class BST<T extends Comparable<T>> {
      * @return whether the data is stored
      * in the tree
      */
-    private boolean search(T data, Node node) {
+    private boolean search(Product data, Node node) {
         if (data.compareTo(node.data) == 0)
             return true;
         if (data.compareTo(node.data) < 0) {
@@ -231,7 +236,7 @@ public class BST<T extends Comparable<T>> {
      * @return whether the value is stored
      * in the tree
      */
-    public boolean searchByPrimary(T data) {
+    public boolean searchByPrimary(Product data) {
         if (isEmpty())
             return false;
         else
@@ -245,7 +250,7 @@ public class BST<T extends Comparable<T>> {
      * @return whether the data is stored
      * in the tree
      */
-    private boolean searchByPrimary(T data, Node node) {
+    private boolean searchByPrimary(Product data, Node node) {
         if (data.compareToPrimary(node.data) == 0)
             return true;
         if (data.compareToPrimary(node.data) < 0) {
@@ -268,7 +273,7 @@ public class BST<T extends Comparable<T>> {
      * @return whether the value is stored
      * in the tree
      */
-    public boolean searchBySecondary(T data) {
+    public boolean searchBySecondary(Product data) {
         if (isEmpty())
             return false;
         else
@@ -282,7 +287,7 @@ public class BST<T extends Comparable<T>> {
      * @return whether the data is stored
      * in the tree
      */
-    private boolean searchByPrimary(T data, Node node) {
+    private boolean searchByPrimary(Product data, Node node) {
         if (data.compareToSecondary(node.data) == 0)
             return true;
         if (data.compareToSecondary(node.data) < 0) {
@@ -337,7 +342,7 @@ public class BST<T extends Comparable<T>> {
      * Inserts a new node in the tree
      * @param data the data to insert
      */
-    public void insert(T data) {
+    public void insert(Product data) {
         if (root == null) {
             root = new Node(data);
         } else {
@@ -353,7 +358,7 @@ public class BST<T extends Comparable<T>> {
      * search for the correct location
      * in which to insert
      */
-    private void insert(T data, Node node) {
+    private void insert(Product data, Node node) {
         if (data.compareTo(node.data) <= 0) {
             if (node.left == null)
                 node.left = new Node(data);
@@ -375,7 +380,7 @@ public class BST<T extends Comparable<T>> {
      * @throws NoSuchElementException when the
      * precondition is violated
      */
-    public void remove(T data) throws NoSuchElementException{
+    public void remove(Product data) throws NoSuchElementException{
         if (isEmpty() || !search(data))
             throw new NoSuchElementException("remove(): Element is not found");
         else
@@ -388,7 +393,7 @@ public class BST<T extends Comparable<T>> {
      * @param node the current node
      * @return an updated reference variable
      */
-    public Node remove(T data, Node node)
+    public Node remove(Product data, Node node)
     {
         if(node == null)
         {
@@ -403,58 +408,96 @@ public class BST<T extends Comparable<T>> {
             node.right = remove(data, node.right);
         }
         else
-	        if(node.left == null && node.right == null)
-	        {
-	            node = null;
-	        }
-	        else if(node.left != null && node.right == null)
-	        {
-	            node = node.left;
-	        }
-	        else if(node.left == null && node.right != null)
-	        {
-	            node = node.right;
-	        }
-	        else
-	        {
-	            node.data = findMin(node.right);
-	            node.right = remove(node.data, node.right);
-	        }
+        if(node.left == null && node.right == null)
+        {
+            node = null;
+        }
+        else if(node.left != null && node.right == null)
+        {
+            node = node.left;
+        }
+        else if(node.left == null && node.right != null)
+        {
+            node = node.right;
+        }
+        else
+        {
+            node.data = findMin(node.right);
+            node.right = remove(node.data, node.right);
+        }
         return node;
     }
 
     /***ADDITIONAL OPERATIONS***/
 
-    /**
-     * Prints the data in pre order
-     * to the console
-     */
-    public void preOrderPrint() {
-        preOrderPrint(root);
-        System.out.println();
+    public void sortByPrimary()
+    {
+        list.clear();
+        inOrderStore(root);
+        bubblesortByPrimary();
     }
 
-    /**
-     * Helper method to preOrderPrint method
-     * Prints the data in pre order
-     * to the console
-     */
-    private void preOrderPrint(Node node) {
-        if (node != null){
-            System.out.print(node.data + " ");
-            preOrderPrint(node.left);
-            preOrderPrint(node.right);
+    private void bubblesortByPrimary()
+    {
+        int i, j;
+        Product temp;
+        int n = list.size();
+        boolean swapped;
+        for (i = 0; i < n - 1; i++)
+        {
+            swapped = false;
+            for (j = 0; j < n - i - 1; j++)
+            {
+                if (list.get(j).compareToPrimary(list.get(j + 1)) > 0)
+                {
+                    // swap arr[j] and arr[j+1]
+                    temp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, temp);
+                    swapped = true;
+                }
+            }
+
+            // IF no two elements were
+            // swapped by inner loop, then break
+            if (swapped == false)
+                break;
         }
-
     }
 
-    /**
-     * Prints the data in sorted order 
-     * to the console
-     */
-    public void inOrderPrint() {
-        inOrderPrint(root);
-        System.out.println();
+    public void sortBySecondary()
+    {
+        list.clear();
+        inOrderStore(root);
+        bubblesortBySecondary();
+    }
+
+    private void bubblesortBySecondary()
+    {
+        int i, j;
+        Product temp;
+        int n = list.size();
+        boolean swapped;
+        for (i = 0; i < n - 1; i++)
+        {
+            swapped = false;
+            for (j = 0; j < n - i - 1; j++)
+            {
+                if (list.get(j).compareToSecondary(list.get(j + 1)) > 0)
+                {
+                    // swap arr[j] and arr[j+1]
+                    temp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, temp);
+                    swapped = true;
+                }
+            }
+
+            // IF no two elements were
+            // swapped by inner loop, then break
+            if (swapped == false)
+                break;
+        }
     }
 
     /**
@@ -462,34 +505,15 @@ public class BST<T extends Comparable<T>> {
      * Prints the data in sorted order
      * to the console
      */
-    private void inOrderPrint(Node node) {
+    private void inOrderStore(Node node) {
         if (node != null){
-            inOrderPrint(node.left);
-            System.out.print(node.data + " ");
-            inOrderPrint(node.right);
+            inOrderStore(node.left);
+            list.add(node);
+            inOrderStore(node.right);
         }
-
     }
 
-    /**
-     * Prints the data in post order
-     * to the console
-     */
-    public void postOrderPrint() {
-        postOrderPrint(root);
-        System.out.println();
-    }
-
-    /**
-     * Helper method to postOrderPrint method
-     * Prints the data in post order
-     * to the console
-     */
-    private void postOrderPrint(Node node) {
-        if (node != null){
-            postOrderPrint(node.left);
-            postOrderPrint(node.right);
-            System.out.print(node.data + " ");
-        }
+    public ArrayList<Product> getProducts() {
+        return list;
     }
 }

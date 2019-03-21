@@ -1,3 +1,5 @@
+package ADT;
+
 /**
  * Defines the a doubly-linked list class
  * @author Eugene Kim
@@ -30,7 +32,7 @@ public class List<T extends Comparable<T>> {
      * Instantiates a new List with default values
      * @postcondition Creates a new list with null values and length = 0
      */
-    public List() {
+    public ArrayList() {
         length = 0;
         first = null;
         last = null;
