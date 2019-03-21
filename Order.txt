@@ -1,4 +1,3 @@
-isshipped,Order Date,Ship Date,Ship Mode,Customer Name,Product ID,Quality
 TRUE,11/8/16,11/11/16,overnight,Claire Gute,FUR-BO-10001798,1
 FALSE,11/8/16,11/11/16,rush,Claire Gute,FUR-CH-10000454,2
 FALSE,6/12/16,6/16/16,Standard ,Darrin Van Huff,OFF-LA-10000240,3

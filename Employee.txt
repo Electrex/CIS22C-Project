@@ -1,4 +1,3 @@
-username,password,Name
 employee1,123456,Anna Andreadi
 employee2,123456,Chuck Magee
 employee3,123456,Kelly Williams

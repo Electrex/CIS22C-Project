@@ -24,7 +24,7 @@ public class OrderIO {
 	{
 		filename = fname; 
 		scanner = new Scanner(System.in);
-
+		ordersfilecontent = new ArrayList<String>();
 		orderslist = new PriorityQueue();
 	}
 	
@@ -32,10 +32,9 @@ public class OrderIO {
 	{
 		filename = fname; 
 		scanner = new Scanner(System.in);
-
+		ordersfilecontent = new ArrayList<String>();
 		orderslist = list;
 	}
-
 	
 	/********
 	 * 
@@ -43,27 +42,29 @@ public class OrderIO {
 	 */
 	public PriorityQueue readfile()
 	{
-		boolean readable = false;
-		boolean doneLoadingGraph = false;
+		boolean readable = true;
 		BufferedReader buff;
 		FileReader filereader;
 
 		try {
 			filereader = new FileReader(filename);
 			buff = new BufferedReader(filereader);
-			String line;
+			String line = "";
 
 			//line = buff.readLine(); 
 			
 			while (readable) {
+
 				line = buff.readLine();
 				if (line == null) // finished reading
 				{
 					readable = false;
 					break;
 				}
+
 				ordersfilecontent.add(line);
 			}
+			
 			buff.close();
 		} catch (IOException e) {
 			System.out.println("readfile(): Problem reading file. " + e.toString());
@@ -73,6 +74,7 @@ public class OrderIO {
 		ArrayList<Integer> quantity = new ArrayList<Integer>(); 
 		
 		// Handle the first element
+
 		String[] property = ordersfilecontent.get(0).split(",");
 		String prevshipmenttype = property[3];
 		String prevcustname = property[4];

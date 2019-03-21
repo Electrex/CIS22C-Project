@@ -93,8 +93,9 @@ public class EmployeeMenus {
 		description = scanner.next();		
 		System.out.println("****Please enter product's manufactorer: ");		
 		manufactorer = scanner.next();
-		User.adddata("b", new Product(productprice, productid, productname, productcost, description, manufactorer));
-
+		
+		// String name, String productId, double cost, double unitPrice, String manufacturer, String description
+		User.adddata("b", new Product(productname, productid, productcost, productprice, manufactorer, description));
 	}
 	
 	public void searchproduct()

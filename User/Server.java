@@ -156,9 +156,13 @@ public class Server {
 	 */
 	public static void addProduct(double unitPrice, String name, String productId, double cost, String description, String manu)
 	{
-		User.adddata("b", new Product(unitPrice, name, productId, cost, description, manu));
+		User.adddata("b", new Product(name, productId, cost, unitPrice, manu, description));
 	}
 	
+	/******
+	 * Remove the product 
+	 * @param product
+	 */
 	public static void removeProduct(Product product)
 	{
 		User.removedata("b", product);

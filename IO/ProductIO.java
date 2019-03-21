@@ -38,7 +38,6 @@ public class ProductIO {
 	public BST readfile()
 	{
 		boolean readable = false;
-		boolean doneLoadingGraph = false;
 		BufferedReader buff;
 		FileReader filereader;
 

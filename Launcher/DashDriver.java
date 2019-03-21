@@ -6,10 +6,21 @@ import java.util.Scanner;
 
 import Modules.Product;
 import UI.*; 
+import User.*; 
 
 public class DashDriver {
     public static void main(String[] args) throws Exception{
-        new Welcome().Welcome();
+        
+    	String [] files = {"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Customer.txt", 
+    			"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Employee.txt", 
+    			"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Order.txt", 
+    			"/Users/albertliu/Desktop/DataStruct/CIS22C-Project/Product.txt"}; 
+    	User user = new User(files);
+    	user.loaddata();
+    	Welcome initializer = new Welcome();
+    	initializer.welcome();
+    	user.outputdata();
+    	
     	/*
         int numBuckets = 26; //Choose whatever
         
