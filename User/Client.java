@@ -8,17 +8,17 @@ import Modules.*;
 
 public class Client {
 	
-	private boolean isloggedin;
-	private ArrayList<Product> shoppingcart;
+	private boolean isloggedin; 
+	private ArrayList<Product> shoppingcart; 
 	private ArrayList<Integer> quantities; 
-	private Customer customer;
+	private Customer customer; 
 	
-	public Client(Customer c) // already logged in 
-	{
-		this.customer = c;
+	public Client(Customer c) // already logged in    
+	{ 
+		this.customer = c; 
 		isloggedin = true; 
 		quantities = new ArrayList<Integer>(); 
-		shoppingcart = new ArrayList<Product>();
+		shoppingcart = new ArrayList<Product>(); 
 	}
 	
 	public Client()  // is not logged in 
@@ -98,8 +98,9 @@ public class Client {
 	 */
 	public void placeOrder(String shipType)
 	{
-		User.adddata("p", new Order(shoppingcart, quantities, shipType));  // MAY NEED TO CHANGE THIS 
-		customer.addorders();
+		Order o = new Order(shoppingcart, quantities, customer.getFullName(), shipType, false);
+		User.adddata("p", o);  // MAY NEED TO CHANGE THIS 
+		customer.insertOrder(o);
 		shoppingcart.clear();     
 		quantities.clear();     
 	}
@@ -108,9 +109,9 @@ public class Client {
 	 * Shows all the past orders    
 	 * @return get all the past orders
 	 */
-	public List<Order> viewPurchases()
+	public PriorityQueue viewPurchases()
 	{
-		return customer.getOrders();
+		return customer.getorders();
 	}
 	
 	/********

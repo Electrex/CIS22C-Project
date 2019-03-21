@@ -110,20 +110,20 @@ public class Server {
 	 */
 	public static Customer searchCustomer(String firstname, String lastname)
 	{
-		// TODO Eugene: create a constructor with only fname and lname
-		if (User.getcustomers().search(new Customer(firstname, lastname)) != -1) 
-		{
-			// TODO Eugene: Search in Hash will return the index, but I can't really do anything with the index. 
-		} 	
-		else
-		{
-			return null; 
-		}
-	}
-	
+		Customer searchobj = new Customer(firstname, lastname); 
+		if (User.getcustomers().search(searchobj) != -1) 
+		{       
+			return User.getcustomers().searchKey(searchobj);      
+		} 	      
+		else        
+		{        
+			return null;         
+		}        
+	}        
+	         
 	/*******
-	 * return the entire list of orders. 
-	 * @return
+	 * return the entire list of orders.         
+	 * @return a priority queue with all the unshipped orders
 	 */
 	public static PriorityQueue viewOrders()
 	{	

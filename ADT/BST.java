@@ -508,7 +508,7 @@ public class BST{
     private void inOrderStore(Node node) {
         if (node != null){
             inOrderStore(node.left);
-            list.add(node);
+            list.add(node.data);
             inOrderStore(node.right);
         }
     }
