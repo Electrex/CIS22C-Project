@@ -12,7 +12,7 @@ public class Employee implements Comparable<Employee>{
 		password = ""; 
 	}
 	
-	public Employee(String fullname, String username, String password)
+	public Employee(String username, String password, String fullname)
 	{
 		this.fullname = fullname;
 		this.username = username; 

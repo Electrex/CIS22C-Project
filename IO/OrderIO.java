@@ -75,15 +75,21 @@ public class OrderIO {
 		// Handle the first element
 		String[] property = ordersfilecontent.get(0).split(",");
 		String prevshipmenttype = property[3];
+		String prevcustname = property[4];
 		products.add(User.secondaryProductSearch(property[5]));
 		quantity.add(Integer.parseInt(property[6]));
 		boolean isshipped = false;
+		if (property[0].equals("TRUE"))
+			isshipped = true;
+		else
+			isshipped = false; 
 		
+		// Handle the rest of elements
 		for (int i = 1; i < ordersfilecontent.size(); i ++)
 		{
 			property = ordersfilecontent.get(i).split(",");
-			if (ordersfilecontent.get(i-1).contains(property[4]) && ordersfilecontent.get(i-1).contains(property[1]) && ordersfilecontent.get(i-1).contains(property[3])) 
-			{ 			// under the same name  & same order dates & same ship mode
+			if (ordersfilecontent.get(i-1).contains(property[4]) && ordersfilecontent.get(i-1).contains(property[3])) 
+			{ 			// under the same name & same ship mode
 				products.add(User.secondaryProductSearch(property[5]));
 				quantity.add(Integer.parseInt(property[6]));
 				if (property[0].equals("TRUE"))
@@ -93,12 +99,19 @@ public class OrderIO {
 			}
 			else // this belongs to a different order
 			{
-				orderslist.insert(new Order(products, quantity, property[4], prevshipmenttype, isshipped));  
+				orderslist.insert(new Order(products, quantity, prevcustname, prevshipmenttype, isshipped));  
 				prevshipmenttype = property[3];
+				prevcustname = property[4];
+
 				products.clear();
 				quantity.clear();
+				
 				products.add(User.secondaryProductSearch(property[5]));
 				quantity.add(Integer.parseInt(property[6]));
+				if (property[0].equals("TRUE"))
+					isshipped = true;
+				else
+					isshipped = false; 
 			}
 		}
 		
@@ -125,7 +138,10 @@ public class OrderIO {
 		
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		filewriter.write(orderslist.toString()); 
+		for (int i = 0; i < User.getorders().get_size(); i ++)
+		{
+			filewriter.write(User.getorders().get_element(i).toString());
+		}
 			
 		try {
 			output.close();

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import ADT.*;
 import Modules.Product;
-
+import User.*; 
 public class ProductIO {
 	
 	private BST productlist; 
@@ -58,9 +58,9 @@ public class ProductIO {
 				
 				
 				String[] vertices = line.split(",");
-				// double unitPrice, String name, String productId, double cost, String description, String manufacturer
-				productlist.insert(new Product(Double.parseDouble(vertices[0]), vertices[1], 
-						vertices[2], Double.parseDouble(vertices[3]), vertices[4], vertices[5]));
+				// String name, String productId, double cost, double unitPrice, String manufacturer, String description
+				productlist.insert(new Product(vertices[0], vertices[1], Double.parseDouble(vertices[2]), 
+						Double.parseDouble(vertices[3]), vertices[4], vertices[5]));
 			}
 			buff.close();
 		} catch (IOException e) {
@@ -79,7 +79,8 @@ public class ProductIO {
 		FileWriter output = new FileWriter(filename);   
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		filewriter.write(productlist.toString()); // @TODO change the format of tostring. 
+		for (int i = 0; i < User.getproducts().getProducts().size(); i ++)
+			filewriter.write(User.getproducts().getProducts().get(i).toString()); 
 			
 		try {
 			output.close();

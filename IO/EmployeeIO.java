@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import ADT.*;
 import Modules.*; 
-
+import User.*; 
 public class EmployeeIO {
 	
 	private String filename; 
@@ -74,7 +74,7 @@ public class EmployeeIO {
 		FileWriter output = new FileWriter(filename);   
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		filewriter.write(employeelist.toString()); 
+		filewriter.write(User.getemployees().toString()); 
 			
 		try {
 			output.close();

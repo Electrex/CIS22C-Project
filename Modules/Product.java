@@ -15,7 +15,7 @@ public class Product implements Comparable<Product>{
      * @param unitPrice the unitPrice the Product was released
      * @param cost the amount costs
      */
-    public Product(double unitPrice, String name, String productId, double cost, String description, String manufacturer) {
+    public Product(String name, String productId, double cost, double unitPrice, String manufacturer, String description) {
         this.unitPrice = unitPrice;
         this.name = name;
         this.productId = productId;
@@ -131,10 +131,10 @@ public class Product implements Comparable<Product>{
     @Override public String toString() {
         String result = name
                 + "," + productId
+                + "," + cost
                 + "," + unitPrice
                 + "," + description
-                + "," + manufacturer
-                + "," + cost + "\n";
+                + "," + manufacturer + "\n";
         return result;
     }
 

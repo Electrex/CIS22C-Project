@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import ADT.*;
 import Modules.*;
-
+import User.*; 
 public class CustomerIO {
 	
 	private Hash<Customer> customerlist; 
@@ -63,7 +63,7 @@ public class CustomerIO {
 				}
 				// split line at space to break apart vertices u & v
 				String[] vertices = line.split(",");
-				customerlist.insert(new Customer()); // @TODO To be inserted. 
+				customerlist.insert(new Customer(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4])); 
 				customerfileinfo.add(line);
 			}
 			buff.close();
@@ -98,14 +98,12 @@ public class CustomerIO {
 		try {
 			output = new FileWriter(filename);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}   
 		
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		filewriter.write(customerlist.toString()); 
-		// @Todo Eugene write a tostring that matches the format people like. 
+		filewriter.write(User.getcustomers().toString()); 
 			
 		try {
 			output.close();

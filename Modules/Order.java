@@ -2,6 +2,9 @@ package Modules;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
+import User.User;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -167,8 +170,22 @@ public class Order {
 	/* OTHER METHODS */
 	
 	@Override public String toString() {
-		String result = "";
-		return result;
+		String components = "";
+
+		for (int j = 0; j < this.getProduct().size(); j ++)
+		{
+			if (this.getIsShipped())
+				components += "TRUE,";
+			else
+				components += "FALSE,";
+			components += this.getOrderDate() + ",";
+			components += this.getShipDate() + ",";
+			components += this.getShipmentType() + ",";
+			components += this.getCustomerName() + ","; 
+			components += this.getProduct().get(j).getProductId() + ",";
+			components += this.getQuantity().get(j) + "\n"; 
+		}
+		return components;
 	}
 
 	@Override
