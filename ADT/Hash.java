@@ -238,7 +238,7 @@ public class Hash<T extends Comparable<T>> {
     }
     
     /**
-     * Outputs the hashtable for display by goign through each lists in the index and displaying their toString information
+     * Outputs the hash table for display by going through each lists in the index and displaying their toString information
      */
     @Override 
     public String toString()

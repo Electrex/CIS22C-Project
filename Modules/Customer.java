@@ -65,7 +65,7 @@ public class Customer implements Comparable<Customer> {
     {
         return firstName + " " + lastName;
     }
-    
+
     /**
      * Accesses the address of the customer
      * @return the customer's address
@@ -118,6 +118,7 @@ public class Customer implements Comparable<Customer> {
             return false;
         }
     }
+    
     
     /**
      * Sets the first name of the customer
