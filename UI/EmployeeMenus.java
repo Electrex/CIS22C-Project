@@ -79,7 +79,7 @@ public class EmployeeMenus {
 	
 	public void addproduct()
 	{
-		String productname, productid; 
+		String productname, productid, description, manufactorer; 
 		double productprice, productcost;
 		System.out.println("****Please enter product's name: ");
 		productname = scanner.next();
@@ -89,7 +89,11 @@ public class EmployeeMenus {
 		productprice = scanner.nextDouble();
 		System.out.println("****Please enter product's cost: ");
 		productcost = scanner.nextDouble();
-		User.adddata("b", new Product(productprice, productid, productname, productcost));
+		System.out.println("****Please enter product's description: ");		
+		description = scanner.next();		
+		System.out.println("****Please enter product's manufactorer: ");		
+		manufactorer = scanner.next();
+		User.adddata("b", new Product(productprice, productid, productname, productcost, description, manufactorer));
 
 	}
 	
