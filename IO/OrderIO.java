@@ -77,6 +77,7 @@ public class OrderIO {
 		String prevshipmenttype = property[3];
 		products.add(User.secondaryProductSearch(property[5]));
 		quantity.add(Integer.parseInt(property[6]));
+		boolean isshipped = false;
 		
 		for (int i = 1; i < ordersfilecontent.size(); i ++)
 		{
@@ -85,10 +86,14 @@ public class OrderIO {
 			{ 			// under the same name  & same order dates & same ship mode
 				products.add(User.secondaryProductSearch(property[5]));
 				quantity.add(Integer.parseInt(property[6]));
+				if (property[0].equals("TRUE"))
+					isshipped = true;
+				else
+					isshipped = false; 
 			}
 			else // this belongs to a different order
 			{
-				orderslist.insert(new Order(products, quantity, prevshipmenttype));  
+				orderslist.insert(new Order(products, quantity, property[4], prevshipmenttype, isshipped));  
 				prevshipmenttype = property[3];
 				products.clear();
 				quantity.clear();
