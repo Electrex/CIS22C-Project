@@ -1,5 +1,4 @@
 package ADT;
-
 /**
  * Hash.java
  * @author Eugene Kim
@@ -93,6 +92,14 @@ public class Hash<T extends Comparable<T>> {
         return -1;
     }
     
+    /**
+     * Searches for a specified key in the Table
+     * @precondition Key t must exist in the Table
+     * @param t the key to search for
+     * @throws NoSuchElementException when precondition is violated
+     * @return T the key that was found in the table
+     * 
+     */
     public T searchKey(T t) throws NoSuchElementException {
         int bucket = hash(t);
         
@@ -217,6 +224,12 @@ public class Hash<T extends Comparable<T>> {
         }
     }
     
+    /**
+     * @precondition File must exist
+     * @param filename the name of the file to write the output to
+     * @throws FileNotFoundException if precondition is violated
+     * @postcondition Hash table is written in the output file
+     */
     public void writeToFile(String filename) throws FileNotFoundException
     {
         PrintWriter outfile = new PrintWriter(filename);
@@ -224,6 +237,9 @@ public class Hash<T extends Comparable<T>> {
         outfile.close();
     }
     
+    /**
+     * Outputs the hash table for display by going through each lists in the index and displaying their toString information
+     */
     @Override 
     public String toString()
     {
@@ -233,7 +249,7 @@ public class Hash<T extends Comparable<T>> {
             for(int j = 0; j < Table.get(i).getLength(); j++)
             {
                 Table.get(i).pointIterator();
-                result += (Table.get(i).getIterator());
+                result += (Table.get(i).getIterator()) + "\n";
                 Table.get(i).advanceIterator();
             }
         }

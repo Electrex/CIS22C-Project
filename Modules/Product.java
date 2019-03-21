@@ -4,6 +4,8 @@ public class Product implements Comparable<Product>{
     private double unitPrice;
     private String name;
     private String productId;
+    private String description;
+    private String manufacturer;
     private double cost;
 
     /**
@@ -13,11 +15,29 @@ public class Product implements Comparable<Product>{
      * @param unitPrice the unitPrice the Product was released
      * @param cost the amount costs
      */
-    public Product(double unitPrice, String name, String productId, double cost) {
+    public Product(double unitPrice, String name, String productId, double cost, String description, String manufacturer) {
         this.unitPrice = unitPrice;
         this.name = name;
         this.productId = productId;
         this.cost = cost;
+        this.description = description;
+        this.manufacturer = manufacturer;
+    }
+
+    /**
+     * Accesses the description of the Product
+     * @return the Product's name
+     */
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    /**
+     * Accesses the description of the Product
+     * @return the Product's name
+     */
+    public String getDescription() {
+        return description;
     }
 
     /**
@@ -82,6 +102,23 @@ public class Product implements Comparable<Product>{
      * @param cost the cost of the Product
      * in dollars
      */
+
+    /**
+     * Sets the description of the Product
+     * @return the Product's name
+     */
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    /**
+     * Sets the description of the Product
+     * @return the Product's name
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setCost(double cost) {
         this.cost = cost;
     }
@@ -89,12 +126,14 @@ public class Product implements Comparable<Product>{
     /**
      * Formats the Product for display, using
      * the following format:
-     * <name>,<productId>,<unitPrice>,<cost>
+     * <name>,<productId>,<unitPrice>,<description>,<manufacturer>,<cost>
      */
     @Override public String toString() {
         String result = name
                 + "," + productId
                 + "," + unitPrice
+                + "," + description
+                + "," + manufacturer
                 + "," + cost + "\n";
         return result;
     }
