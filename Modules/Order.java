@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  * Orders class - containing order information and customer preferences for a Product
  * @author Mia Skinner
  */
-public class Order {
+public class Order implements Comparable<Order> {
 	
 	
 	private static int orderIDGen;
@@ -329,6 +329,7 @@ public class Order {
      * @return 0 (same Order), -1 (this Order is lower priority)
      * or 1 (this Order is higher priority) 
      */
+	@Override
 	public int compareTo(Order otherOrder) {
 		//TODO compareTo()
 		

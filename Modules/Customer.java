@@ -15,7 +15,7 @@ public class Customer implements Comparable<Customer> {
     private String address;
     private String username;
     private String password;
-    private PriorityQueue<Orders> orders;
+    private PriorityQueue<Order> orders;
     
     /****CONSTRUCTOR****/
 
@@ -26,7 +26,7 @@ public class Customer implements Comparable<Customer> {
     public Customer()
     {
         firstName = lastName = address = username = password = "";
-        orders = new PriorityQueue<Orders>();
+        orders = new PriorityQueue<Order>();
     }
     
     /**
@@ -39,7 +39,7 @@ public class Customer implements Comparable<Customer> {
         lastName = lname;
         address = username = password = "";
         
-        orders = new PriorityQueue<Orders>();
+        orders = new PriorityQueue<Order>();
     }
 
     /**
@@ -54,7 +54,7 @@ public class Customer implements Comparable<Customer> {
         username = userN;
         password = pass;
 
-        orders = new PriorityQueue<Orders>();
+        orders = new PriorityQueue<Order>();
     }
     
     /**
@@ -106,7 +106,7 @@ public class Customer implements Comparable<Customer> {
      * Accesses the customer's orders
      * @return the customer's orders
      */
-    public PriorityQueue getOrders()
+    public PriorityQueue<Order> getOrders()
     {
         return orders;
     }
