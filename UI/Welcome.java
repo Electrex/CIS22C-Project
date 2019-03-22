@@ -133,6 +133,7 @@ public class Welcome {
 		System.out.println("**** L: List Products ");
 		System.out.println("**** V: View my shopping cart");  
 		System.out.println("**** Q: Log out");
+		System.out.println("**** O: View my orders");     
 		
 		input = scanner.next();
 		while (!isvalid)
@@ -151,6 +152,10 @@ public class Welcome {
 			{
 				isvalid = true;
 				client.logout();
+			}
+			else if (input.equals("o"))
+			{
+				new ShoppingCart().viewOrder();
 			}
 			else if (input.equalsIgnoreCase("L"))
 			{

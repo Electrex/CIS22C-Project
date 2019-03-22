@@ -3,27 +3,38 @@ package UI;
 import User.*; 
 import java.util.Scanner;
 
+import Modules.Product;
+
 public class SearchPage {
 	private Scanner scanner = new Scanner(System.in);
 	
 	public void Search()
 	{
-		String choice;
-		System.out.println("Would you like to search by product name or by product ID? ");
-		System.out.println("Press n/N for name and i/I for ID");
-		choice = scanner.next();
-		if (choice.equalsIgnoreCase("n"))
+		boolean backtohomepage = false;
+		while (!backtohomepage)
 		{
-			namesearch();
-		}
-		else if (choice.equalsIgnoreCase("i"))
-		{
-			idsearch();
-		}
-		else
-		{
-			System.out.println("Wrong input! Assume you are going to search by product name. ");
-			namesearch();
+			String choice;
+			System.out.println("Would you like to search by product name or by product ID? Or press Q to go back to Homepage");
+			System.out.println("Press n/N for name and i/I for ID");
+			choice = scanner.nextLine();
+
+			if (choice.equalsIgnoreCase("n"))
+			{
+				namesearch();
+			}
+			else if (choice.equalsIgnoreCase("i"))
+			{
+				idsearch();
+			}
+			else if (choice.equalsIgnoreCase("q"))
+			{
+				backtohomepage = true;
+			}
+			else  
+			{
+				System.out.println("Wrong input! Assume you are going to search by product name. ");
+				namesearch();
+			}
 		}
 	}
 	
@@ -34,18 +45,47 @@ public class SearchPage {
 		while(true)
 		{
 			System.out.println("Please enter the product name or press Q if you want to stop: ");
-			name = scanner.next();
+			name = scanner.nextLine();
+			Product searchedoutput = User.primaryProductSearch(name);
 			
 			if (name.equalsIgnoreCase("q"))
 			{
 				break; 
 			}
 			
-			else if (User.primaryProductSearch(name) != null)
+			else if (searchedoutput != null)
 			{
-				System.out.println("Product name: $" + User.primaryProductSearch(name).getName());
-				System.out.println("Product ID: $" + User.primaryProductSearch(name).getProductId());
-				System.out.println("Product Price: $" + User.primaryProductSearch(name).getCost());
+				System.out.println("Product name: $" + searchedoutput.getName());
+				System.out.println("Product ID: $" + searchedoutput.getProductId());
+				System.out.println("Product Price: $" + searchedoutput.getCost()); 
+				System.out.println("****Would you like to add this to the shopping cart? ");
+				boolean isvalid = false;
+				while (!isvalid)
+				{
+					System.out.println("****Y for Yes and N for No. ");
+					String yesorno = scanner.nextLine();
+					if (yesorno.equalsIgnoreCase("y"))
+					{
+						System.out.println("**** Enter the amount of this product you are going to put into the shopping cart: ");
+						String quantity = scanner.nextLine();
+						if (Integer.parseInt(quantity) >= 1)
+						{
+							Welcome.getClient().addtoshoppingcart(searchedoutput, Integer.parseInt(quantity));
+						}
+						else
+						{
+							System.out.println("----Invalid input, please try again! ");
+						}
+					}
+					else if (yesorno.equalsIgnoreCase("n"))
+					{
+						System.out.println("**** Okay! Back to homepage");
+					} 
+					else
+					{ 
+						System.out.println("----Invalid input, please try again! ");
+					}
+				}
 			}
 			else
 			{
@@ -61,7 +101,7 @@ public class SearchPage {
 		while(true)
 		{
 			System.out.println("Please enter the product ID or press Q if you want to stop: ");
-			id = scanner.next();
+			id = scanner.nextLine();
 			
 			if (!id.equalsIgnoreCase("q"))
 			{

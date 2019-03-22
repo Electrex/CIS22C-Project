@@ -13,6 +13,10 @@ public class Client {
 	private ArrayList<Integer> quantities; 
 	private Customer customer; 
 	
+	/******
+	 * This is when the customer has already logged in. 
+	 * @param c the customer that uses this
+	 */
 	public Client(Customer c) // already logged in    
 	{ 
 		this.customer = c; 
@@ -21,6 +25,9 @@ public class Client {
 		shoppingcart = new ArrayList<Product>(); 
 	}
 	
+	/*******
+	 * This is when the customer is in guest mode, or not logged in. 
+	 */
 	public Client()  // is not logged in 
 	{
 		this.customer = null;
@@ -29,6 +36,14 @@ public class Client {
 		shoppingcart = new ArrayList<Product>();
 	}
 	
+	/*******
+	 * this gives other sources the access of customer that is currently logged in. 
+	 * @return customer
+	 */
+	public Customer getcustomer()
+	{
+		return customer; 
+	}
 	
 	/********
 	 * Will add the quantity number of product to the array list

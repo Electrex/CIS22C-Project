@@ -15,12 +15,21 @@ public class EmployeeMenus {
 		System.out.println("****Sending Orders");
 		String in; 
 		
-		for (int i = 1; i < User.getorders().get_size(); i ++)
+		PriorityQueue<Order> unshippedorders = Server.viewOrders();
+		for (int i = 1; i < unshippedorders.get_size(); i ++)
 		{
-			System.out.println("Order ID: " + User.getorders().get_element(i).getOrderID());
-			System.out.println("Order Date: " + User.getorders().get_element(i).getOrderDate());
-			System.out.println("Order Date: " + User.getorders().get_element(i).getShipDate());
-			System.out.println("Order Date: " + User.getorders().get_element(i).getShipmentType());
+			System.out.println("Customer Name: " + unshippedorders.get_element(i).getCustomerName());
+			System.out.println("Order ID: " + unshippedorders.get_element(i).getOrderID());
+			System.out.println("Order Date: " + unshippedorders.get_element(i).getOrderDate());
+			System.out.println("Shipment Date: " + unshippedorders.get_element(i).getShipDate());
+			System.out.println("Shipment Type: " + unshippedorders.get_element(i).getShipmentType());
+			
+			for (int j = 0; j < unshippedorders.get_element(i).getProduct().size(); j++)
+			{
+				System.out.println("Product Name: " + unshippedorders.get_element(i).getProduct().get(j)
+				+ " Product Quantities: " + unshippedorders.get_element(i).getQuantity().get(j));
+			}
+			System.out.println("_____________________________________________________________________________\n");
 
 			boolean isvalid = false; 
 			while (!isvalid)

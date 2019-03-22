@@ -27,16 +27,32 @@ public class Server {
 	private boolean isloggedin = false;
 	private Employee employee;
 	
+	/******
+	 * This is when the employee has already logged in. 
+	 * @param employee the employee who uses this
+	 */
 	public Server (Employee employee)
 	{	
 		this.employee = employee;
 		isloggedin = true; 
 	}
 	
+	/*******
+	 * This is when the employee is in guest mode. 
+	 */
 	public Server ()
 	{	
 		this.employee = null;
 		isloggedin = false; 
+	}
+	
+	/*******
+	 * this gives other sources the access of customer that is currently logged in. 
+	 * @return customer
+	 */
+	public Employee getemployee()
+	{
+		return employee; 
 	}
 	
 	/*****

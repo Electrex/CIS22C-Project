@@ -2,11 +2,65 @@ package UI;
 
 import java.util.Scanner;
 
-import User.Client;
+import ADT.*;
+import Modules.*;
+import User.*;
 
 public class ShoppingCart {
 	private Scanner scanner = new Scanner(System.in);
 
+	public void viewOrder()
+	{
+		System.out.println("********** " + Welcome.getClient().getcustomer().getFullName() + "'s Order **********");
+		PriorityQueue<Order> allcusorders = Welcome.getClient().getcustomer().getOrders();
+		PriorityQueue<Order> shippedorders = new PriorityQueue<Order>();
+		PriorityQueue<Order> unshippedorders = new PriorityQueue<Order>();
+		
+		for (int idx = 0; idx < allcusorders.get_size(); idx++)
+		{
+			if (allcusorders.get_element(idx).getIsShipped())
+			{
+				shippedorders.insert(allcusorders.get_element(idx));
+			}
+			else
+			{
+				unshippedorders.insert(allcusorders.get_element(idx));
+			}
+		}
+		
+		System.out.println("\n\n******** Here are orders you have shipped *********");
+		for (int i = 0; i < shippedorders.get_size(); i++)
+		{
+			System.out.println("Order ID: " + shippedorders.get_element(i).getOrderID());
+			System.out.println("Order Date: " + shippedorders.get_element(i).getOrderDate());
+			System.out.println("Shipment Date: " + shippedorders.get_element(i).getShipDate());
+			System.out.println("Shipment Type: " + shippedorders.get_element(i).getShipmentType());
+			
+			for (int j = 0; j < shippedorders.get_element(i).getProduct().size(); j++)
+			{
+				System.out.println("Product Name: " + shippedorders.get_element(i).getProduct().get(j)
+				+ " Product Quantities: " + shippedorders.get_element(i).getQuantity().get(j));
+			}
+			System.out.println("_____________________________________________________________________________\n");
+		}
+		
+		System.out.println("\n\n******** Here are orders you have not shipped *********");
+		for (int i = 0; i < unshippedorders.get_size(); i++)
+		{
+			System.out.println("Order ID: " + unshippedorders.get_element(i).getOrderID());
+			System.out.println("Order Date: " + unshippedorders.get_element(i).getOrderDate());
+			System.out.println("Shipment Date: " + unshippedorders.get_element(i).getShipDate());
+			System.out.println("Shipment Type: " + unshippedorders.get_element(i).getShipmentType());
+			
+			for (int j = 0; j < unshippedorders.get_element(i).getProduct().size(); j++)
+			{
+				System.out.println("Product Name: " + unshippedorders.get_element(i).getProduct().get(j)
+				+ " Product Quantities: " + unshippedorders.get_element(i).getQuantity().get(j));
+			}
+			System.out.println("_____________________________________________________________________________\n");
+		}
+	}
+	
 	public void displayshoppingcart()
 	{
 		System.out.println("************* Your Shopping Cart **************");
@@ -19,7 +73,7 @@ public class ShoppingCart {
 			System.out.println("Product ID: " + Welcome.getClient().getshoppingcart().get(i).getProductId());
 			System.out.println("Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
 			System.out.println("Quantity: " + Welcome.getClient().getquantities().get(i));
-			System.out.println("-----------------------------------------------------------");
+			System.out.println("_____________________________________________________________________________\n");
 		}
 		
 		System.out.println("****Do you want to place your order? Y/N");
@@ -43,10 +97,10 @@ public class ShoppingCart {
 		String name = scanner.next();
 		System.out.println("****Please enter your address: ");
 		String add = scanner.next();
-		System.out.println("-----------------------------------------------------------");
+		System.out.println("_____________________________________________________________________________\n");
 		System.out.println("****Step 2: Payment method: ");
 		String cardid = scanner.next();
-		System.out.println("-----------------------------------------------------------");
+		System.out.println("_____________________________________________________________________________\n");
 		System.out.println("****Step 3: Shipping method: "); 
 		System.out.println("****Please select one from the following by enter the correct number: ");
 		System.out.println("****1. Overnight Shipping: $4.99 ");
