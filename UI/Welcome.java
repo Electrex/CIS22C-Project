@@ -43,7 +43,6 @@ For employee user:
 - Quit
 
  * @author albertliu
- *
  */
 public class Welcome {
 	
@@ -70,7 +69,7 @@ public class Welcome {
 	
 	public void welcome()
 	{
-		System.out.println(" *************** Welcome to Dash! *************** ");
+		System.out.println("********************* Welcome to Dash! *********************");
 		start();
 	}
 	
@@ -88,9 +87,9 @@ public class Welcome {
 	public void guestmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-		System.out.println("****Please choose one of the option from the following: ");
-		System.out.println("****S: Search for a product");            
-		System.out.println("****L: Log In ");                              
+		System.out.println("**** Please choose one of the options from the following: ");
+		System.out.println("**** S: Search for a product");            
+		System.out.println("**** L: Log In or Create an Account ");                              
 		input = scanner.next();
 		while (!isvalid)
 		{
@@ -102,12 +101,12 @@ public class Welcome {
 			else if (input.equalsIgnoreCase("L"))
 			{
 				isvalid = true;
-				new LogIn().LogIn();
+				new LogIn().logIn();
 			}
 			else
 			{
-				System.out.println("----Sorry, invalid output. ");
-				continue; 
+				System.out.println("---- Sorry, invalid output. Try again. ");
+				input = scanner.next();
 			}
 		}
 	}
@@ -116,11 +115,11 @@ public class Welcome {
 	{
 		String input = ""; boolean isvalid = false; 
 
-		System.out.println("****Please choose one of the option from the following: ");     
-		System.out.println("****S: Search for a product");     
-		System.out.println("****L: List Products ");
-		System.out.println("****V: View my shopping cart");  
-		System.out.println("****Q: Log out");
+		System.out.println("**** Please choose one of the options from the following: ");     
+		System.out.println("**** S: Search for a product");     
+		System.out.println("**** L: List Products ");
+		System.out.println("**** V: View my shopping cart");  
+		System.out.println("**** Q: Log out");
 		
 		input = scanner.next();
 		while (!isvalid)
@@ -143,8 +142,8 @@ public class Welcome {
 			else if (input.equalsIgnoreCase("L"))
 			{
 				String choice;
-				System.out.println("****Would you like to list all the products by product name or by product ID? ");
-				System.out.println("****Press n/N for name and i/I for ID");
+				System.out.println("**** Would you like to list all the products by product name or by product ID? ");
+				System.out.println("**** Press n/N for name and i/I for ID");
 				choice = scanner.next();
 				if (choice.equalsIgnoreCase("n"))
 				{
@@ -172,7 +171,7 @@ public class Welcome {
 				}
 				else
 				{
-					System.out.println("----Wrong input! Assume you are going to list by product name. ");
+					System.out.println("---- Invalid input! Assume you are going to list by product name. ");
 					BST temp = User.displayProductPrimarily(); 
 					for (int i = 0; i < temp.getProducts().size(); i++)
 					{
@@ -187,8 +186,9 @@ public class Welcome {
 			}
 			else
 			{
-				System.out.println("----Sorry, invalid output. ");
-				continue; 
+				System.out.println("----Sorry, invalid output. Try again. ");
+				input = scanner.next();
+				//continue; 
 			}
 		}
 	}
@@ -196,12 +196,12 @@ public class Welcome {
 	public void employeeloggedinmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-		System.out.println("****Please choose one of the option from the following: ");     
-		System.out.println("****S: Search for a product");     
-		System.out.println("****L: List out Product");  
-		System.out.println("****C: Search for a customer");  
-		System.out.println("****D: Delivery Order");
-		System.out.println("****Q: Log out");
+		System.out.println("**** Please choose one of the option from the following: ");     
+		System.out.println("**** S: Search for a product");     
+		System.out.println("**** L: List out products");  
+		System.out.println("**** C: Search for a customer");  
+		System.out.println("**** D: Delivery order");
+		System.out.println("**** Q: Log out");
 
 		EmployeeMenus menu = new EmployeeMenus();
 		input = scanner.next();
@@ -234,8 +234,9 @@ public class Welcome {
 			}
 			else
 			{
-				System.out.println("----Sorry, invalid output. ");
-				continue; 
+				System.out.println("----Sorry, invalid output. Try again. ");
+				input = scanner.next();
+				//continue; 
 			}
 		}
 	}

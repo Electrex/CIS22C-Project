@@ -36,12 +36,12 @@ public class SearchPage {
 			System.out.println("Please enter the product name or press Q if you want to stop: ");
 			name = scanner.next();
 			
-			if (!name.equalsIgnoreCase("q"))
+			if (name.equalsIgnoreCase("q"))
 			{
 				break; 
 			}
 			
-			if (User.primaryProductSearch(name) != null)
+			else if (User.primaryProductSearch(name) != null)
 			{
 				System.out.println("Product name: $" + User.primaryProductSearch(name).getName());
 				System.out.println("Product ID: $" + User.primaryProductSearch(name).getProductId());

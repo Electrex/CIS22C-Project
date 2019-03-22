@@ -263,9 +263,9 @@ public class Order {
 		}
 		
 		int orderScore = this.daysOldHelper() + this.shipSpeedHelper();
-		System.out.println("orderScore: " + orderScore);
+		//System.out.println("orderScore: " + orderScore);
 		int otherOrderScore = otherOrder.daysOldHelper() + otherOrder.shipSpeedHelper();
-		System.out.println("otherOrderScore: " + otherOrderScore);
+		//System.out.println("otherOrderScore: " + otherOrderScore);
 		if (orderScore < otherOrderScore) {
 			return -1;
 		}
