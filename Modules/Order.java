@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  * 
  * @author Mia Skinner
  */
-public class Order implements Comparable<Order> {
+public class Order implements Comparable<Object> {
 
 	private static int orderIDGen;
 	private int orderID;
@@ -37,9 +37,9 @@ public class Order implements Comparable<Order> {
 		int STANDARD = 1;
 
 		int shipSpeed;
-		if (this.shipmentType == "Overnight Shipping") {
+		if (this.shipmentType.equalsIgnoreCase("Overnight")) {
 			shipSpeed = OVERNIGHT;
-		} else if (this.shipmentType == "Rush Shipping") {
+		} else if (this.shipmentType.equalsIgnoreCase("Rush")) {
 			shipSpeed = RUSH;
 		} else {
 			shipSpeed = STANDARD;
@@ -247,7 +247,7 @@ public class Order implements Comparable<Order> {
 	 * @return true if accepted, false if rejected
 	 */
 	public boolean swapShipmentType(String ship_type) {
-		if (ship_type == "Rush Shipping" || ship_type == "Overnight Shipping" || ship_type == "Standard Shipping") {
+		if (ship_type.equalsIgnoreCase("Rush") || ship_type == "Overnight" || ship_type == "Standard") {
 			shipmentType = ship_type;
 			return true;
 		} else {
@@ -356,15 +356,15 @@ public class Order implements Comparable<Order> {
 	 *         higher priority)
 	 */
 	@Override
-	public int compareTo(Order otherOrder) {
-		// TODO compareTo()
-
+	public int compareTo(Object obj) {
+		
+		Order otherOrder = (Order) obj;
 		if (otherOrder == null) {
 			return 1;
 		}
-
 		int orderScore = this.daysOldHelper() + this.shipSpeedHelper();
 		// System.out.println("orderScore: " + orderScore);
+		
 		int otherOrderScore = otherOrder.daysOldHelper() + otherOrder.shipSpeedHelper();
 		// System.out.println("otherOrderScore: " + otherOrderScore);
 		if (orderScore < otherOrderScore) {
