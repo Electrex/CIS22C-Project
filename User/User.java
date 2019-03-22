@@ -221,11 +221,11 @@ public class User {
 		User.productlist = productlist;
 	}
 	
-	public static PriorityQueue getorders() {
+	public static PriorityQueue<Order> getorders() {
 		return orderslist;
 	}
 	
-	public static void setOrderslist(PriorityQueue orderslist) {
+	public static void setOrderslist(PriorityQueue<Order> orderslist) {
  
 		User.orderslist = orderslist;
 	}

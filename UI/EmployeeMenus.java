@@ -15,7 +15,7 @@ public class EmployeeMenus {
 		System.out.println("****Sending Orders");
 		String in; 
 		
-		for (int i = 0; i < User.getorders().get_size(); i ++)
+		for (int i = 1; i < User.getorders().get_size(); i ++)
 		{
 			System.out.println("Order ID: " + User.getorders().get_element(i).getOrderID());
 			System.out.println("Order Date: " + User.getorders().get_element(i).getOrderDate());
