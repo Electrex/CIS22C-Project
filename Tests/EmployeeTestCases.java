@@ -39,6 +39,14 @@ public class EmployeeTestCases {
 	}
 	
 	@Test
+	public void testForDefaultConstructor() {
+		
+		Employee emp1 = new Employee();
+		String expected = "";
+		assertEquals(emp1.getUsername(),expected);
+	}
+	
+	@Test
 	public void testForDuplicateEmployee() {
 		
 		Employee emp1 = new Employee("admin","admin");

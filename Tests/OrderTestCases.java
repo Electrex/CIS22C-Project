@@ -5,12 +5,16 @@ import static org.junit.Assert.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import IO.*;
 import Modules.*;
 import org.junit.Test;
 
+import ADT.PriorityQueue;
+import IO.OrderIO;
+
 public class OrderTestCases {
 
-	/*
+	
 	@Test
 	public void testForCreateOrder() {
 		
@@ -24,7 +28,7 @@ public class OrderTestCases {
 		assertEquals(order2.getOrderID(),expected);
 		
 	}
-	*/
+	
 	
 	@Test
 	public void testForOrderDate() {
@@ -105,15 +109,15 @@ public class OrderTestCases {
 	}
 
 	
-	/*
+	
 	@Test
 	public void testForOrderShipType() {
 
 		ArrayList<Product> products = new ArrayList<>();
 		ArrayList<Integer> qnty = new ArrayList<>();
 		qnty.add(1);
-		products.add(new Product(12.1,"PC","123",440.0));
-		Order order = new Order(products, qnty, "Rush Shipping");
+		products.add(new Product("PC","AB123",440.0,10.0,"Dell","very nice"));
+		Order order = new Order(products, qnty, "Clark","Rush Shipping", true);
 		String expected ="Rush Shipping";
 		assertEquals(order.getShipmentType(),expected);
 
@@ -125,12 +129,21 @@ public class OrderTestCases {
 		ArrayList<Product> products = new ArrayList<>();
 		ArrayList<Integer> qnty = new ArrayList<>();
 		qnty.add(1);
-		products.add(new Product(12.1,"PC","123",440.0));
-		Order order = new Order(products, qnty, "Rush Shipping");
+		products.add(new Product("PC","AB123",440.0,10.0,"Dell","very nice"));
+		Order order = new Order(products, qnty, "Tom","Rush Shipping", false);
 		boolean expected = false;
 		assertEquals(order.getIsShipped(),expected);
 
 	}
 	
-	*/
+	
+	@Test
+	public void testToReadOrdersFromFile() {
+		OrderIO orders = new OrderIO("order.txt");
+		PriorityQueue<Order> ordersList = orders.readfile();
+		boolean expected = true;
+		assertEquals(ordersList.get_size()>0,expected);
+	}
+	
+	
 }

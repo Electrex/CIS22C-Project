@@ -7,6 +7,9 @@ import Modules.Order;
 
 import org.junit.Test;
 
+import ADT.Hash;
+import IO.CustomerIO;
+
 
 public class CustomerTestCases {
 
@@ -69,4 +72,23 @@ public class CustomerTestCases {
 		int expected = 1;
 		assertEquals(customer.getNumberOfOrders(),expected);
 	}
+	
+	@Test
+	public void testForReadCustomers() {
+		
+		CustomerIO customer = new CustomerIO("customer.txt");
+		Hash<Customer> customers = customer.readfile();
+		boolean expected = true;
+		assertEquals(customers.getNumElements()>0, expected);
+	    
+	}
+	
+	@Test
+	public void testForCustomerFileInfo() {
+		
+		CustomerIO customer = new CustomerIO("customer.txt");
+		boolean expected = false;
+		assertEquals(CustomerIO.getcustomerfilecontent().isEmpty(), expected);
+	}
+	
 }
