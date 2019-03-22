@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 public class Order {
 	
 	
-	private static int orderIDGen; //TODO should I make this custID + timestamp + unique #? -- should we collect custID?
+	private static int orderIDGen;
 	private int orderID;
 	private String customerName; 
 	private Timestamp orderDate;
