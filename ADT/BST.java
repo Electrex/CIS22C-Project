@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 //import Modules.T;
 
-public class BST<T>{
+public class BST<T extends Comparable<T>>{
     private class Node {
         private T data;
         private Node left;
