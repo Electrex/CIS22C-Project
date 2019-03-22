@@ -113,7 +113,7 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	public ArrayList<T> sort(){
 		//TODO sort
 	    int n = get_size();
-	    Order first;
+	    T first;
 	    
 	    for (int i = n; i >= 2; i--) {
 	    	

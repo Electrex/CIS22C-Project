@@ -14,7 +14,7 @@ import User.*;
 
 public class OrderIO {
 	
-	private PriorityQueue orderslist; 
+	private PriorityQueue<Order> orderslist; 
 	private String filename; 
 	private Scanner scanner; 
 	private ArrayList<String> ordersfilecontent;
@@ -25,10 +25,10 @@ public class OrderIO {
 		filename = fname; 
 		scanner = new Scanner(System.in);
 		ordersfilecontent = new ArrayList<String>();
-		orderslist = new PriorityQueue();
+		orderslist = new PriorityQueue<Order>();
 	}
 	
-	public OrderIO(String fname, PriorityQueue list)
+	public OrderIO(String fname, PriorityQueue<Order> list)
 	{
 		filename = fname; 
 		scanner = new Scanner(System.in);
@@ -40,7 +40,7 @@ public class OrderIO {
 	 * 
 	 * @return a completed hash. 
 	 */
-	public PriorityQueue readfile()
+	public PriorityQueue<Order> readfile()
 	{
 		boolean readable = true;
 		BufferedReader buff;
@@ -70,8 +70,8 @@ public class OrderIO {
 			System.out.println("readfile(): Problem reading file. " + e.toString());
 		}
 		
-		ArrayList<Product> products = new ArrayList<Product>();
-		ArrayList<Integer> quantity = new ArrayList<Integer>(); 
+		// ArrayList<Product> products = new ArrayList<Product>();
+		// ArrayList<Integer> quantity = new ArrayList<Integer>(); 
 		
 		/* 
 		// Handle the first element

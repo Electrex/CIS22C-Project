@@ -9,7 +9,7 @@ import Modules.*;
 
 public class User {
 	private static BST productlist; 
-	private static PriorityQueue orderslist; 
+	private static PriorityQueue<Order> orderslist; 
 	private static Hash<Customer> customerlist; 
 	private static List<Employee> employeelist;
 	private String[] filename;
@@ -17,7 +17,7 @@ public class User {
 	public User()
 	{
 		productlist = new BST();
-		orderslist = new PriorityQueue();
+		orderslist = new PriorityQueue<Order>();
 		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
 	}
@@ -25,7 +25,7 @@ public class User {
 	public User(String[] Filename)
 	{
 		productlist = new BST();
-		orderslist = new PriorityQueue();
+		orderslist = new PriorityQueue<Order>();
 		customerlist = new Hash<Customer>(50);
 		employeelist = new List<Employee>();
 		this.filename = Filename; 

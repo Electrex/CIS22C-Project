@@ -12,7 +12,7 @@ import Modules.Product;
 import User.*; 
 public class ProductIO {
 	
-	private BST productlist; 
+	private BST<Product> productlist; 
 	private String filename; 
 	private Scanner scanner; 
 
@@ -20,11 +20,11 @@ public class ProductIO {
 	public ProductIO(String fname)
 	{
 		filename = fname; 
-		productlist = new BST();
+		productlist = new BST<Product>();
 		scanner = new Scanner(System.in);
 	}
 
-	public ProductIO(String fname, BST list)
+	public ProductIO(String fname, BST<Product> list)
 	{
 		filename = fname; 
 		productlist = list;
@@ -35,7 +35,7 @@ public class ProductIO {
 	 * 
 	 * @return a completed hash. 
 	 */
-	public BST readfile()
+	public BST<Product> readfile()
 	{
 		boolean readable = true;
 		BufferedReader buff;
@@ -76,8 +76,8 @@ public class ProductIO {
 		FileWriter output = new FileWriter(filename);   
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		for (int i = 0; i < User.getproducts().getProducts().size(); i ++)
-			filewriter.write(User.getproducts().getProducts().get(i).toString()); 
+		for (int i = 0; i < User.getproducts().getObjects().size(); i ++)
+			filewriter.write(User.getproducts().getObjects().get(i).toString()); 
 			
 		try {
 			output.close();

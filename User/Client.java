@@ -109,7 +109,7 @@ public class Client {
 	 * Shows all the past orders    
 	 * @return get all the past orders
 	 */
-	public PriorityQueue viewPurchases()
+	public PriorityQueue<Order> viewPurchases()
 	{
 		return customer.getOrders();
 	}

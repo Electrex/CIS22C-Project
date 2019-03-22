@@ -125,9 +125,9 @@ public class Server {
 	 * return the entire list of orders.         
 	 * @return a priority queue with all the unshipped orders
 	 */
-	public static PriorityQueue viewOrders()
+	public static PriorityQueue<Order> viewOrders()
 	{	
-		PriorityQueue orders = new PriorityQueue();
+		PriorityQueue<Order> orders = new PriorityQueue<Order>();
 		for (int i = 0; i < User.getorders().get_size(); i++)
 		{
 			if (!User.getorders().get_element(i).getIsShipped()) // it is false means that the order is not yet being shipped
