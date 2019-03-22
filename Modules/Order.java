@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import User.User;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
