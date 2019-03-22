@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +21,7 @@ public class OrderIO {
 	private String filename; 
 	private Scanner scanner; 
 	private ArrayList<String[]> ordersfilecontent;
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy HH:mm:ss"); 
 
 	
 	public OrderIO(String fname)
@@ -79,36 +83,46 @@ public class OrderIO {
 			orderID.add(Integer.parseInt(ordersfilecontent.get(i)[0]));
 		}
 		
+		int lastorderid = orderID.get(0);
+		boolean isshipped = Boolean.parseBoolean((ordersfilecontent.get(0)[1])); 
+		String shiptype = ordersfilecontent.get(0)[4];
 		String customer = ordersfilecontent.get(0)[5];
 		String productid = ordersfilecontent.get(0)[6];
-		int lastorderid = orderID.get(0);
-		boolean isshipped = false;
-		if (ordersfilecontent.get(0)[1].equals("TRUE"))
-			isshipped = true;
-		else
-			isshipped = false; 
+		Timestamp shipdate = null, orderdate = null; 
+		try {
+			shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[3]).getTime());
+			orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[2]).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
 		products.add(User.secondaryProductSearch(productid));
 		quantities.add(Integer.parseInt(ordersfilecontent.get(0)[7])); 
 		
 		for (int i = 1; i < orderID.size() - 1; i ++)
 		{
-			if (orderID.get(i) == lastorderid) // still in same order 
+			if (orderID.get(i) == orderID.get(i-1)) // still in same order 
 			{
 				products.add(User.secondaryProductSearch(ordersfilecontent.get(i)[6]));
 				quantities.add(Integer.parseInt(ordersfilecontent.get(i)[6])); 
 			}
 			else // not in the same order
 			{
-				User.adddata("p", new Order(lastorderid, products, quantities, customer, productid, isshipped));
+				User.adddata("p", new Order(lastorderid, products, quantities, customer, orderdate, shipdate, shiptype, isshipped));
 				products.clear();
 				quantities.clear();
-				if (ordersfilecontent.get(0)[1].equals("TRUE"))
-					isshipped = true;
-				else
-					isshipped = false; 
 				lastorderid = orderID.get(i);
+				isshipped = Boolean.parseBoolean((ordersfilecontent.get(i)[1])); 
+				shiptype = ordersfilecontent.get(i)[4];
 				customer = ordersfilecontent.get(i)[5];
 				productid = ordersfilecontent.get(i)[6];
+				try 
+				{
+					shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(i)[3]).getTime());
+					orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(i)[2]).getTime());
+				} catch (ParseException e) 
+				{	e.printStackTrace(); }
+					
 				products.add(User.secondaryProductSearch(productid));
 				quantities.add(Integer.parseInt(ordersfilecontent.get(i)[7])); 
 			}

@@ -91,8 +91,8 @@ public class Order implements Comparable<Order> {
 		isShipped = isshipped;
 	}
 
-	public Order(int orderid, ArrayList<Product> prod, ArrayList<Integer> qty, String custName, Timestamp orderdate,
-			Timestamp shipdate, String shipType, boolean isshipped) {
+	public Order(int orderid, ArrayList<Product> prod, ArrayList<Integer> qty, String custName, 
+			Timestamp orderdate, Timestamp shipdate, String shipType, boolean isshipped) {
 		orderID = orderid;
 		customerName = custName;
 		orderDate = orderdate;

@@ -1,15 +1,15 @@
-1,TRUE,11/8/16,11/11/16,Overnight,Claire Gute,FUR-BO-10001798,1
-2,FALSE,11/8/16,11/11/16,Rush,Claire Gute,FUR-CH-10000454,2
-3,FALSE,6/12/16,6/16/16,Standard ,Darrin Van Huff,OFF-LA-10000240,3
-4,FALSE,10/11/15,10/18/15,Overnight,Sean O'Donnell,FUR-TA-10000577,2
-5,TRUE,10/11/15,10/18/15,Rush,Sean O'Donnell,OFF-ST-10000760,2
-6,TRUE,6/9/14,6/14/14,Rush,Brosina Hoffman,FUR-FU-10001487,2
-7,TRUE,6/9/14,6/14/14,Standard ,Brosina Hoffman,OFF-AR-10002833,3
-8,FALSE,6/9/14,6/14/14,Standard ,Brosina Hoffman,TEC-PH-10002275,4
-9,FALSE,6/9/14,6/14/14,Standard ,Brosina Hoffman,OFF-BI-10003910,5
-10,TRUE,6/9/14,6/14/14,Standard ,Brosina Hoffman,FUR-TA-10001539,1
-11,TRUE,6/9/14,6/14/14,Rush,Brosina Hoffman,OFF-AP-10002892,1
-12,FALSE,6/9/14,6/14/14,Rush,Brosina Hoffman,TEC-PH-10002033,2
-13,TRUE,4/15/17,4/20/17,Rush,Andrew Allen,OFF-PA-10002365,3
-14,FALSE,12/5/16,12/10/16,Overnight,Irene Maddox,OFF-BI-10003656,4
-15,FALSE,11/22/15,11/26/15,Overnight,Harold Pawlan,OFF-AP-10002311,1
+1,true,11/08/16 00:00:00,11/11/16 09:14:18,Overnight,Claire Gute,FUR-BO-10001798,1
+2,false,11/08/16 00:00:00,,Rush,Claire Gute,FUR-CH-10000454,2
+3,false,06/12/16 12:35:10,,Standard,Darrin Van Huff,OFF-LA-10000240,3
+4,false,10/11/15 12:35:10,,Overnight,Sean O'Donnell,FUR-TA-10000577,2
+5,false,10/11/15 12:35:10,,Rush,Sean O'Donnell,OFF-ST-10000760,2
+6,false,06/09/14 00:00:00,,Rush,Brosina Hoffman,FUR-FU-10001487,2
+7,false,06/09/14 00:00:00,,Standard ,Brosina Hoffman,OFF-AR-10002833,3
+7,false,06/09/14 00:00:00,,Standard ,Brosina Hoffman,TEC-PH-10002275,4
+7,false,06/09/14 00:00:00,,Standard,Brosina Hoffman,OFF-BI-10003910,5
+7,false,06/09/14 00:00:00,,Standard,Brosina Hoffman,FUR-TA-10001539,1
+11,true,06/09/14 00:00:00,06/14/14 00:00:00,Rush,Brosina Hoffman,OFF-AP-10002892,1
+11,true,06/09/14 00:00:00,06/14/14 00:00:00,Rush,Brosina Hoffman,TEC-PH-10002033,2
+13,false,04/15/17 00:00:00,,Rush,Andrew Allen,OFF-PA-10002365,3
+14,true,12/05/16 00:00:00,12/10/16 09:00:09,Overnight,Irene Maddox,OFF-BI-10003656,4
+15,true,11/22/15 00:00:00,11/26/15 12:00:00,Overnight,Harold Pawlan,OFF-AP-10002311,1
