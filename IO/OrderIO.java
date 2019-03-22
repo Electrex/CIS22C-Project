@@ -17,14 +17,14 @@ public class OrderIO {
 	private PriorityQueue<Order> orderslist; 
 	private String filename; 
 	private Scanner scanner; 
-	private ArrayList<String> ordersfilecontent;
+	private ArrayList<String[]> ordersfilecontent;
 
 	
 	public OrderIO(String fname)
 	{
 		filename = fname; 
 		scanner = new Scanner(System.in);
-		ordersfilecontent = new ArrayList<String>();
+		ordersfilecontent = new ArrayList<String[]>();
 		orderslist = new PriorityQueue<Order>();
 	}
 	
@@ -32,7 +32,7 @@ public class OrderIO {
 	{
 		filename = fname; 
 		scanner = new Scanner(System.in);
-		ordersfilecontent = new ArrayList<String>();
+		ordersfilecontent = new ArrayList<String[]>();
 		orderslist = list;
 	}
 	
@@ -62,7 +62,7 @@ public class OrderIO {
 					break;
 				}
 
-				ordersfilecontent.add(line);
+				ordersfilecontent.add(line.split(","));
 			}
 			
 			buff.close();
@@ -70,61 +70,50 @@ public class OrderIO {
 			System.out.println("readfile(): Problem reading file. " + e.toString());
 		}
 		
-		// ArrayList<Product> products = new ArrayList<Product>();
-		// ArrayList<Integer> quantity = new ArrayList<Integer>(); 
+		ArrayList<Integer> orderID = new ArrayList<Integer>();
+		ArrayList<Product> products = new ArrayList<Product>();
+		ArrayList<Integer> quantities = new ArrayList<Integer>();
 		
-		/* 
-		// Handle the first element
+		for (int i = 0; i < ordersfilecontent.size(); i++)
+		{
+			orderID.add(Integer.parseInt(ordersfilecontent.get(i)[0]));
+		}
 		
-
-		String[] property = ordersfilecontent.get(0).split(",");
-		String prevshipmenttype = property[3];
-		String prevcustname = property[4];
-		products.add(User.secondaryProductSearch(property[5]));
-		System.out.println("");
-		quantity.add(Integer.parseInt(property[6]));
+		String customer = ordersfilecontent.get(0)[5];
+		String productid = ordersfilecontent.get(0)[6];
+		int lastorderid = orderID.get(0);
 		boolean isshipped = false;
-		if (property[0].equals("TRUE"))
+		if (ordersfilecontent.get(0)[1].equals("TRUE"))
 			isshipped = true;
 		else
 			isshipped = false; 
+		products.add(User.secondaryProductSearch(productid));
+		quantities.add(Integer.parseInt(ordersfilecontent.get(0)[7])); 
 		
-		// Handle the rest of elements
-		for (int i = 1; i < ordersfilecontent.size(); i ++)
+		for (int i = 1; i < orderID.size() - 1; i ++)
 		{
-			property = ordersfilecontent.get(i).split(",");
-
-			if (ordersfilecontent.get(i-1).contains(property[4]) && ordersfilecontent.get(i-1).contains(property[3])) 
-			{ 			// under the same name & same ship mode
-				products.add(User.secondaryProductSearch(property[5]));
-				quantity.add(Integer.parseInt(property[6]));
-				if (property[0].equals("TRUE"))
-					isshipped = true;
-				else
-					isshipped = false; 
-			}
-			else // this belongs to a different order
+			if (orderID.get(i) == lastorderid) // still in same order 
 			{
-				Order temp = new Order(products, quantity, prevcustname, prevshipmenttype, isshipped);
-				orderslist.insert(temp); 
-				
-				prevshipmenttype = property[3];
-				prevcustname = property[4];
-
+				products.add(User.secondaryProductSearch(ordersfilecontent.get(i)[6]));
+				quantities.add(Integer.parseInt(ordersfilecontent.get(i)[6])); 
+			}
+			else // not in the same order
+			{
+				User.adddata("p", new Order(lastorderid, products, quantities, customer, productid, isshipped));
 				products.clear();
-				quantity.clear();
-				
-				products.add(User.secondaryProductSearch(property[5]));
-				quantity.add(Integer.parseInt(property[6]));
-				if (property[0].equals("TRUE"))
+				quantities.clear();
+				if (ordersfilecontent.get(0)[1].equals("TRUE"))
 					isshipped = true;
 				else
 					isshipped = false; 
+				lastorderid = orderID.get(i);
+				customer = ordersfilecontent.get(i)[5];
+				productid = ordersfilecontent.get(i)[6];
+				products.add(User.secondaryProductSearch(productid));
+				quantities.add(Integer.parseInt(ordersfilecontent.get(i)[7])); 
 			}
 		}
-		
-		System.out.println(orderslist.get_element(1).getCustomerName());
-		*/
+
 		return orderslist; 
 	}
 	

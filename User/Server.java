@@ -130,9 +130,9 @@ public class Server {
 		PriorityQueue<Order> orders = new PriorityQueue<Order>();
 		for (int i = 0; i < User.getorders().get_size(); i++)
 		{
-			if (!User.getorders().get_element(i).getIsShipped()) // it is false means that the order is not yet being shipped
+			if (!((Order) User.getorders().get_element(i)).getIsShipped()) // it is false means that the order is not yet being shipped
 			{
-				orders.insert(User.getorders().get_element(i));
+				orders.insert((Order)(User.getorders().get_element(i)));
 			}
 		}
 		return orders;

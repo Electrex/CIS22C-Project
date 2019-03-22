@@ -36,8 +36,8 @@ public class DashDriver {
 	
     public static void main(String[] args) throws Exception{
         
-    	debugger();
-    	//runner();
+    	//debugger();
+    	runner();
     	
     	
     	

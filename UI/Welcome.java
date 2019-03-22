@@ -90,6 +90,7 @@ public class Welcome {
 	{
 		String input = ""; boolean isvalid = false; 
 		System.out.println("\n\n\n\n");
+		System.out.println("Welcome Guest!"); 
 		System.out.println("**** Please choose one of the options from the following: ");
 		System.out.println("**** S: Search for a product");            
 		System.out.println("**** L: Log In or Create an Account ");   
@@ -126,7 +127,7 @@ public class Welcome {
 		String input = ""; boolean isvalid = false; 
 
 		System.out.println("\n\n\n\n");
-		System.out.println("Welcome to Customer Mode!"); 
+		System.out.println("Welcome Customer  "); 
 		System.out.println("**** Please choose one of the options from the following: ");     
 		System.out.println("**** S: Search for a product");     
 		System.out.println("**** L: List Products ");
@@ -209,7 +210,7 @@ public class Welcome {
 	{
 		String input = ""; boolean isvalid = false; 
 		System.out.println("\n\n\n\n");
-		System.out.println("Welcome to Employee Mode!"); 
+		System.out.println("Welcome Employee   "); 
 		System.out.println("**** Please choose one of the option from the following: ");     
 		System.out.println("**** S: Search for a product");     
 		System.out.println("**** L: List out products");  
