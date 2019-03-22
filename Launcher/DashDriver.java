@@ -32,8 +32,6 @@ public class DashDriver {
     			"Product.txt"}; 
     	User user = new User(files);
     	user.loaddata();
-    	
-    	System.out.println(User.getorders().get_size());
 	}
 	
     public static void main(String[] args) throws Exception{

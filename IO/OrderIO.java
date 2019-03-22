@@ -79,6 +79,7 @@ public class OrderIO {
 		String prevshipmenttype = property[3];
 		String prevcustname = property[4];
 		products.add(User.secondaryProductSearch(property[5]));
+		System.out.println("");
 		quantity.add(Integer.parseInt(property[6]));
 		boolean isshipped = false;
 		if (property[0].equals("TRUE"))
@@ -90,6 +91,7 @@ public class OrderIO {
 		for (int i = 1; i < ordersfilecontent.size(); i ++)
 		{
 			property = ordersfilecontent.get(i).split(",");
+
 			if (ordersfilecontent.get(i-1).contains(property[4]) && ordersfilecontent.get(i-1).contains(property[3])) 
 			{ 			// under the same name & same ship mode
 				products.add(User.secondaryProductSearch(property[5]));
@@ -101,7 +103,9 @@ public class OrderIO {
 			}
 			else // this belongs to a different order
 			{
-				orderslist.insert(new Order(products, quantity, prevcustname, prevshipmenttype, isshipped));  
+				Order temp = new Order(products, quantity, prevcustname, prevshipmenttype, isshipped);
+				orderslist.insert(temp); 
+				
 				prevshipmenttype = property[3];
 				prevcustname = property[4];
 
@@ -116,6 +120,8 @@ public class OrderIO {
 					isshipped = false; 
 			}
 		}
+		
+		System.out.println(orderslist.get_element(1).getCustomerName());
 		
 		return orderslist; 
 	}
@@ -143,6 +149,7 @@ public class OrderIO {
 		for (int i = 0; i < User.getorders().get_size(); i ++)
 		{
 			filewriter.write(User.getorders().get_element(i).toString());
+			System.out.println(User.getorders().get_element(i).toString());
 		}
 			
 		try {
