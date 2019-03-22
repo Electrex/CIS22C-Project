@@ -73,7 +73,9 @@ public class OrderIO {
 		ArrayList<Product> products = new ArrayList<Product>();
 		ArrayList<Integer> quantity = new ArrayList<Integer>(); 
 		
+		/* 
 		// Handle the first element
+		
 
 		String[] property = ordersfilecontent.get(0).split(",");
 		String prevshipmenttype = property[3];
@@ -122,7 +124,7 @@ public class OrderIO {
 		}
 		
 		System.out.println(orderslist.get_element(1).getCustomerName());
-		
+		*/
 		return orderslist; 
 	}
 	
