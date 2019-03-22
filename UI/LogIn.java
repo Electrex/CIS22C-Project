@@ -18,12 +18,12 @@ public class LogIn {
 		ls = scanner.next();
 		if (ls.equals("1"))
 		{
-			System.out.println("**********Log In***********");
+			System.out.println("**********Sign Up**********");
+			SignUp();
 		}
 		else if (ls.equals("2"))
 		{
-			System.out.println("**********Sign Up**********");
-			SignUp();
+			System.out.println("**********Log In***********");
 		}
 		else
 		{
