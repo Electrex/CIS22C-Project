@@ -4,15 +4,15 @@ package ADT;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-import Modules.Product;
+//import Modules.T;
 
-public class BST{
+public class BST<T>{
     private class Node {
-        private Product data;
+        private T data;
         private Node left;
         private Node right;
 
-        public Node(Product data) {
+        public Node(T data) {
             this.data = data;
             left = null;
             right = null;
@@ -20,7 +20,7 @@ public class BST{
     }
 
     private Node root;
-    private ArrayList<Product> list;
+    private ArrayList<T> list;
 
     /***CONSTRUCTORS***/
 
@@ -30,19 +30,19 @@ public class BST{
      */
     public BST() {
         root = null;
-        list = new ArrayList<Product>();
+        list = new ArrayList<T>();
     }
 
     /**
-     * Copy constructor for BSProduct
-     * @param bst the BSProduct to make
+     * Copy constructor for BST
+     * @param bst the BST to make
      * a copy of
      */
     public BST(BST bst) {
         if (bst.root == null)
         {
             root = null;
-        	list = new ArrayList<Product>();
+        	list = new ArrayList<T>();
         }
         else {
             copyHelper(bst.root);
@@ -72,7 +72,7 @@ public class BST{
      * @throws NoSuchElementException when
      * preconditon is violated
      */
-    public Product getRoot() throws NoSuchElementException{
+    public T getRoot() throws NoSuchElementException{
         if (isEmpty())
             throw new NoSuchElementException("getRoot(): Tree is empty");
         else
@@ -149,7 +149,7 @@ public class BST{
      * @throws NoSuchElementException when the
      * precondition is violated
      */
-    public Product findMin() throws NoSuchElementException{
+    public T findMin() throws NoSuchElementException{
         if (isEmpty())
             throw new NoSuchElementException("findMin(): Tree is empty");
         else
@@ -162,7 +162,7 @@ public class BST{
      * if it is the smallest
      * @return the smallest value in the tree
      */
-    private Product findMin(Node node) {
+    private T findMin(Node node) {
         if (node.left != null)
             return findMin(node.left);
         else
@@ -176,7 +176,7 @@ public class BST{
      * @throws NoSuchElementException when the
      * precondition is violated
      */
-    public Product findMax() throws NoSuchElementException{
+    public T findMax() throws NoSuchElementException{
         if (isEmpty())
             throw new NoSuchElementException("findMax(): Tree is empty");
         else
@@ -189,7 +189,7 @@ public class BST{
      * if it is the largest
      * @return the largest value in the tree
      */
-    private Product findMax(Node node) {
+    private T findMax(Node node) {
         if (node.right != null)
             return findMax(node.right);
         else
@@ -203,7 +203,7 @@ public class BST{
      * @return whether the value is stored
      * in the tree
      */
-    public boolean search(Product data) {
+    public boolean search(T data) {
         if (isEmpty())
             return false;
         else
@@ -217,7 +217,7 @@ public class BST{
      * @return whether the data is stored
      * in the tree
      */
-    private boolean search(Product data, Node node) {
+    private boolean search(T data, Node node) {
         if (data.compareTo(node.data) == 0)
             return true;
         if (data.compareTo(node.data) < 0) {
@@ -240,7 +240,7 @@ public class BST{
      * @return whether the value is stored
      * in the tree
      */
-    public boolean searchByPrimary(Product data) {
+    public boolean searchByPrimary(T data) {
         if (isEmpty())
             return false;
         else
@@ -254,7 +254,7 @@ public class BST{
      * @return whether the data is stored
      * in the tree
      */
-    private boolean searchByPrimary(Product data, Node node) {
+    private boolean searchByPrimary(T data, Node node) {
         if (data.compareToPrimary(node.data) == 0)
             return true;
         if (data.compareToPrimary(node.data) < 0) {
@@ -277,7 +277,7 @@ public class BST{
      * @return whether the value is stored
      * in the tree
      */
-    public boolean searchBySecondary(Product data) {
+    public boolean searchBySecondary(T data) {
         if (isEmpty())
             return false;
         else
@@ -291,7 +291,7 @@ public class BST{
      * @return whether the data is stored
      * in the tree
      */
-    private boolean searchBySecondary(Product data, Node node) {
+    private boolean searchBySecondary(T data, Node node) {
         if (data.compareToSecondary(node.data) == 0)
             return true;
         if (data.compareToSecondary(node.data) < 0) {
@@ -346,7 +346,7 @@ public class BST{
      * Inserts a new node in the tree
      * @param data the data to insert
      */
-    public void insert(Product data) {
+    public void insert(T data) {
         if (root == null) {
             root = new Node(data);
         } else {
@@ -362,7 +362,7 @@ public class BST{
      * search for the correct location
      * in which to insert
      */
-    private void insert(Product data, Node node) {
+    private void insert(T data, Node node) {
         if (data.compareTo(node.data) <= 0) {
             if (node.left == null)
                 node.left = new Node(data);
@@ -384,7 +384,7 @@ public class BST{
      * @throws NoSuchElementException when the
      * precondition is violated
      */
-    public void remove(Product data) throws NoSuchElementException{
+    public void remove(T data) throws NoSuchElementException{
         if (isEmpty() || !search(data))
             throw new NoSuchElementException("remove(): Element is not found");
         else
@@ -397,7 +397,7 @@ public class BST{
      * @param node the current node
      * @return an updated reference variable
      */
-    public Node remove(Product data, Node node)
+    public Node remove(T data, Node node)
     {
         if(node == null)
         {
@@ -444,7 +444,7 @@ public class BST{
     private void bubblesortByPrimary()
     {
         int i, j;
-        Product temp;
+        T temp;
         int n = list.size();
         boolean swapped;
         for (i = 0; i < n - 1; i++)
@@ -479,7 +479,7 @@ public class BST{
     private void bubblesortBySecondary()
     {
         int i, j;
-        Product temp;
+        T temp;
         int n = list.size();
         boolean swapped;
         for (i = 0; i < n - 1; i++)
@@ -517,7 +517,7 @@ public class BST{
         }
     }
 
-    public ArrayList<Product> getProducts() {
+    public ArrayList<T> getObjects() {
         return list;
     }
 }
