@@ -43,9 +43,19 @@ public class EmployeeMenus {
 	
 	public void searchcustomer()
 	{
-		System.out.println("****Would you like to list out customers or search for customers: ");
-		System.out.println("****Enter L to list out and S to search");
+		System.out.println("****Would you like to list out all the customers or search for a specific customer: ");
+		System.out.print("****Enter L to list out and S to search");
 		String choice = scanner.next();
+		
+		
+		while(!choice.equalsIgnoreCase("L") && !choice.equalsIgnoreCase("S"))
+		{
+		    System.out.println("Invalid input!");
+		    System.out.print("****Enter L to list out and S to search");
+	        choice = scanner.next();
+		}
+		
+		
 		if (choice.equalsIgnoreCase("L"))
 		{
 			User.getcustomers().toString(); 
@@ -67,13 +77,8 @@ public class EmployeeMenus {
 				if (Server.searchCustomer(fname, lname) != null)
 					System.out.println(Server.searchCustomer(fname, lname).toString());
 				else
-					System.out.println("----The customer is not found");
+					System.out.println("----The customer does not exist!");
 			}
-		}
-		else
-		{
-			System.out.println("----Wrong input! Assume you are going to list customers out. ");
-			User.getcustomers().toString(); 
 		}
 	}
 	
@@ -81,18 +86,20 @@ public class EmployeeMenus {
 	{
 		String productname, productid, description, manufactorer; 
 		double productprice, productcost;
-		System.out.println("****Please enter product's name: ");
-		productname = scanner.next();
-		System.out.println("****Please enter product's id: ");		
-		productid = scanner.next();
-		System.out.println("****Please enter product's unit price: ");
+		System.out.print("****Please enter product's name: ");
+		productname = scanner.nextLine();
+		System.out.print("****Please enter product's id: ");		
+		productid = scanner.nextLine();
+		System.out.print("****Please enter product's unit price: ");
 		productprice = scanner.nextDouble();
-		System.out.println("****Please enter product's cost: ");
+		scanner.nextLine();
+		System.out.print("****Please enter product's cost: ");
 		productcost = scanner.nextDouble();
-		System.out.println("****Please enter product's description: ");		
-		description = scanner.next();		
-		System.out.println("****Please enter product's manufactorer: ");		
-		manufactorer = scanner.next();
+		scanner.nextLine();
+		System.out.print("****Please enter product's description: ");		
+		description = scanner.nextLine();		
+		System.out.print("****Please enter product's manufactorer: ");		
+		manufactorer = scanner.nextLine();
 		
 		// String name, String productId, double cost, double unitPrice, String manufacturer, String description
 		User.adddata("b", new Product(productname, productid, productcost, productprice, manufactorer, description));
@@ -102,8 +109,17 @@ public class EmployeeMenus {
 	{
 		String choice;
 		System.out.println("****Would you like to search by product name or by product ID? ");
-		System.out.println("****Press n/N for name and i/I for ID");
+		System.out.print("****Press n/N for name and i/I for ID");
 		choice = scanner.next();
+		
+		while(!choice.equalsIgnoreCase("n") && !choice.equalsIgnoreCase("i"))
+		{
+		    System.out.println("Invalid input!");
+		    System.out.print("****Press n/N for name and i/I for ID");
+		    choice = scanner.next();
+		}
+		
+		
 		if (choice.equalsIgnoreCase("n"))
 		{
 			String name = "";
@@ -211,7 +227,7 @@ public class EmployeeMenus {
 	{
 		String choice;
 		System.out.println("****Would you like to list all the products by product name or by product ID? ");
-		System.out.println("****Press n/N for name and i/I for ID");
+		System.out.print("****Press n/N for name and i/I for ID");
 		choice = scanner.next();
 		if (choice.equalsIgnoreCase("n"))
 		{
@@ -238,20 +254,6 @@ public class EmployeeMenus {
 				System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
 				System.out.println("--------------------------------------------------------------");
 			}		
-		}
-		else
-		{
-			System.out.println("----Wrong input! Assume you are going to list by product name. ");
-			BST temp = User.getproducts();
-			temp.sortByPrimary();
-			for (int i = 0; i < temp.getProducts().size(); i++)
-			{
-				System.out.println("Product Name: " + temp.getProducts().get(i).getName());
-				System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-				System.out.println("Product Price: " + temp.getProducts().get(i).getUnitPrice());
-				System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
-				System.out.println("--------------------------------------------------------------");
-			}
 		}
 	}
 }
