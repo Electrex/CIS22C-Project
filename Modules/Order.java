@@ -13,9 +13,9 @@ import java.text.SimpleDateFormat;
  * 
  * @author Mia Skinner
  */
-public class Order implements Comparable<Object> {
+public class Order implements Comparable<Order> {
 
-	private static int orderIDGen;
+	private static int orderIDGen = 1000;
 	private int orderID;
 	private String customerName;
 	private Timestamp orderDate;
@@ -356,9 +356,11 @@ public class Order implements Comparable<Object> {
 	 *         higher priority)
 	 */
 	@Override
-	public int compareTo(Object obj) {
+	public int compareTo(Order otherOrder) {
 		
-		Order otherOrder = (Order) obj;
+		//TODO do we need to catch objs passed with not Order
+		//Order otherOrder = (Order) obj;
+		
 		if (otherOrder == null) {
 			return 1;
 		}
