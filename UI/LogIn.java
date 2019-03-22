@@ -13,52 +13,61 @@ public class LogIn {
 	{
 		String uname, pass, ls; // log in or sign up 
 		boolean isvalid = false; 
+		boolean successlogin = false;
 		
-		System.out.println("Press (1) if you need to sign up, or (2) if you want to log in.");
-		
-		ls = scanner.nextLine();
-		if (ls.equals("1"))
+		while (!successlogin)
 		{
-			System.out.println("**********Sign Up**********");
-			SignUp();
-		}
-		else if (ls.equals("2"))
-		{
-			System.out.println("**********Log In***********");
-		}
-		else
-		{
-			System.out.println("Invalid input. We're assuming you want to sign in...");
-		
-		}
-	
-		
-		while (!isvalid)
-		{
-			System.out.print("Enter your username: ");
-			uname = scanner.nextLine();
-			System.out.print("Enter your password: ");
-			pass = scanner.nextLine();
+			System.out.println("Press (1) if you need to sign up, or (2) if you want to log in, Q to go back to homepage.");
 			
-			if (Client.verifyLogInInformation(uname, pass) || Server.verifyLogInInformation(uname, pass))
+			ls = scanner.nextLine();
+			if (ls.equals("1"))
 			{
-				if (Client.verifyLogInInformation(uname, pass))
+				System.out.println("**********Sign Up**********");
+				SignUp();
+				successlogin = true;      
+			}
+			else if (ls.equals("2"))
+			{
+				System.out.println("\n\n**********Log In***********");
+				while (!isvalid)
 				{
-					System.out.println("Welcome to Customer Mode!"); 
-					Welcome.getClient().login(uname, pass);
-					isvalid = true;
+					System.out.print("**** Enter your username or press Q to go back: ");
+					uname = scanner.nextLine();
+					if (uname.equalsIgnoreCase("q"))
+						break; 
+					System.out.print("**** Enter your password press Q to go back: ");
+					pass = scanner.nextLine();
+					if (pass.equalsIgnoreCase("q"))
+						break; 
+					
+					if (Client.verifyLogInInformation(uname, pass) || Server.verifyLogInInformation(uname, pass))
+					{
+						if (Client.verifyLogInInformation(uname, pass))
+						{
+							Welcome.getClient().login(uname, pass);
+							isvalid = true;
+						}
+						else
+						{
+							Welcome.getServer().login(uname, pass);
+							isvalid = true;
+						}
+						successlogin = true;      
+					}
+					else
+					{
+						System.out.println("---- Invalid password, please retry! ");
+						continue; 
+					}
 				}
-				else
-				{
-					System.out.println("Welcome to Employee Mode!"); 
-					Welcome.getServer().login(uname, pass);
-					isvalid = true;
-				}
+			}
+			else if (ls.equalsIgnoreCase("q"))
+			{
+				break; 
 			}
 			else
 			{
-				System.out.println("Invalid password, please retry! ");
-				continue; 
+				System.out.println("---- Invalid input. Please retry . . . ");
 			}
 		}
 	}
@@ -84,13 +93,13 @@ public class LogIn {
 		{
 			if (password.equals(passwordconfirmation))
 			{
-				System.out.println("You are all set! ");
+				System.out.println(" \nYou are all set! \n\n");
 				Client.createnewaccount(firstname, lastname, username, password, address);
 				isvalid = true;  
 			}
 			else
 			{
-				System.out.println("Passwords do not match, please re-enter your password. ");
+				System.out.println("---- Passwords do not match, please re-enter your password. ");
 				passwordconfirmation = scanner.nextLine();   
 			}
 		}

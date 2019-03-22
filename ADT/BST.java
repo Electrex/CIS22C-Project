@@ -40,9 +40,13 @@ public class BST{
      */
     public BST(BST bst) {
         if (bst.root == null)
+        {
             root = null;
+        	list = new ArrayList<Product>();
+        }
         else {
             copyHelper(bst.root);
+            this.list = bst.list; 
         }
     }
 

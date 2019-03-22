@@ -4,13 +4,15 @@ package Launcher;
 import java.io.File;
 import java.util.Scanner;
 
-import Modules.Product;
+import ADT.*; 
+import Modules.*;
 import UI.*; 
 import User.*; 
 
 public class DashDriver {
-    public static void main(String[] args) throws Exception{
-        
+	
+	private static void runner()
+	{
     	String [] files = {"Customer.txt", 
     			"Employee.txt", 
     			"Order.txt", 
@@ -19,7 +21,30 @@ public class DashDriver {
     	user.loaddata();
     	Welcome initializer = new Welcome();
     	initializer.welcome();
-    	user.outputdata();
+    	user.outputdata(); // exit
+	}
+	
+	private static void debugger()
+	{
+    	String [] files = {"Customer.txt", 
+    			"Employee.txt", 
+    			"Order.txt", 
+    			"Product.txt"}; 
+    	User user = new User(files);
+    	user.loaddata();
+    	
+    	System.out.println(User.getorders().get_size());
+	}
+	
+    public static void main(String[] args) throws Exception{
+        
+    	debugger();
+    	//runner();
+    	
+    	
+    	
+    	
+    	
     	
     	/*
         int numBuckets = 26; //Choose whatever

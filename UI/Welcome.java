@@ -49,12 +49,14 @@ public class Welcome {
 	private Scanner scanner; 
 	private static Client client;
 	private static Server server;
+	private boolean exit;
 	
 	public Welcome()
 	{
 		scanner = new Scanner(System.in); 
 		client = new Client();
 		server = new Server();
+		exit = false;
 	}
 	
 	public static Client getClient()
@@ -75,7 +77,7 @@ public class Welcome {
 	
 	public void start()
 	{
-		while(true)
+		while(exit == false)
 			if (client.isloggedin())
 				loggedinmenus(); 
 			else if (server.isloggedin())
@@ -87,9 +89,11 @@ public class Welcome {
 	public void guestmenus()
 	{
 		String input = ""; boolean isvalid = false; 
+		System.out.println("\n\n\n\n");
 		System.out.println("**** Please choose one of the options from the following: ");
 		System.out.println("**** S: Search for a product");            
-		System.out.println("**** L: Log In or Create an Account ");                              
+		System.out.println("**** L: Log In or Create an Account ");   
+		System.out.println("**** Q: Quit   ");                              
 		input = scanner.next();
 		while (!isvalid)
 		{
@@ -98,10 +102,16 @@ public class Welcome {
 				isvalid = true;
 				new SearchPage().Search();
 			}
-			else if (input.equalsIgnoreCase("L"))
+			else if (input.equalsIgnoreCase("l"))
 			{
 				isvalid = true;
 				new LogIn().logIn();
+			}
+			else if (input.equalsIgnoreCase("q"))
+			{
+				isvalid = true;
+				exit = true; 
+				break;
 			}
 			else
 			{
@@ -115,6 +125,8 @@ public class Welcome {
 	{
 		String input = ""; boolean isvalid = false; 
 
+		System.out.println("\n\n\n\n");
+		System.out.println("Welcome to Customer Mode!"); 
 		System.out.println("**** Please choose one of the options from the following: ");     
 		System.out.println("**** S: Search for a product");     
 		System.out.println("**** L: List Products ");
@@ -196,6 +208,8 @@ public class Welcome {
 	public void employeeloggedinmenus()
 	{
 		String input = ""; boolean isvalid = false; 
+		System.out.println("\n\n\n\n");
+		System.out.println("Welcome to Employee Mode!"); 
 		System.out.println("**** Please choose one of the option from the following: ");     
 		System.out.println("**** S: Search for a product");     
 		System.out.println("**** L: List out products");  

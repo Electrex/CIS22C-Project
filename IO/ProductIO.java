@@ -37,7 +37,7 @@ public class ProductIO {
 	 */
 	public BST readfile()
 	{
-		boolean readable = false;
+		boolean readable = true;
 		BufferedReader buff;
 		FileReader filereader;
 
@@ -46,7 +46,6 @@ public class ProductIO {
 			buff = new BufferedReader(filereader);
 			String line;
 
-			
 			while (readable) {
 				line = buff.readLine();
 				if (line == null) // finished reading
@@ -54,7 +53,6 @@ public class ProductIO {
 					readable = false;
 					break;
 				}
-				
 				
 				String[] vertices = line.split(",");
 				// String name, String productId, double cost, double unitPrice, String manufacturer, String description

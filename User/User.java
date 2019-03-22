@@ -36,10 +36,10 @@ public class User {
 	 */
 	public void loaddata()
 	{
-		CustomerIO cusio = new CustomerIO(filename[0]);
 		EmployeeIO empio = new EmployeeIO(filename[1]);
-		OrderIO ordio = new OrderIO(filename[2]);
+		CustomerIO cusio = new CustomerIO(filename[0]);
 		ProductIO proio = new ProductIO(filename[3]);
+		OrderIO ordio = new OrderIO(filename[2]);
 
 		employeelist = empio.readfile();
 		customerlist = cusio.readfile();
@@ -187,7 +187,7 @@ public class User {
 	public static BST displayProductPrimarily()
 	{
 		// sort product by primary key
-		BST temp = productlist;
+		BST temp = new BST(productlist);
 		temp.sortByPrimary();
 		
 		return temp; 
@@ -201,7 +201,7 @@ public class User {
 	public static BST displayProductSecondary()
 	{
 		// sort product by secondary key
-		BST temp = productlist;
+		BST temp = new BST(productlist);
 		temp.sortBySecondary();		
 				
 		return temp; 
