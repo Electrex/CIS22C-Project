@@ -2,17 +2,16 @@ package ADT;
 
 import java.util.ArrayList;
 
-import Modules.Order;
 
 /**
- * Heap ADT that prioritizes Orders into a priority queue
+ * Heap ADT that prioritizes T into a priority queue
  * @author Mia Skinner
  *
  */
-public class PriorityQueue {
+public class PriorityQueue<T extends Comparable<T>>  {
 	
 	private int heap_size;
-	private ArrayList<Order> heap;
+	private ArrayList<T> heap;
 	
 	/**
 	 * Given a valid max heap (except for a single node i), heapify processes the 
@@ -44,8 +43,8 @@ public class PriorityQueue {
 		}
 	
 		if (i != index_of_max) {//if A[i] was not bigger than its two children
-			Order oldMax = heap.get(index_of_max);
-			Order newMax = heap.get(i);
+			T oldMax = heap.get(index_of_max);
+			T newMax = heap.get(i);
 		    heap.set(index_of_max, newMax); //swap, so now A[i] stored at A[index_of_max]
 		    heap.set(i, oldMax);
 	
@@ -53,7 +52,7 @@ public class PriorityQueue {
 		}
 	}
 	
-	private void heapIncreaseKey(int i, Order key) {
+	private void heapIncreaseKey(int i, T key) {
 	    if(key.compareTo(heap.get(i)) > 0) {
 
 	        heap.set(i, key); //write over existing value at i with key
@@ -63,7 +62,7 @@ public class PriorityQueue {
 		    	//while the parent is smaller and you are not at the root node
 	
 		    	//Swap parent and child
-		    	Order parent = heap.get(get_parent(i));
+		    	T parent = heap.get(get_parent(i));
 		    	heap.set(get_parent(i), heap.get(i));
 		    	heap.set(i, parent);
 
@@ -76,7 +75,7 @@ public class PriorityQueue {
 	
 	public PriorityQueue(){
 		heap_size = 0;
-		heap = new ArrayList<Order>();
+		heap = new ArrayList<T>();
 		heap.add(null); // fill in placeholder for index zero
 	}
 
@@ -93,7 +92,7 @@ public class PriorityQueue {
 		}
 	}
 	
-	public void insert(Order key) {	
+	public void insert(T key) {	
 		
 		//TODO do we need to increment if get_size is automatic with ArrayList.size?
 	   // Heap_size(A)++ //adding a new value to the heap
@@ -111,7 +110,7 @@ public class PriorityQueue {
 		build_heap();	
 	}
 	
-	public ArrayList<Order> sort(){
+	public ArrayList<T> sort(){
 		//TODO sort
 	    int n = get_size();
 	    Order first;
@@ -132,7 +131,7 @@ public class PriorityQueue {
 	
 	 /**Accessors*/
 	
-	public Order get_max() {
+	public T get_max() {
 		
 		//root heap[1]
 		return heap.get(1);
@@ -163,7 +162,7 @@ public class PriorityQueue {
 		return heap_size;
 	}
 	
-	public Order get_element(int i) {
+	public T get_element(int i) {
 		
 		return heap.get(i);
 	}
@@ -181,7 +180,8 @@ public class PriorityQueue {
 	public void displayArray() {
 		//TODO how do we want to display Orders in PriorityQueue displayArray?
 		for (int i=1; i <= get_size(); i++) {
-			System.out.println(i + ": " + heap.get(i).getOrderDate() + " + " + heap.get(i).getShipmentType());
+			//System.out.println(i + ": " + heap.get(i).getOrderDate() + " + " + heap.get(i).getShipmentType());
+			System.out.println(i + ": " + heap.get(i));
 		}
 	}
 

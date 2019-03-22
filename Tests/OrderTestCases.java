@@ -89,6 +89,22 @@ public class OrderTestCases {
 		assertEquals(order.getQuantity().get(0).intValue(),expected);
 	}
 
+	@Test
+	public void testForOrderCompareTo() {
+		
+		Order order = new Order(null, null, "", "Standard Shipping", false);
+		Order order2 = new Order(null, null, "", "Overnight Shipping", false);
+		
+		Order order3 = new Order(null, null, "", "Standard Shipping", false);
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		order.setOrderDate(t);
+		order3.setOrderDate(t);
+		
+		assertEquals(order.compareTo(order2), -1);
+		assertEquals(order2.compareTo(order), 1);
+	}
+
+	
 	/*
 	@Test
 	public void testForOrderShipType() {
