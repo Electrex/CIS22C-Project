@@ -13,10 +13,10 @@ public class DashDriver {
 	
 	private static void runner()
 	{
-    	String [] files = {"Customer.txt", 
-    			"Employee.txt", 
-    			"Order.txt", 
-    			"Product.txt"}; 
+    	String [] files = {"Customer.csv", 
+    			"Employee.csv", 
+    			"Orders.csv", 
+    			"Product.csv"}; 
     	User user = new User(files);
     	user.loaddata();
     	Welcome initializer = new Welcome();

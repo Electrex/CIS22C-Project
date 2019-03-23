@@ -21,7 +21,7 @@ public class OrderIO {
 	private String filename; 
 	private Scanner scanner; 
 	private ArrayList<String[]> ordersfilecontent;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy HH:mm:ss"); 
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy HH:mm"); 
 	
 	public OrderIO(String fname)
 	{
@@ -89,10 +89,16 @@ public class OrderIO {
 		String productid = ordersfilecontent.get(0)[6];
 		Timestamp shipdate = null, orderdate = null; 
 		try {
-			shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[3]).getTime());
 			orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[2]).getTime());
 		} catch (ParseException e) {
 			e.printStackTrace();
+			//orderdate = null;
+		}
+		try {
+			shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[3]).getTime());
+		}catch (ParseException e) {
+			e.printStackTrace();
+			//shipdate = null;
 		}
 
 		products.add(User.secondaryProductSearch(productid));

@@ -89,7 +89,7 @@ public class Welcome {
 	public void guestmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-		System.out.println("\n\n\n\n");
+		System.out.println("\n");
 		System.out.println("Welcome Guest!"); 
 		System.out.println("**** Please choose one of the options from the following: ");
 		System.out.println("**** S: Search for a product");            
