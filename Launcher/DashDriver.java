@@ -26,10 +26,10 @@ public class DashDriver {
 	
 	private static void debugger()
 	{
-    	String [] files = {"Customer.txt", 
-    			"Employee.txt", 
-    			"Order.txt", 
-    			"Product.txt"}; 
+    	String [] files = {"Customer.csv", 
+    			"Employee.csv", 
+    			"Order.csv", 
+    			"Product.csv"}; 
     	User user = new User(files);
     	user.loaddata();
 	}
