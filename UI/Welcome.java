@@ -219,10 +219,11 @@ public class Welcome {
 		System.out.println("\n\n\n\n");
 		System.out.println("Welcome Employee   "); 
 		System.out.println("**** Please choose one of the option from the following: ");     
-		System.out.println("**** S: Search for a product");     
+		System.out.println("**** S: Search for a product");  
+		System.out.println("**** A: Add a product");  
 		System.out.println("**** L: List out products");  
 		System.out.println("**** C: Search for a customer");  
-		System.out.println("**** D: Delivery order");
+		System.out.println("**** D: Ship order");
 		System.out.println("**** Q: Log out");
 
 		EmployeeMenus menu = new EmployeeMenus();
@@ -232,6 +233,11 @@ public class Welcome {
 			if (input.equalsIgnoreCase("S"))
 			{	
 				menu.searchproduct();
+				isvalid = true;
+			}
+			else if (input.equalsIgnoreCase("A"))
+			{	
+				menu.addproduct();
 				isvalid = true;
 			}
 			else if (input.equalsIgnoreCase("C"))

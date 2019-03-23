@@ -2,6 +2,8 @@ package UI;
 
 import User.*;
 import ADT.*;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Modules.*;
@@ -93,25 +95,44 @@ public class EmployeeMenus {
 	
 	public void addproduct()
 	{
-		String productname, productid, description, manufactorer; 
+		
+		String productname, productid, description, manufacturer; 
 		double productprice, productcost;
 		System.out.print("****Please enter product's name: ");
 		productname = scanner.nextLine();
 		System.out.print("****Please enter product's id: ");		
 		productid = scanner.nextLine();
 		System.out.print("****Please enter product's unit price: ");
-		productprice = scanner.nextDouble();
-		scanner.nextLine();
+		while(true) {
+			try {
+				productprice = scanner.nextDouble();
+				scanner.nextLine();
+				break;
+			}
+			catch (InputMismatchException e) {
+				System.out.println("Please enter a valid price.");
+			}
+		}
+		
 		System.out.print("****Please enter product's cost: ");
-		productcost = scanner.nextDouble();
-		scanner.nextLine();
+		
+		while(true) {
+			try {
+				productcost = scanner.nextDouble();
+				scanner.nextLine();
+				break;
+			}
+			catch (InputMismatchException e) {
+				System.out.println("Please enter a valid cost.");
+			}
+		}
 		System.out.print("****Please enter product's description: ");		
 		description = scanner.nextLine();		
-		System.out.print("****Please enter product's manufactorer: ");		
-		manufactorer = scanner.nextLine();
+		System.out.print("****Please enter product's manufacturer: ");		
+		manufacturer = scanner.nextLine();
 		
 		// String name, String productId, double cost, double unitPrice, String manufacturer, String description
-		User.adddata("b", new Product(productname, productid, productcost, productprice, manufactorer, description));
+		User.adddata("b", new Product(productname, productid, productcost, productprice, manufacturer, description));
 	}
 	
 	public void searchproduct()
@@ -158,7 +179,7 @@ public class EmployeeMenus {
 				}
 				else
 				{
-					System.out.println("----There are no product with this name. ");
+					System.out.println("----There are no products with this name. ");
 				}
 			}
 		}
@@ -191,7 +212,7 @@ public class EmployeeMenus {
 				}
 				else
 				{
-					System.out.println("----There are no product with this ID. ");
+					System.out.println("----There are no products with this ID. ");
 				}
 			}			
 		}
