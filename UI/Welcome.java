@@ -153,7 +153,7 @@ public class Welcome {
 				isvalid = true;
 				client.logout();
 			}
-			else if (input.equals("o"))
+			else if (input.equalsIgnoreCase("O"))
 			{
 				new ShoppingCart().viewOrder();
 			}
