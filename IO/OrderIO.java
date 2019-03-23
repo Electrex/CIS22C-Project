@@ -92,13 +92,13 @@ public class OrderIO {
 			orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[2]).getTime());
 		} catch (ParseException e) {
 			e.printStackTrace();
-			//orderdate = null;
+			orderdate = null;
 		}
 		try {
 			shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[3]).getTime());
 		}catch (ParseException e) {
 			e.printStackTrace();
-			//shipdate = null;
+			shipdate = null;
 		}
 
 		products.add(User.secondaryProductSearch(productid));

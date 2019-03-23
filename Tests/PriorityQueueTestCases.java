@@ -15,6 +15,7 @@ public class PriorityQueueTestCases {
 		assertEquals(obj.get_size(),expected);
 	}
 	
+	
 	@Test
 	public void testPriorityQueueInsertElements() {
 		PriorityQueue<String> obj = new PriorityQueue<>();
@@ -24,7 +25,7 @@ public class PriorityQueueTestCases {
 		int expected = 3;
 		assertEquals(obj.get_size(),expected);
 	}
-	
+	/*
 	@Test
 	public void testPriorityQueueRemoveElements() {
 		PriorityQueue<String> obj = new PriorityQueue<>();
@@ -76,7 +77,7 @@ public class PriorityQueueTestCases {
 		assertEquals(obj.get_parent(1),expected);
 	}
 	
-	
+	*/
 	
 
 }

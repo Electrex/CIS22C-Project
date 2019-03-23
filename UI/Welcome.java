@@ -172,8 +172,8 @@ public class Welcome {
 					{
 						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
 						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-						System.out.println("Product Price: " + temp.getProducts().get(i).getUnitPrice());
-						System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
+						System.out.printf("Product Price: $%.2d\n" , temp.getProducts().get(i).getUnitPrice());
+						System.out.printf("Product Cost: $%.2d\n", temp.getProducts().get(i).getCost());
 						System.out.println("--------------------------------------------------------------");
 					}
 				}
