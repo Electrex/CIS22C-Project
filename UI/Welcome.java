@@ -94,7 +94,7 @@ public class Welcome {
 		System.out.println("**** Please choose one of the options from the following: ");
 		System.out.println("**** S: Search for a product");            
 		System.out.println("**** L: Log In or Create an Account ");   
-		System.out.println("**** Q: Quit   ");                              
+		System.out.println("**** Q: Quit ");                              
 		input = scanner.next();
 		while (!isvalid)
 		{
@@ -112,6 +112,7 @@ public class Welcome {
 			{
 				isvalid = true;
 				exit = true; 
+				System.out.println("Goodbye!");
 				break;
 			}
 			else
@@ -152,6 +153,7 @@ public class Welcome {
 			{
 				isvalid = true;
 				client.logout();
+				System.out.println("You have successfully logged out.");
 			}
 			else if (input.equals("o"))
 			{
@@ -250,6 +252,7 @@ public class Welcome {
 			else if (input.equalsIgnoreCase("Q"))
 			{
 				server.logout();
+				System.out.println("You have successfully logged out.");
 				isvalid = true;
 			}
 			else

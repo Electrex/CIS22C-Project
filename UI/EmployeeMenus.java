@@ -34,17 +34,17 @@ public class EmployeeMenus {
 			boolean isvalid = false; 
 			while (!isvalid)
 			{
-				System.out.println("****Press S to make the shipment: ");
+				System.out.println("**** Press S to ship the order: ");
 				in = scanner.next();
 				if (in.equals("S"))
 				{
 					Server.sendOrder(User.getorders().get_element(i));
-					System.out.println("The order is sent! ");
+					System.out.println("The order has shipped! ");
 					isvalid = true; 
 				}
 				else
 				{
-					System.out.println("----Invalid Input! Please try again! ");
+					System.out.println("---- Invalid Input! Please try again! ");
 				}
 			}
 		}
@@ -180,7 +180,7 @@ public class EmployeeMenus {
 				{
 					System.out.println("Product name: $" + User.secondaryProductSearch(id).getName());
 					System.out.println("Product ID: $" + User.secondaryProductSearch(id).getProductId());
-					System.out.println("Product Price: $" + User.primaryProductSearch(id).getUnitPrice());
+					System.out.println("Product price: $" + User.primaryProductSearch(id).getUnitPrice());
 					System.out.println("Product cost: $" + User.primaryProductSearch(id).getCost());
 					System.out.println("****Press D to delete, press any other keys to move on");
 					if (scanner.next().equalsIgnoreCase("D"))

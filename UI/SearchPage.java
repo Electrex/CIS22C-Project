@@ -66,7 +66,7 @@ public class SearchPage {
 					String yesorno = scanner.nextLine();
 					if (yesorno.equalsIgnoreCase("y"))
 					{
-						System.out.println("**** Enter the amount of this product you are going to put into the shopping cart: ");
+						System.out.println("**** Enter the amount of this product you would like to put into the shopping cart: ");
 						String quantity = scanner.nextLine();
 						if (Integer.parseInt(quantity) >= 1)
 						{
