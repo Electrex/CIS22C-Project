@@ -42,7 +42,7 @@ public class CustomerIO {
 	 */
 	public Hash<Customer> readfile()
 	{
-		boolean readable = false;
+		boolean readable = true;
 		boolean doneLoadingGraph = false;
 		BufferedReader buff;
 		FileReader filereader;
@@ -52,7 +52,7 @@ public class CustomerIO {
 			buff = new BufferedReader(filereader);
 			String line;
 
-			//line = buff.readLine(); 
+			line = buff.readLine(); 
 			
 			while (readable) {
 				line = buff.readLine();
