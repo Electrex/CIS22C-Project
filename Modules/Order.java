@@ -283,6 +283,23 @@ public class Order implements Comparable<Order> {
 	}
 
 	/* OTHER METHODS */
+	
+	/**
+	 * Returns the total price of the Order (product prices * qtys)
+	 * @precondition product and quantity arrays are the same length
+	 * @throws IndexOutOfBoundsException if product and quantity arrays are not the same length
+	 * @returns totalPrice (double) of Order
+	 */
+	public double getTotalOrderPrice() throws IndexOutOfBoundsException {
+		double totalPrice = 0;
+		if (product.size() != quantity.size())
+			throw new IndexOutOfBoundsException("getTotalOrderPrice(): Product and Quantity arrays are not of the same length!");
+		
+		for (int i = 0; i < product.size(); i++) {
+			totalPrice += product.get(i).getUnitPrice() * quantity.get(i);
+		}
+		return totalPrice;
+	}
 
 	/**
 	 * For each of the products/qty in the Order, creates a String with the 
