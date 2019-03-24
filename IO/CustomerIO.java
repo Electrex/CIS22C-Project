@@ -54,8 +54,6 @@ public class CustomerIO {
 			filereader = new FileReader(filename);
 			buff = new BufferedReader(filereader);
 			String line;
-
-			line = buff.readLine(); 
 			
 			while (readable) {
 				line = buff.readLine();

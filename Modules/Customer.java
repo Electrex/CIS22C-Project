@@ -112,6 +112,14 @@ public class Customer implements Comparable<Customer> {
     }
     
     /**
+     * Displays customer information
+     */
+    public void displayCustomer()
+    {
+        System.out.println("Name: " + getFullName() + "\nAddress: " + address + "\nUsername: " + username + "\nPassword: " + password);
+    }
+    
+    /**
      * Accesses the customer's orders
      * @return the customer's orders
      */
@@ -227,7 +235,6 @@ public class Customer implements Comparable<Customer> {
         }
         else if(c.getFullName().equals(this.getFullName())) 
         {
-            System.out.println("hello");
             return 0;
         }
         else

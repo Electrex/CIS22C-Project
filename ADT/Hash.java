@@ -113,12 +113,19 @@ public class Hash<T extends Comparable<T>> {
         {
             Table.get(bucket).pointIterator();
             
-            for(int i = 0; i < index; i++)
+            for(int i = 0; i < Table.get(bucket).getLength(); i++)
             {
-                Table.get(bucket).advanceIterator();
+                if(Table.get(bucket).getIterator().compareTo(t) == 0)
+                {
+                    return Table.get(bucket).getIterator();
+                }
+                else
+                {
+                    Table.get(bucket).advanceIterator();
+                }
             }
             
-            return Table.get(bucket).getIterator();
+            return null;
         }
     }
 
@@ -222,6 +229,23 @@ public class Hash<T extends Comparable<T>> {
                 System.out.println();
             }
         }
+    }
+    
+    public ArrayList<T> getObjects()
+    {
+        ArrayList<T> temp = new ArrayList<T>();
+        
+        for(int i = 0; i < Table.size(); i++)
+        {
+            for(int j = 0; j < Table.get(i).getLength(); j++)
+            {
+                Table.get(i).pointIterator();
+                temp.add(Table.get(i).getIterator());
+                Table.get(i).advanceIterator();
+            }
+        }
+        
+        return temp;
     }
     
     /**

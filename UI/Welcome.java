@@ -129,14 +129,14 @@ public class Welcome {
 	public void loggedinmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-		System.out.println("\nWelcome Customer!"); 
+		System.out.println("\nWelcome customer, " + client.getcustomer().getFullName()); 
 		System.out.println("\nMenu Options");
         System.out.println("------------");    
 		System.out.println("S: Search for a product");     
 		System.out.println("L: List Products ");
 		System.out.println("V: View my shopping cart");  
-		System.out.println("Q: Log out");
 		System.out.println("O: View my orders");   
+		System.out.println("Q: Log out");
 		System.out.print("\nPlease choose one of the options: "); 
 		
 		input = scanner.next();
@@ -219,7 +219,7 @@ public class Welcome {
 	public void employeeloggedinmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-		System.out.println("\nWelcome Employee!"); 
+		System.out.println("\nWelcome employee, " + server.getemployee().getFullname()); 
 		System.out.println("\nMenu Options");
 	    System.out.println("------------");      
 		System.out.println("S: Search for a product");  

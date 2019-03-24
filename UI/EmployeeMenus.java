@@ -3,6 +3,7 @@ package UI;
 import User.*;
 import ADT.*;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -67,7 +68,16 @@ public class EmployeeMenus {
 		
 		if (choice.equalsIgnoreCase("L"))
 		{
-			User.getcustomers().toString(); 
+		    System.out.println();
+		    
+			ArrayList<Customer> temp = User.getcustomers().getObjects();
+			
+			for(int i = 0; i < temp.size(); i++)
+			{
+			    temp.get(i).displayCustomer();
+			    System.out.println();
+			}
+			
 		}
 		
 		else if (choice.equalsIgnoreCase("S"))
@@ -85,10 +95,17 @@ public class EmployeeMenus {
 					break;
 				
 				if (Server.searchCustomer(fname, lname) != null)
-					System.out.println(Server.searchCustomer(fname, lname).toString());
+				{
+				    System.out.println();
+				    Customer temp = Server.searchCustomer(fname, lname);
+				    temp.displayCustomer();
+				    break;
+				}
 				else
-					System.out.println("\nThe customer " + fname + " " + lname + " does not exist!");
-				    System.out.println("Please enter the customer's information again.");
+				{
+				    System.out.println("\nThe customer " + fname + " " + lname + " does not exist!");
+                    System.out.println("Please enter the customer's information again.");
+				}
 			}
 		}
 	}
@@ -98,11 +115,11 @@ public class EmployeeMenus {
 		
 		String productname, productid, description, manufacturer; 
 		double productprice, productcost;
-		System.out.print("****Please enter product's name: ");
+		System.out.print("Please enter product's name: ");
 		productname = scanner.nextLine();
-		System.out.print("****Please enter product's id: ");		
+		System.out.print("Please enter product's ID: ");		
 		productid = scanner.nextLine();
-		System.out.print("****Please enter product's unit price: ");
+		System.out.print("Please enter product's unit price: ");
 		while(true) {
 			try {
 				productprice = scanner.nextDouble();
@@ -114,7 +131,7 @@ public class EmployeeMenus {
 			}
 		}
 		
-		System.out.print("****Please enter product's cost: ");
+		System.out.print("Please enter product's cost: ");
 		
 		while(true) {
 			try {
@@ -138,14 +155,13 @@ public class EmployeeMenus {
 	public void searchproduct()
 	{
 		String choice;
-		System.out.println("****Would you like to search by product name or by product ID? ");
-		System.out.print("****Press n/N for name and i/I for ID");
+		System.out.println("\nPress (N) to search product by name or (I) to search product by ID: ");
 		choice = scanner.next();
 		
 		while(!choice.equalsIgnoreCase("n") && !choice.equalsIgnoreCase("i"))
 		{
 		    System.out.println("Invalid input!");
-		    System.out.print("****Press n/N for name and i/I for ID");
+		    System.out.println("Press (N) to search product by name or (I) to search product by ID: ");
 		    choice = scanner.next();
 		}
 		
@@ -256,8 +272,7 @@ public class EmployeeMenus {
 	public void listproduct()
 	{
 		String choice;
-		System.out.println("****Would you like to list all the products by product name or by product ID? ");
-		System.out.print("****Press n/N for name and i/I for ID");
+	    System.out.println("\nPress (N) to search product by name or (I) to search product by ID: ");
 		choice = scanner.next();
 		if (choice.equalsIgnoreCase("n"))
 		{

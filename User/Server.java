@@ -128,6 +128,7 @@ public class Server {
 	 */
 	public static Customer searchCustomer(String firstname, String lastname)
 	{
+	    
 		Customer searchobj = new Customer(firstname, lastname); 
 		if (User.getcustomers().search(searchobj) != -1) 
 		{       
