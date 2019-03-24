@@ -11,12 +11,20 @@ public class ShoppingCart {
 
 	public void viewOrder()
 	{
-		System.out.println("********** " + Welcome.getClient().getcustomer().getFullName() + "'s Order **********");
+		System.out.println("\n\n********** " + Welcome.getClient().getcustomer().getFullName() + "'s Order **********");
 		PriorityQueue<Order> allcusorders = Welcome.getClient().getcustomer().getOrders();
 		PriorityQueue<Order> shippedorders = new PriorityQueue<Order>();
 		PriorityQueue<Order> unshippedorders = new PriorityQueue<Order>();
 		
-		for (int idx = 0; idx < allcusorders.get_size(); idx++)
+		System.out.println(allcusorders);
+		
+		if(allcusorders.get_size() == 0)
+		{
+		    System.out.println("No past orders!");
+		    return;
+		}
+		
+		for (int idx = 1; idx < allcusorders.get_size(); idx++)
 		{
 			if (allcusorders.get_element(idx).getIsShipped())
 			{
@@ -28,15 +36,15 @@ public class ShoppingCart {
 			}
 		}
 		
-		System.out.println("\n\n******** Here are orders you have shipped *********");
-		for (int i = 0; i < shippedorders.get_size(); i++)
+		System.out.println("\n\n******** Shipped orders *********");
+		for (int i = 1; i < shippedorders.get_size(); i++)
 		{
 			System.out.println("Order ID: " + shippedorders.get_element(i).getOrderID());
 			System.out.println("Order Date: " + shippedorders.get_element(i).getOrderDate());
 			System.out.println("Shipment Date: " + shippedorders.get_element(i).getShipDate());
 			System.out.println("Shipment Type: " + shippedorders.get_element(i).getShipmentType());
 			
-			for (int j = 0; j < shippedorders.get_element(i).getProduct().size(); j++)
+			for (int j = 1; j < shippedorders.get_element(i).getProduct().size(); j++)
 			{
 				System.out.println("Product Name: " + shippedorders.get_element(i).getProduct().get(j)
 				+ " Product Quantities: " + shippedorders.get_element(i).getQuantity().get(j));
@@ -44,15 +52,15 @@ public class ShoppingCart {
 			System.out.println("_____________________________________________________________________________\n");
 		}
 		
-		System.out.println("\n\n******** Here are orders you have not shipped *********");
-		for (int i = 0; i < unshippedorders.get_size(); i++)
+		System.out.println("\n\n******** Unshipped Orders *********");
+		for (int i = 1; i < unshippedorders.get_size(); i++)
 		{
 			System.out.println("Order ID: " + unshippedorders.get_element(i).getOrderID());
 			System.out.println("Order Date: " + unshippedorders.get_element(i).getOrderDate());
 			System.out.println("Shipment Date: " + unshippedorders.get_element(i).getShipDate());
 			System.out.println("Shipment Type: " + unshippedorders.get_element(i).getShipmentType());
 			
-			for (int j = 0; j < unshippedorders.get_element(i).getProduct().size(); j++)
+			for (int j = 1; j < unshippedorders.get_element(i).getProduct().size(); j++)
 			{
 				System.out.println("Product Name: " + unshippedorders.get_element(i).getProduct().get(j)
 				+ " Product Quantities: " + unshippedorders.get_element(i).getQuantity().get(j));
@@ -87,6 +95,7 @@ public class ShoppingCart {
 		{
 			placeOrder();
 			Welcome.getClient().clearShoppingCart();
+			
 		}
 	}
 	
@@ -108,8 +117,36 @@ public class ShoppingCart {
 		System.out.println("1) Overnight Shipping: $4.99 ");
 		System.out.println("2) Rush Shipping: $2.99 ");
 		System.out.println("3) Standard Shipping: $1.99 ");
-	      System.out.print("\nPlease select one of the following options: ");
+	    System.out.print("\nPlease select one of the following options: ");
 		String shipmentmethod = scanner.nextLine();
+		
+		while(!shipmentmethod.equals("1") && !shipmentmethod.equals("2") && !shipmentmethod.equals("3"))
+        {
+		    System.out.println("Invalid input!");
+          
+            System.out.println("\n1) Overnight Shipping: $4.99 ");
+            System.out.println("2) Rush Shipping: $2.99 ");
+            System.out.println("3) Standard Shipping: $1.99 ");
+            System.out.print("\nPlease select one of the following options: ");
+            shipmentmethod = scanner.nextLine();
+        }
+		
+		if(shipmentmethod.equals("1"))
+		{
+		    shipmentmethod = "Overnight";
+		}
+		else if(shipmentmethod.equals("2"))
+		{
+		    shipmentmethod = "Rush";
+		}
+		else
+		{
+		    shipmentmethod = "Standard";
+		}
+		
+        Order currentOrder = new Order(Welcome.getClient().getshoppingcart(), Welcome.getClient().getquantities(), name, shipmentmethod);
+        //Welcome.getClient().getcustomer().insertOrder(currentOrder);
+        System.out.println(Welcome.getClient().getcustomer().getOrders());
 		
 		System.out.println("\nOrder Confirmation: ");
 		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i ++)
@@ -120,32 +157,29 @@ public class ShoppingCart {
 			totalprice += (Welcome.getClient().getshoppingcart().get(i).getUnitPrice())*(Welcome.getClient().getquantities().get(i)); 
 		}	
 		
-		if (shipmentmethod.equals("1"))
+		if (shipmentmethod.equals("Overnight"))
 		{
 			System.out.println("Overnight shipping: $4.99");
 			totalprice += 4.99;
 		}
-		else if (shipmentmethod.equals("2"))
+		else if (shipmentmethod.equals("Rush"))
 		{
-			System.out.println("Overnight shipping: $2.99");
+			System.out.println("Rush shipping: $2.99");
 			totalprice += 2.99;
 		}
-		else if (shipmentmethod.equals("3"))
+		else
 		{
-			System.out.println("Overnight shipping: $1.99");
+			System.out.println("Standard shipping: $1.99");
 			totalprice += 1.99;
 		}
-		else // assume the user has entered the invalid input. 
-		{
-			System.out.println("Overnight shipping: $4.99");
-			totalprice += 4.99;
-		}
+	
 		
 		System.out.printf("Tax: $%.2f", totalprice*0.09);
 		System.out.println();
 		totalprice*=1.09; 
 		System.out.printf("Total price: $%.2f", totalprice);
-		System.out.print("\n\nPress any key to back to homepage! ");
+		System.out.println("\nThank you for your order!");
+		System.out.print("\nPress any key to back to homepage! ");
 		scanner.nextLine();
 	}
 }

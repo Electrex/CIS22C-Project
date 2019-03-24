@@ -161,6 +161,7 @@ public class Welcome {
 			else if (input.equalsIgnoreCase("O"))
 			{
 				new ShoppingCart().viewOrder();
+				isvalid = true;
 			}
 			else if (input.equalsIgnoreCase("L"))
 			{

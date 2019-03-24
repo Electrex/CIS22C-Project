@@ -148,8 +148,15 @@ public class Order implements Comparable<Order> {
 	 * @return orderDate
 	 */
 	public String getOrderDate() {
-		return sdf.format(orderDate);
-		// return orderDate;
+	    if(orderDate == null)
+	    {
+	        return "";
+	    }
+	    else
+	    {
+	        return sdf.format(orderDate);
+	        // return orderDate;
+	    }
 	}
 
 	/**
@@ -158,8 +165,15 @@ public class Order implements Comparable<Order> {
 	 * @return shipDate
 	 */
 	public String getShipDate() {
-		return sdf.format(shipDate);
-		// return shipDate;
+	    if(shipDate == null)
+	    {
+	        return "";
+	    }
+	    else
+	    {
+	        return sdf.format(shipDate);
+	        // return shipDate;
+	    }
 	}
 
 	/**
