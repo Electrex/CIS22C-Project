@@ -152,14 +152,25 @@ public class User {
 	 */
 	public static Product primaryProductSearch(String input) // should be product name 
 	{
-		BST temp = productlist; // temp is here so the productlist itself is always sorted in the order it should be sorted. 
+		BST temp = new BST(productlist); // temp is here so the productlist itself is always sorted in the order it should be sorted. 
 		temp.sortByPrimary();
+				
+		for(int i = 0; i < temp.getProducts().size(); i++)
+		{
+		    if(temp.getProducts().get(i).getName().toLowerCase().contains(input.toLowerCase())) 
+		    {
+		        return temp.getProducts().get(i);
+		    }
+		}
 		
+		return null;
+		/*temp.getProducts().contains(input)
 		if (temp.searchByPrimary(new Product(input, "", 0.0, 0.0, "", ""))) // if it can be found
 			for (int i = 0; i < temp.getProducts().size(); i ++)
 				if (temp.getProducts().get(i).getName().equals(input)) // if product name == the ID inputed.     
 					return temp.getProducts().get(i);
 		return null; 
+		*/
 	}
 	
 	/*******

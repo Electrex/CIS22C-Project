@@ -44,17 +44,17 @@ public class SearchPage {
 		
 		while(true)
 		{
-			System.out.println("\nPlease enter the product name or press Q to exit: ");
+			System.out.print("\nPlease enter the product name or press Q to exit: ");
 			name = scanner.nextLine();
 			Product searchedoutput = User.primaryProductSearch(name);
 			
 			if (name.equalsIgnoreCase("q"))
 			{
 				break; 
-			}
-			
+			}	
 			else if (searchedoutput != null)
 			{
+
 				System.out.println("Product name: " + searchedoutput.getName());
 				System.out.println("Product description: " + searchedoutput.getDescription());
 				System.out.println("Product ID: " + searchedoutput.getProductId());
@@ -76,16 +76,22 @@ public class SearchPage {
 						}
 						else
 						{
-							System.out.println("Invalid input, please try again! ");
+
+						  System.out.println("Please enter a valid quantity");
+
 						}
 					}
 					else if (yesorno.equalsIgnoreCase("n"))
 					{
+
 						System.out.println("Okay! Going back to the homepage...");
 					} 
 					else
 					{ 
 						System.out.println("Invalid input, please try again! ");
+
+					    isvalid = false;
+
 					}
 				}
 			}
@@ -120,6 +126,7 @@ public class SearchPage {
 			else
 			{
 				System.out.println("There are no products with this ID. ");
+
 			}
 		}
 	}
