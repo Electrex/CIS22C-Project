@@ -58,6 +58,11 @@ public class Client {
 		{
 			quantities.add(1); // purchase at least one
 		}
+		else
+		{
+		    quantities.add(quantity);
+		}
+		
 		shoppingcart.add(p);
 	}
 	
