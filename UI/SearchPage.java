@@ -44,29 +44,28 @@ public class SearchPage {
 		
 		while(true)
 		{
-			System.out.println("\nPlease enter the product name or press Q to exit: ");
+			System.out.print("\nPlease enter the product name or press Q to exit: ");
 			name = scanner.nextLine();
 			Product searchedoutput = User.primaryProductSearch(name);
 			
 			if (name.equalsIgnoreCase("q"))
 			{
 				break; 
-			}
-			
+			}	
 			else if (searchedoutput != null)
 			{
-				System.out.println("Product name: $" + searchedoutput.getName());
+				System.out.println("\nProduct name: $" + searchedoutput.getName());
 				System.out.println("Product ID: $" + searchedoutput.getProductId());
 				System.out.println("Product Price: $" + searchedoutput.getCost()); 
-				System.out.println("Would you like to add this to the shopping cart? ");
-				boolean isvalid = false;
-				while (!isvalid)
+				System.out.println("\nWould you like to add this to the shopping cart (Y/N)?: ");
+				boolean isvalid = true;
+				
+				while (isvalid)
 				{
-					System.out.println("****Y for Yes and N for No. ");
 					String yesorno = scanner.nextLine();
 					if (yesorno.equalsIgnoreCase("y"))
 					{
-						System.out.println("**** Enter the amount of this product you would like to put into the shopping cart: ");
+						System.out.println("Enter the amount of this product you would like to put into the shopping cart: ");
 						String quantity = scanner.nextLine();
 						if (Integer.parseInt(quantity) >= 1)
 						{
@@ -74,22 +73,22 @@ public class SearchPage {
 						}
 						else
 						{
-							System.out.println("----Invalid input, please try again! ");
+						  System.out.println("Please enter a valid quantity");
 						}
 					}
 					else if (yesorno.equalsIgnoreCase("n"))
 					{
-						System.out.println("**** Okay! Back to homepage");
+					    isvalid = false;
 					} 
 					else
 					{ 
-						System.out.println("----Invalid input, please try again! ");
+						System.out.println("Invalid input. Please enter again.");
 					}
 				}
 			}
 			else
 			{
-				System.out.println("There are no product with this name. ");
+				System.out.println("No products found.");
 			}
 		}
 	}
