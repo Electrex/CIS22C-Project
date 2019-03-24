@@ -212,10 +212,10 @@ public class Product implements Comparable<Product>{
     public int compareToSecondary(Product otherProduct) {
         if (productId.compareTo(otherProduct.getProductId()) == 0)
             return 0;
-        else if (productId.compareTo(otherProduct.getProductId()) > 0)
-            return 1;
-        else //(productId.compareTo(otherProduct.getProductId()) < 0)
+        else if (productId.compareTo(otherProduct.getProductId()) < 0)
             return -1;
+        else //(productId.compareTo(otherProduct.getProductId()) < 0)
+            return 1;
 	}
 
     /**

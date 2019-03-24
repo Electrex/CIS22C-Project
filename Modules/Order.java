@@ -167,7 +167,7 @@ public class Order implements Comparable<Order> {
 	public String getShipDate() {
 	    if(shipDate == null)
 	    {
-	        return "";
+	        return "Not shipped yet";
 	    }
 	    else
 	    {

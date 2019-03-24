@@ -48,7 +48,7 @@ public class ShoppingCart {
 				System.out.println("Product Name: " + shippedorders.get_element(i).getProduct().get(j)
 				+ "\nProduct Quantities: " + shippedorders.get_element(i).getQuantity().get(j));
 			}
-			System.out.println("_______________________________________________________________________\n");
+			System.out.println("_____________________________________________________________\n");
 		}
 		
 		System.out.println("\n\n******** Unshipped Orders *********");
@@ -108,10 +108,10 @@ public class ShoppingCart {
 		String name = scanner.nextLine();
 		System.out.print("Please enter your address: ");
 		String add = scanner.nextLine();
-		System.out.println("_______________________________________________________________________\n");
+		System.out.println("______________________________________________________________\n");
 		System.out.print("Step 2: Payment method: ");
 		String cardid = scanner.nextLine();
-		System.out.println("________________________________________________________________________\n");
+		System.out.println("______________________________________________________________\n");
 		System.out.println("Step 3: Shipping method: "); 
 		System.out.println("1) Overnight Shipping: $4.99 ");
 		System.out.println("2) Rush Shipping: $2.99 ");

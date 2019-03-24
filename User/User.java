@@ -180,14 +180,17 @@ public class User {
 	 */
 	public static Product secondaryProductSearch(String input) // should be ID number 
 	{
-		BST temp = productlist;
-		temp.sortBySecondary();
+	    BST temp = new BST(productlist);
+	    temp.sortBySecondary();
 
-		if (temp.searchBySecondary(new Product("", input, 0.0, 0.0, "", ""))) // if it can be found
-			for (int i = 0; i < temp.getProducts().size(); i ++)
-				if (temp.getProducts().get(i).getName().equals(input)) // if product ID == the ID inputed.    
-					return temp.getProducts().get(i);
-		return null; 
+	    for (int i = 0; i < temp.getProducts().size(); i++)
+	    {
+	        if (temp.getProducts().get(i).getProductId().equals(input)) // if product ID == the ID inputed.  
+	        {
+	            return temp.getProducts().get(i);
+	        }
+	    }
+	    return null; 
 	}
 	
 	/*******

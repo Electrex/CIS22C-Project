@@ -155,13 +155,13 @@ public class EmployeeMenus {
 	public void searchproduct()
 	{
 		String choice;
-		System.out.println("\nPress (N) to search product by name or (I) to search product by ID: ");
+		System.out.print("\nPress (N) to search product by name or (I) to search product by ID: ");
 		choice = scanner.next();
 		
 		while(!choice.equalsIgnoreCase("n") && !choice.equalsIgnoreCase("i"))
 		{
 		    System.out.println("Invalid input!");
-		    System.out.println("Press (N) to search product by name or (I) to search product by ID: ");
+		    System.out.print("Press (N) to search product by name or (I) to search product by ID: ");
 		    choice = scanner.next();
 		}
 		
@@ -172,10 +172,10 @@ public class EmployeeMenus {
 			
 			while(true)
 			{
-				System.out.println("****Please enter the product name or press Q if you want to stop: ");
+				System.out.print("Please enter the product name or press Q if you want to stop: ");
 				name = scanner.next();
 				
-				if (!name.equalsIgnoreCase("q"))
+				if (name.equalsIgnoreCase("q"))
 				{
 					break; 
 				}
@@ -186,7 +186,7 @@ public class EmployeeMenus {
 					System.out.println("Product ID: $" + User.primaryProductSearch(name).getProductId());
 					System.out.println("Product Price: $" + User.primaryProductSearch(name).getUnitPrice());
 					System.out.println("Product cost: $" + User.primaryProductSearch(name).getCost());
-					System.out.println("****Press D to delete, press any other keys to move on");
+					System.out.println("Press D to delete, press any other keys to move on");
 					if (scanner.next().equalsIgnoreCase("D"))
 					{
 						System.out.println("Deleted!");
@@ -208,7 +208,7 @@ public class EmployeeMenus {
 				System.out.println("****Please enter the product ID or press Q if you want to stop: ");
 				id = scanner.next();
 				
-				if (!id.equalsIgnoreCase("q"))
+				if (id.equalsIgnoreCase("q"))
 				{
 					break; 
 				}
