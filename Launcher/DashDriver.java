@@ -16,7 +16,7 @@ public class DashDriver {
     	String [] files = {"Customer.csv", 
     			"Employee.csv", 
     			"Orders.csv", 
-    			"Product.csv"}; 
+    			"Products.csv"}; 
     	User user = new User(files);
     	user.loaddata();
     	Welcome initializer = new Welcome();
