@@ -5,12 +5,9 @@ import static org.junit.Assert.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import IO.*;
 import Modules.*;
 import org.junit.Test;
 
-import ADT.PriorityQueue;
-import IO.OrderIO;
 
 public class OrderTestCases {
 
@@ -72,7 +69,6 @@ public class OrderTestCases {
 	public void testForCustomerName() {
 		
 		Order order = new Order();
-		ArrayList<Product> products = new ArrayList<>();
 		order.setCustomerName("Suzy Q");
 		String expected = "Suzy Q";
 		assertEquals(order.getCustomerName(),expected);
@@ -80,7 +76,6 @@ public class OrderTestCases {
 	
 	@Test
 	public void testForOrderQuantity() {
-		
 		
 		ArrayList<Product> products = new ArrayList<>();
 		ArrayList<Integer> qty = new ArrayList<>();
@@ -115,7 +110,6 @@ public class OrderTestCases {
 	}
 
 	
-	
 	@Test
 	public void testForOrderShipType() {
 
@@ -138,12 +132,29 @@ public class OrderTestCases {
 		qnty.add(1);
 		products.add(new Product("PC","AB123",440.0,10.0,"Dell","very nice"));
 		Order order = new Order(products, qnty, "Tom","Rush");
-		boolean expected = false;
-		assertEquals(order.getIsShipped(),expected);
+		order.toggleIsShipped();
+		boolean expected = true;
+		assertEquals(order.getIsShipped(), expected);
 
 	}
 	
+	@Test
+	public void testForTotalOrderPrice() {
+
+		ArrayList<Product> products = new ArrayList<>();
+		ArrayList<Integer> qnty = new ArrayList<>();
+		qnty.add(1);
+		qnty.add(1);
+		products.add(new Product("PC","AB123",50.0,500.0,"Dell","kinda nice"));
+		products.add(new Product("Macbook Pro","AB123",150.0,1500.0,"Mac","extra nice"));
+		Order order = new Order(products, qnty, "Tom","Rush");
+		double expected = 2000.0;
+		//System.out.println(order.totalOrderPrice());
+		assertEquals((int) order.totalOrderPrice(),(int) expected);
+
+	}
 	
+	/*
 	@Test
 	public void testToReadOrdersFromFile() {
 		OrderIO orders = new OrderIO("Orders.csv");
@@ -151,6 +162,6 @@ public class OrderTestCases {
 		boolean expected = true;
 		assertEquals(ordersList.get_size() > 0, expected);
 	}
-	
+	*/
 	
 }
