@@ -149,8 +149,8 @@ public class Welcome {
 			}
 			else if (input.equalsIgnoreCase("V"))
 			{
+			    new ShoppingCart().displayshoppingcart();
 				isvalid = true;
-				new ShoppingCart().displayshoppingcart();
 			}
 			else if (input.equalsIgnoreCase("Q"))
 			{

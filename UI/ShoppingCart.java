@@ -16,7 +16,7 @@ public class ShoppingCart {
 		PriorityQueue<Order> shippedorders = new PriorityQueue<Order>();
 		PriorityQueue<Order> unshippedorders = new PriorityQueue<Order>();
 		
-		System.out.println(allcusorders);
+		allcusorders.displayArray();
 		
 		if(allcusorders.get_size() == 0)
 		{
@@ -145,11 +145,12 @@ public class ShoppingCart {
 		}
 		
         Order currentOrder = new Order(Welcome.getClient().getshoppingcart(), Welcome.getClient().getquantities(), name, shipmentmethod);
-        //Welcome.getClient().getcustomer().insertOrder(currentOrder);
-        System.out.println(Welcome.getClient().getcustomer().getOrders());
-		
+        Welcome.getClient().getcustomer().insertOrder(currentOrder);
+        PriorityQueue<Order> allcusorders = Welcome.getClient().getcustomer().getOrders();
+        allcusorders.displayArray();
+        
 		System.out.println("\nOrder Confirmation: ");
-		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i ++)
+		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i++)
 		{
 			System.out.println("Product Name: " + Welcome.getClient().getshoppingcart().get(i).getName());
 			System.out.println("    Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
