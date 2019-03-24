@@ -126,15 +126,18 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	 * Removes value at index location in heap and restores heap property
 	 * @precondition a non-empty heap (heap_size >= 1)
 	 * @postcondition a valid heap, heap_size--
-	 * @param index
+	 * @throws IndexOutOfBoundsException
+	 * @param a valid heap index
 	 */
-	public void remove(int index) {
+	public void remove(int index) throws IndexOutOfBoundsException {
 
-		if (index > 0) {
-			heap.remove(index);
-			heap_size--;
-			build_heap();	
-		}
+		if (index <= 0 || index > get_size()) 
+			throw new IndexOutOfBoundsException("remove(): Invalid index. No element found!");
+		
+		heap.remove(index);
+		heap_size--;
+		build_heap();	
+		
 	}
 	
 	/**
@@ -183,11 +186,14 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	
 	/**
 	 * Returns the parent of the element at i
-	 * @precondition a valid heap
+	 * @precondition a valid heap, a valid index i 
 	 * @param index i
+	 * @throws IndexOutOfBoundsException
 	 * @return parent of i
 	 */
-	public int get_parent(int i) {
+	public int get_parent(int i) throws IndexOutOfBoundsException {
+		if (i <= 0 || i > get_size())
+			throw new IndexOutOfBoundsException("get_parent(): Invalid Index! Cannot get parent of i.");
 		
 		// A[i] = A[floor(i/2)]
 		return (int) i / 2;
@@ -195,24 +201,30 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	
 	/**
 	 * Returns the left child of the element at i
-	 * @precondition a valid heap
+	 * @precondition a valid heap, a valid index i
 	 * @param i
+	 * @throws IndexOutOfBoundsException
 	 * @return left child
 	 */
-	public int get_left(int i) {
+	public int get_left(int i) throws IndexOutOfBoundsException {
 		
+		if (i <=0 || i > get_size())
+			throw new IndexOutOfBoundsException("get_left(): Invalid Index! Cannot get left child of i.");
 		//A[2i]
 		return (int) i * 2;
 	}
 	
 	/**
 	 * Returns the right child of the element at i
-	 * @precondition a valid heap
-	 * @param index i 
+	 * @precondition a valid heap, a valid index i
+	 * @param index i
+	 * @throws IndexOutOfBoundsException
 	 * @return right child
 	 */
-	public int get_right(int i) {
+	public int get_right(int i) throws IndexOutOfBoundsException {
 		
+		if (i <=0 || i > get_size())
+			throw new IndexOutOfBoundsException("get_right(): Invalid Index! Cannot get right child of i.");
 		//A[2i + 1]
 		return (int) (i * 2) + 1;
 	}
@@ -229,10 +241,14 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	
 	/**
 	 * Returns element at index i in heap
+	 * @precondition a valid index i
 	 * @param i
+	 * @throws IndexOutOfBoundsException
 	 * @return element at i
 	 */
-	public T get_element(int i) {
+	public T get_element(int i) throws IndexOutOfBoundsException {
+		if (i <=0 || i > get_size())
+			throw new IndexOutOfBoundsException("get_element(): Invalid Index! Not a valid heap index, cannot get element.");
 		
 		return heap.get(i);
 	}
