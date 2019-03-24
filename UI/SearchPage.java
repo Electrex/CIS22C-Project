@@ -115,7 +115,7 @@ public class SearchPage {
 			}
 			else
 			{
-				System.out.println("There are no product with this ID. ");
+				System.out.println("There are no product with this ID.");
 			}
 		}
 	}

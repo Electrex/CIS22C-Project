@@ -154,9 +154,7 @@ public class User {
 	{
 		BST temp = new BST(productlist); // temp is here so the productlist itself is always sorted in the order it should be sorted. 
 		temp.sortByPrimary();
-		System.out.println(temp.getProducts());
-		
-		
+				
 		for(int i = 0; i < temp.getProducts().size(); i++)
 		{
 		    if(temp.getProducts().get(i).getName().toLowerCase().contains(input.toLowerCase())) 
