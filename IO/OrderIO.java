@@ -92,12 +92,14 @@ public class OrderIO {
 			orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[2]).getTime());
 		} catch (ParseException e) {
 			e.printStackTrace();
+			System.out.println("Null Timestamp");
 			orderdate = null;
 		}
 		try {
 			shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[3]).getTime());
 		}catch (ParseException e) {
 			e.printStackTrace();
+			System.out.println("Null Timestamp");
 			shipdate = null;
 		}
 
@@ -125,7 +127,10 @@ public class OrderIO {
 				{
 					shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(i)[3]).getTime());
 				} catch (ParseException e) 
-				{	shipdate = null;}//e.printStackTrace(); }
+				{	shipdate = null;}
+					System.out.println("Null Timestamp");
+
+				}
 				
 				try 
 				{

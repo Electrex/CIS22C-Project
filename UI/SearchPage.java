@@ -61,11 +61,11 @@ public class SearchPage {
 				System.out.println("Product price: $" + searchedoutput.getUnitPrice()); 
 				System.out.println();
 				
-				boolean isvalid = true;
+				boolean isvalid = true; 
 				while (isvalid)
 				{
 				    System.out.print("Would you like to add this to the shopping cart (Y/N)? ");
-					String yesorno = scanner.nextLine();
+					String yesorno = scanner.nextLine(); 
 					
 					if (yesorno.equalsIgnoreCase("y"))
 					{
@@ -139,6 +139,8 @@ public class SearchPage {
 				System.out.println("Product name: " + User.secondaryProductSearch(id).getName());
 				System.out.println("Product description: " + User.secondaryProductSearch(id).getDescription());
 				System.out.println("Product price: $" + User.secondaryProductSearch(id).getUnitPrice()); 
+				System.out.println();
+
 			}
 			else
 			{
