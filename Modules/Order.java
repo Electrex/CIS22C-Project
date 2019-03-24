@@ -91,9 +91,8 @@ public class Order implements Comparable<Order> {
      * @param qty, the Order's parallel product quantity ArrayList<Integer>
      * @param custName, the Customer's name (String) 
      * @param shipType, shipment type selected by customer (Standard, Rush, Overnight)
-     * @param isshipped, boolean if Order has already been shipped
      */
-	public Order(ArrayList<Product> prod, ArrayList<Integer> qty, String custName, String shipType, boolean isshipped) {
+	public Order(ArrayList<Product> prod, ArrayList<Integer> qty, String custName, String shipType) {
 		orderID = ++orderIDGen;
 		customerName = custName;
 		orderDate = new Timestamp(System.currentTimeMillis());
@@ -101,7 +100,7 @@ public class Order implements Comparable<Order> {
 		product = prod;
 		quantity = qty;
 		shipmentType = shipType;
-		isShipped = isshipped;
+		isShipped = false;
 	}
 
 	 /**
@@ -184,8 +183,8 @@ public class Order implements Comparable<Order> {
 	}
 
 	/**
-	 * Returns the shipment type as a String ("Standard Shipping", "Rush Shipping",
-	 * or "Overnight Shipping")
+	 * Returns the shipment type as a String ("Standard", "Rush",
+	 * or "Overnight")
 	 * 
 	 * @return shipmentType
 	 */

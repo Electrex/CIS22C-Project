@@ -18,11 +18,11 @@ public class OrderTestCases {
 	@Test
 	public void testForCreateOrder() {
 		
-		Order order = new Order();
+		Order order = new Order(1, null, null, "Mia", null, null, "Rush", false);
 		int expected = 1;
 		//System.out.println(order.getOrderID());
 		assertEquals(order.getOrderID(),expected);
-		Order order2 = new Order();
+		Order order2 =new Order(2, null, null, "Mia", null, null, "Rush", false);
 		expected = 2;
 		//System.out.println(order2.getOrderID());
 		assertEquals(order2.getOrderID(),expected);
@@ -87,7 +87,7 @@ public class OrderTestCases {
 		qty.add(3);
 		products.add(new Product("PC Laptop","123", 200.0, 1000.0, "Lenovo", "Tech specs here"));
 		
-		Order order = new Order(products, qty, "Suzy Q", "Standard Shipping", false);
+		Order order = new Order(products, qty, "Suzy Q", "Standard");
 		int expected = 3;
 		
 		assertEquals(order.getQuantity().get(0).intValue(),expected);
@@ -96,16 +96,22 @@ public class OrderTestCases {
 	@Test
 	public void testForOrderCompareTo() {
 		
-		Order order = new Order(null, null, "", "Standard Shipping", false);
-		Order order2 = new Order(null, null, "", "Overnight Shipping", false);
+		Order order = new Order(null, null, "", "Standard");
+		Order order2 = new Order(null, null, "", "Overnight");
 		
-		Order order3 = new Order(null, null, "", "Standard Shipping", false);
+		Order order3 = new Order(null, null, "", "Standard");
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		order.setOrderDate(t);
 		order3.setOrderDate(t);
 		
+		//order is lower priority than order2
 		assertEquals(order.compareTo(order2), -1);
+		
+		//order2 is higher priority than order 
 		assertEquals(order2.compareTo(order), 1);
+		
+		//same priority
+		assertEquals(order3.compareTo(order), 0);
 	}
 
 	
@@ -117,11 +123,12 @@ public class OrderTestCases {
 		ArrayList<Integer> qnty = new ArrayList<>();
 		qnty.add(1);
 		products.add(new Product("PC","AB123",440.0,10.0,"Dell","very nice"));
-		Order order = new Order(products, qnty, "Clark","Rush Shipping", true);
-		String expected ="Rush Shipping";
+		Order order = new Order(products, qnty, "Clark","Rush");
+		String expected ="Rush";
 		assertEquals(order.getShipmentType(),expected);
 
 	}
+	
 	
 	@Test
 	public void testForOrderShipping() {
@@ -130,7 +137,7 @@ public class OrderTestCases {
 		ArrayList<Integer> qnty = new ArrayList<>();
 		qnty.add(1);
 		products.add(new Product("PC","AB123",440.0,10.0,"Dell","very nice"));
-		Order order = new Order(products, qnty, "Tom","Rush Shipping", false);
+		Order order = new Order(products, qnty, "Tom","Rush");
 		boolean expected = false;
 		assertEquals(order.getIsShipped(),expected);
 
@@ -139,10 +146,10 @@ public class OrderTestCases {
 	
 	@Test
 	public void testToReadOrdersFromFile() {
-		OrderIO orders = new OrderIO("order.txt");
+		OrderIO orders = new OrderIO("Orders.csv");
 		PriorityQueue<Order> ordersList = orders.readfile();
 		boolean expected = true;
-		assertEquals(ordersList.get_size()>0,expected);
+		assertEquals(ordersList.get_size() > 0, expected);
 	}
 	
 	
