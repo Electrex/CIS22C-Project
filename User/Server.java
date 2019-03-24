@@ -93,7 +93,7 @@ public class Server {
 		for (int i = 0; i < datas.length; i++)
 		{
 			data = datas[i].split(","); 		// Parse through the string and get customer properties
-			customers.add(new Customer(data[0], data[1], data[2], data[3], data[4])); // Add the customer object to the list
+			customers.add(new Customer(data[0], data[1], data[2], data[3], data[4], data[5])); // Add the customer object to the list
 		}
 		
 		return customers;

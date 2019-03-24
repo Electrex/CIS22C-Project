@@ -94,8 +94,8 @@ public class Client {
 	{
 		String [] cusprop; // customer properties 
 	    cusprop = CustomerIO.getcustomerfilecontent().get(index).split(","); 
-		customer = new Customer(cusprop[0], cusprop[1], cusprop[2], cusprop[3], cusprop[4]); 
-											// fname      lname       username    password    address      
+		customer = new Customer(cusprop[0], cusprop[1], cusprop[2], cusprop[3], cusprop[4], cusprop[5]); 
+											// fname      lname       username    password    address phonenumber     
 		isloggedin = true; 
 	}
 
@@ -142,9 +142,9 @@ public class Client {
 	 * create a new customer object using the information passed into the parameter
 	 * Insert the object into the customer list 
 	 */
-	public static void createnewaccount(String firstname, String lastname, String username, String password, String address)
+	public static void createnewaccount(String firstname, String lastname, String username, String password, String address, String phoneNumber)
 	{
-		User.adddata("h", new Customer(firstname, lastname, username, password, address));
+		User.adddata("h", new Customer(firstname, lastname, username, password, address, phoneNumber));
 	}
 	
 	/**********

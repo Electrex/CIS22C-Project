@@ -15,6 +15,7 @@ public class Customer implements Comparable<Customer> {
     private String address;
     private String username;
     private String password;
+    private String phoneNumber;
     private PriorityQueue<Order> orders;
     
     /****CONSTRUCTOR****/
@@ -25,7 +26,7 @@ public class Customer implements Comparable<Customer> {
      */
     public Customer()
     {
-        firstName = lastName = address = username = password = "";
+        firstName = lastName = address = username = password = phoneNumber = "";
         orders = new PriorityQueue<Order>();
     }
     
@@ -37,7 +38,7 @@ public class Customer implements Comparable<Customer> {
     {
         firstName = fname;
         lastName = lname;
-        address = username = password = "";
+        address = username = password = phoneNumber = "";
         
         orders = new PriorityQueue<Order>();
     }
@@ -46,13 +47,14 @@ public class Customer implements Comparable<Customer> {
      * Instantiates a new Customer with values that are passed in
      * @postcondition Creates a new customer with values that are passed in
      */
-    public Customer(String fname, String lname, String add, String userN, String pass)
+    public Customer(String fname, String lname, String add, String userN, String pass, String phoneNumber)
     {
         firstName = fname;
         lastName = lname;
         address= add;
         username = userN;
         password = pass;
+        this.phoneNumber = phoneNumber;
 
         orders = new PriorityQueue<Order>();
     }
@@ -73,6 +75,15 @@ public class Customer implements Comparable<Customer> {
     public String getAddress()
     {
         return address;
+    }
+    
+    /**
+     * Accesses the customer's phone number
+     * @return the customer's phone number
+     */
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
     }
   
     /**
@@ -116,7 +127,7 @@ public class Customer implements Comparable<Customer> {
      */
     public void displayCustomer()
     {
-        System.out.println("Name: " + getFullName() + "\nAddress: " + address + "\nUsername: " + username + "\nPassword: " + password);
+        System.out.println("Name: " + getFullName() + "\nAddress: " + address + "\nPhone Number: " + phoneNumber + "\nUsername: " + username + "\nPassword: " + password);
     }
     
     /**
@@ -171,6 +182,15 @@ public class Customer implements Comparable<Customer> {
     public void setUsername(String username)
     {
         this.username = username;
+    }
+    
+    /**
+     * Sets the customer's phone number with the value that is being passed
+     * @param user name the phone number that is being set
+     */
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
     }
     
     /**
@@ -282,7 +302,7 @@ public class Customer implements Comparable<Customer> {
     @Override
     public String toString()
     {
-        String result = firstName + "," + lastName + "," + username + "," + password + "," + address + "\n";
+        String result = firstName + "," + lastName + "," + username + "," + password + "," + address + "," + phoneNumber + "\n";
         return result;
     }
 }

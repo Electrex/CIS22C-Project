@@ -64,7 +64,7 @@ public class CustomerIO {
 				}
 				// split line at space to break apart vertices u & v
 				String[] vertices = line.split(",");
-				customerlist.insert(new Customer(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4])); 
+				customerlist.insert(new Customer(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5])); 
 				customerlogininfo.add(vertices[3] + "," + vertices[4]);
 				customerfileinfo.add(line);
 			}

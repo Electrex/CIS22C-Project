@@ -106,13 +106,15 @@ public class LogIn {
 	
 	public Customer SignUp()
 	{
-		String firstname, lastname, address, username, password, passwordconfirmation; 
+		String firstname, lastname, address, username, password, passwordconfirmation, phonenumber;
 		System.out.print("First Name: " );
 		firstname = scanner.nextLine();
 		System.out.print("Last Name: ");
 		lastname = scanner.nextLine();
 		System.out.print("Address: ");
 		address = scanner.nextLine();
+		System.out.print("Phone Number: ");
+	    phonenumber = scanner.nextLine();
 		System.out.print("Username: ");
 		username = scanner.nextLine();
 		System.out.print("Password: ");
@@ -130,11 +132,11 @@ public class LogIn {
 		}
 		
 		System.out.println("\nAccount created!");
-        Client.createnewaccount(firstname, lastname, username, password, address);
-        String temp = firstname + "," + lastname + "," + address + "," + username + "," + password;
+        Client.createnewaccount(firstname, lastname, username, password, address, phonenumber);
+        String temp = firstname + "," + lastname + "," + address + "," + username + "," + password + "," + phonenumber;
         CustomerIO.getcustomerfilecontent().add(temp);
         CustomerIO.getcustomerlogininfo().add(username + "," + password);
-        Customer newCustomer = new Customer(firstname, lastname, address, username, password);
+        Customer newCustomer = new Customer(firstname, lastname, address, username, password, phonenumber);
         return newCustomer;
 		
 		/*while(!isvalid)
