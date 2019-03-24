@@ -376,7 +376,6 @@ public class BST{
                 insert(data, node.right);
         }
     }
-
     /**
      * Removes a value from the BST
      * @param data the value to remove
@@ -521,4 +520,5 @@ public class BST{
     public ArrayList<Product> getProducts() {
         return list;
     }
+
 }

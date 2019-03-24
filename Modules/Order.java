@@ -290,6 +290,8 @@ public class Order implements Comparable<Order> {
 	 * @returns totalPrice (double) of Order
 	 */
 	public double totalOrderPrice() throws IndexOutOfBoundsException {
+		//TODO check if need to add shipping cost as well 
+		
 		double totalPrice = 0;
 		if (product.size() != quantity.size())
 			throw new IndexOutOfBoundsException("getTotalOrderPrice(): Product and Quantity arrays are not of the same length!");
