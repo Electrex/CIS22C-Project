@@ -54,17 +54,20 @@ public class SearchPage {
 			}	
 			else if (searchedoutput != null)
 			{
-
+				System.out.println();
 				System.out.println("Product name: " + searchedoutput.getName());
 				System.out.println("Product description: " + searchedoutput.getDescription());
 				System.out.println("Product ID: " + searchedoutput.getProductId());
 				System.out.println("Product price: $" + searchedoutput.getUnitPrice()); 
 				System.out.println("Would you like to add this to the shopping cart? ");
+				System.out.println();
+				
 				boolean isvalid = true;
-				while (!isvalid)
+				while (isvalid)
 				{
 					System.out.println("(Y) for Yes and (N) for No. ");
 					String yesorno = scanner.nextLine();
+					
 					if (yesorno.equalsIgnoreCase("y"))
 					{
 						System.out.printf("How many %s would like to put into the shopping cart? ", searchedoutput.getName());
