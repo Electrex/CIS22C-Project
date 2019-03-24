@@ -147,7 +147,7 @@ public class ShoppingCart {
         Order currentOrder = new Order(Welcome.getClient().getshoppingcart(), Welcome.getClient().getquantities(), name, shipmentmethod);
         Welcome.getClient().getcustomer().insertOrder(currentOrder);
         PriorityQueue<Order> allcusorders = Welcome.getClient().getcustomer().getOrders();
-        allcusorders.displayArray();
+        //allcusorders.displayArray();
         
 		System.out.println("\nOrder Confirmation: ");
 		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i++)
