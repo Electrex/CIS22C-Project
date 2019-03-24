@@ -1,5 +1,6 @@
 package UI;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import ADT.*;
@@ -8,7 +9,7 @@ import User.*;
 
 public class ShoppingCart {
 	private Scanner scanner = new Scanner(System.in);
-
+	
 	public void viewOrder()
 	{
 		System.out.println("\n\n********** " + Welcome.getClient().getcustomer().getFullName() + "'s Order **********");
@@ -16,15 +17,13 @@ public class ShoppingCart {
 		PriorityQueue<Order> shippedorders = new PriorityQueue<Order>();
 		PriorityQueue<Order> unshippedorders = new PriorityQueue<Order>();
 		
-		allcusorders.displayArray();
-		
 		if(allcusorders.get_size() == 0)
 		{
 		    System.out.println("No past orders!");
 		    return;
 		}
 		
-		for (int idx = 1; idx < allcusorders.get_size(); idx++)
+		for (int idx = 1; idx <= allcusorders.get_size(); idx++)
 		{
 			if (allcusorders.get_element(idx).getIsShipped())
 			{
@@ -37,35 +36,35 @@ public class ShoppingCart {
 		}
 		
 		System.out.println("\n\n******** Shipped orders *********");
-		for (int i = 1; i < shippedorders.get_size(); i++)
+		for (int i = 1; i <= shippedorders.get_size(); i++)
 		{
 			System.out.println("Order ID: " + shippedorders.get_element(i).getOrderID());
 			System.out.println("Order Date: " + shippedorders.get_element(i).getOrderDate());
 			System.out.println("Shipment Date: " + shippedorders.get_element(i).getShipDate());
 			System.out.println("Shipment Type: " + shippedorders.get_element(i).getShipmentType());
 			
-			for (int j = 1; j < shippedorders.get_element(i).getProduct().size(); j++)
+			for (int j = 0; j < shippedorders.get_element(i).getProduct().size(); j++)
 			{
 				System.out.println("Product Name: " + shippedorders.get_element(i).getProduct().get(j)
-				+ " Product Quantities: " + shippedorders.get_element(i).getQuantity().get(j));
+				+ "\nProduct Quantities: " + shippedorders.get_element(i).getQuantity().get(j));
 			}
-			System.out.println("_____________________________________________________________________________\n");
+			System.out.println("_______________________________________________________________________\n");
 		}
 		
 		System.out.println("\n\n******** Unshipped Orders *********");
-		for (int i = 1; i < unshippedorders.get_size(); i++)
+		for (int i = 1; i <= unshippedorders.get_size(); i++)
 		{
 			System.out.println("Order ID: " + unshippedorders.get_element(i).getOrderID());
 			System.out.println("Order Date: " + unshippedorders.get_element(i).getOrderDate());
 			System.out.println("Shipment Date: " + unshippedorders.get_element(i).getShipDate());
 			System.out.println("Shipment Type: " + unshippedorders.get_element(i).getShipmentType());
 			
-			for (int j = 1; j < unshippedorders.get_element(i).getProduct().size(); j++)
+			for (int j = 0; j < unshippedorders.get_element(i).getProduct().size(); j++)
 			{
-				System.out.println("Product Name: " + unshippedorders.get_element(i).getProduct().get(j)
-				+ " Product Quantities: " + unshippedorders.get_element(i).getQuantity().get(j));
+				System.out.println("Product Name: " + unshippedorders.get_element(i).getProduct().get(j).getName()
+				+ "\nProduct Quantities: " + unshippedorders.get_element(i).getQuantity().get(j));
 			}
-			System.out.println("_____________________________________________________________________________\n");
+			System.out.println("_______________________________________________________________________\n");
 		}
 	}
 	
@@ -143,11 +142,6 @@ public class ShoppingCart {
 		{
 		    shipmentmethod = "Standard";
 		}
-		
-        Order currentOrder = new Order(Welcome.getClient().getshoppingcart(), Welcome.getClient().getquantities(), name, shipmentmethod);
-        Welcome.getClient().getcustomer().insertOrder(currentOrder);
-        PriorityQueue<Order> allcusorders = Welcome.getClient().getcustomer().getOrders();
-        allcusorders.displayArray();
         
 		System.out.println("\nOrder Confirmation: ");
 		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i++)
@@ -173,7 +167,10 @@ public class ShoppingCart {
 			System.out.println("Standard shipping: $1.99");
 			totalprice += 1.99;
 		}
-	
+		
+		ArrayList<Product> copy = new ArrayList<Product>(Welcome.getClient().getshoppingcart());
+		Order currentOrder = new Order(copy, Welcome.getClient().getquantities(), name, shipmentmethod);
+        Welcome.getClient().getcustomer().insertOrder(currentOrder);
 		
 		System.out.printf("Tax: $%.2f", totalprice*0.09);
 		System.out.println();
@@ -182,5 +179,7 @@ public class ShoppingCart {
 		System.out.println("\nThank you for your order!");
 		System.out.print("\nPress any key to back to homepage! ");
 		scanner.nextLine();
+		
+		
 	}
 }

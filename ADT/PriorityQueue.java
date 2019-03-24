@@ -72,7 +72,7 @@ public class PriorityQueue<T extends Comparable<T>>  {
 		    	heap.set(get_parent(i), heap.get(i));
 		    	heap.set(i, parent);
 
-		       i = get_parent(i); //keep track of current index of the key
+		        i = get_parent(i); //keep track of current index of the key
 		    }
 	    }
 	}
