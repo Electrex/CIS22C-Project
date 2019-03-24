@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import ADT.*;
 import IO.CustomerIO;
+import IO.EmployeeIO;
 import Modules.*; 
 
 public class Client {
@@ -76,18 +77,12 @@ public class Client {
 	 * @param username
 	 * @param password
 	 */
-	public void login(String username, String password)
+	public void login(String username, String password, int index)
 	{
 		String [] cusprop; // customer properties 
-		for (int i = 0; i < CustomerIO.getcustomerfilecontent().size(); i ++) {
-			if (CustomerIO.getcustomerfilecontent().get(i).contains(username)) {
-				if (CustomerIO.getcustomerfilecontent().get(i).contains(password)) {
-					cusprop = CustomerIO.getcustomerfilecontent().get(i).split(","); 
-					customer = new Customer(cusprop[0], cusprop[1], cusprop[2], cusprop[3], cusprop[4]); 
+	    cusprop = CustomerIO.getcustomerfilecontent().get(index).split(","); 
+		customer = new Customer(cusprop[0], cusprop[1], cusprop[2], cusprop[3], cusprop[4]); 
 											// fname      lname       username    password    address      
-				}
-			}
-		}
 		isloggedin = true; 
 	}
 
@@ -147,14 +142,18 @@ public class Client {
 	 * @return true if the passed in username and password is found
 	 * 		   false if the passed in username and password is not found 
 	 */
-	public static boolean verifyLogInInformation(String username, String password)
+	public static int verifyLogInInformationCustomer(String username, String password)
 	{			
-		for (int i = 0; i < CustomerIO.getcustomerfilecontent().size(); i ++)
-			if (CustomerIO.getcustomerfilecontent().get(i).contains(username))
-				if (CustomerIO.getcustomerfilecontent().get(i).contains(password))
-					return true; 
-			
-		return false;
+	    String temp = username + "," + password;
+	    
+		for (int i = 0; i < CustomerIO.getcustomerlogininfo().size(); i++)
+		{
+		    if (CustomerIO.getcustomerlogininfo().get(i).equals(temp))
+		    {
+		        return i;
+		    }
+		}
+		return -1;
 	}
 }
 

@@ -17,9 +17,15 @@ public class LogIn {
 		
 		while (!successlogin)
 		{
-			System.out.println("Press (1) if you need to sign up, or (2) if you want to log in, Q to go back to homepage.");
-			
+		    System.out.println("\nMenu Options");
+	        System.out.println("------------");
+			System.out.println("1) Create a new account");
+			System.out.println("2) Log in as a customer");
+			System.out.println("3) Log in as an employee");
+			System.out.println("4) Go back to homepage");
+			System.out.print("\nPlease choose one of the options: ");
 			ls = scanner.nextLine();
+			
 			if (ls.equals("1"))
 			{
 				System.out.println("**********Sign Up**********");
@@ -28,30 +34,24 @@ public class LogIn {
 			}
 			else if (ls.equals("2"))
 			{
-				System.out.println("\n\n**********Log In***********");
+				System.out.println("\nLog In");
+				System.out.println("------");
 				while (!isvalid)
 				{
-					System.out.print("**** Enter your username or press Q to go back: ");
+					System.out.print("Enter your username or press Q to go back: ");
 					uname = scanner.nextLine();
 					if (uname.equalsIgnoreCase("q"))
 						break; 
-					System.out.print("**** Enter your password press Q to go back: ");
+					System.out.print("Enter your password press Q to go back: ");
 					pass = scanner.nextLine();
 					if (pass.equalsIgnoreCase("q"))
 						break; 
 					
-					if (Client.verifyLogInInformation(uname, pass) || Server.verifyLogInInformation(uname, pass))
+					if (Client.verifyLogInInformationCustomer(uname, pass) != -1)
 					{
-						if (Client.verifyLogInInformation(uname, pass))
-						{
-							Welcome.getClient().login(uname, pass);
-							isvalid = true;
-						}
-						else
-						{
-							Welcome.getServer().login(uname, pass);
-							isvalid = true;
-						}
+					    int index = Client.verifyLogInInformationCustomer(uname, pass);
+					    Welcome.getClient().login(uname, pass, index);
+                        isvalid = true;
 						successlogin = true;      
 					}
 					else
@@ -61,7 +61,35 @@ public class LogIn {
 					}
 				}
 			}
-			else if (ls.equalsIgnoreCase("q"))
+			else if (ls.equals("3"))
+            {
+                System.out.println("\nLog In");
+                System.out.println("------");
+                while (!isvalid)
+                {
+                    System.out.print("Enter your username or press Q to go back: ");
+                    uname = scanner.nextLine();
+                    if (uname.equalsIgnoreCase("q"))
+                        break; 
+                    System.out.print("Enter your password press Q to go back: ");
+                    pass = scanner.nextLine();
+                    if (pass.equalsIgnoreCase("q"))
+                        break; 
+                    
+                    if (Server.verifyLogInInformationEmployee(uname, pass))
+                    {
+                        Welcome.getServer().login(uname, pass);
+                        isvalid = true;
+                        successlogin = true;      
+                    }
+                    else
+                    {
+                        System.out.println("---- Invalid password, please retry! ");
+                        continue; 
+                    }
+                }
+            }
+			else if (ls.equalsIgnoreCase("4"))
 			{
 				break; 
 			}

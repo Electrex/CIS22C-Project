@@ -96,9 +96,9 @@ public class Employee implements Comparable<Employee>{
      * @return 0 (same Employee), -1 (this Employee ordered first)
      * or 1 (the other Employee ordered first) 
      */
-    public int compareTo(Employee otherMovie) {
+    public int compareTo(Employee other) {
         String key = username + password;
-        String otherKey = otherMovie.username + otherMovie.password;
+        String otherKey = other.username + other.password;
         
     	if (key.compareTo(otherKey) == 0) {
     		return 0;

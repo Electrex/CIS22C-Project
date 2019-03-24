@@ -88,13 +88,15 @@ public class Welcome {
 	
 	public void guestmenus()
 	{
-		String input = ""; boolean isvalid = false; 
-		System.out.println("\n");
-		System.out.println("Welcome Guest!"); 
-		System.out.println("**** Please choose one of the options from the following: ");
-		System.out.println("**** S: Search for a product");            
-		System.out.println("**** L: Log In or Create an Account ");   
-		System.out.println("**** Q: Quit ");                              
+		String input = ""; boolean isvalid = false;
+		System.out.println("\nWelcome Guest!\n"); 
+		System.out.println("Menu Options");
+		System.out.println("------------");
+		System.out.println("S: Search for a product");            
+		System.out.println("L: Log In or Create an Account ");   
+		System.out.println("Q: Quit ");  
+		System.out.print("\nPlease choose one of the options: ");
+		  
 		input = scanner.next();
 		while (!isvalid)
 		{
