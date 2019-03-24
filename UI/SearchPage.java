@@ -59,44 +59,58 @@ public class SearchPage {
 				System.out.println("Product description: " + searchedoutput.getDescription());
 				System.out.println("Product ID: " + searchedoutput.getProductId());
 				System.out.println("Product price: $" + searchedoutput.getUnitPrice()); 
-				System.out.println("Would you like to add this to the shopping cart? ");
 				System.out.println();
 				
 				boolean isvalid = true;
 				while (isvalid)
 				{
-					System.out.println("(Y) for Yes and (N) for No. ");
+				    System.out.print("Would you like to add this to the shopping cart (Y/N)? ");
 					String yesorno = scanner.nextLine();
 					
 					if (yesorno.equalsIgnoreCase("y"))
 					{
-						System.out.printf("How many %s would like to put into the shopping cart? ", searchedoutput.getName());
-						System.out.println();
-						String quantity = scanner.nextLine();
-						if (Integer.parseInt(quantity) >= 1)
+					    String quantity = "";
+					    
+						while(true)
 						{
-							Welcome.getClient().addtoshoppingcart(searchedoutput, Integer.parseInt(quantity));
-						}
-						else
-						{
-
-						  System.out.println("Please enter a valid quantity");
-
+						    try
+						    {
+						        System.out.printf("\nHow many %s would like to put into the shopping cart? ", searchedoutput.getName());
+		                        quantity = scanner.nextLine();
+		                        
+		                        if(Integer.parseInt(quantity) <= 0)
+		                        {
+		                            throw new NumberFormatException();
+		                        }
+		                        Welcome.getClient().addtoshoppingcart(searchedoutput, Integer.parseInt(quantity));
+		                        
+		                        System.out.println("\n" + quantity + " " + searchedoutput.getName() + " have been placed in your shopping cart!");
+                                isvalid = false;
+                                break;
+						    }
+	                        catch(NumberFormatException e)
+	                        {
+	                          System.out.println("Please enter a valid quantity");
+	                          quantity = scanner.nextLine();
+	                        }
 						}
 					}
 					else if (yesorno.equalsIgnoreCase("n"))
 					{
 
 						System.out.println("Okay! Going back to the homepage...");
+						isvalid = false;
 					} 
 					else
 					{ 
 						System.out.println("Invalid input, please try again! ");
-
-					    isvalid = false;
+						System.out.println();
+					    continue;
 
 					}
 				}
+				
+				break;
 			}
 			else
 			{

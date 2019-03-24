@@ -66,6 +66,14 @@ public class Client {
 		shoppingcart.add(p);
 	}
 	
+	/********
+     * Clears shopping cart
+     */
+    public void clearShoppingCart()
+    {
+        shoppingcart.clear();
+    }
+	
 	public ArrayList<Product> getshoppingcart()
 	{
 		return shoppingcart;

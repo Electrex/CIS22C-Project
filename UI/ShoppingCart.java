@@ -63,85 +63,89 @@ public class ShoppingCart {
 	
 	public void displayshoppingcart()
 	{
-		System.out.println("************* Your Shopping Cart **************");
-		System.out.println("****Here is what you have in your shopping cart: ");
+		System.out.println("\n************* Your Shopping Cart **************");
+		
+		if(Welcome.getClient().getshoppingcart().size() == 0)
+		{
+		    System.out.println("Shopping cart is empty!");
+		    return;
+		}
 		
 		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i ++)
 		{
-			System.out.println((i + 1) + ": ");
+			System.out.println((i + 1) + ") ");
 			System.out.println("Product Name: " + Welcome.getClient().getshoppingcart().get(i).getName());
 			System.out.println("Product ID: " + Welcome.getClient().getshoppingcart().get(i).getProductId());
-			System.out.println("Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
+			System.out.println("Product price: $" + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
 			System.out.println("Quantity: " + Welcome.getClient().getquantities().get(i));
-			System.out.println("_____________________________________________________________________________\n");
+			System.out.println("_________________________________________________________________________\n");
 		}
 		
-		System.out.println("****Do you want to place your order? Y/N");
+		System.out.print("Do you want to place your order (Y/N)? ");
 		String yesorno = scanner.next();
-		if (yesorno.equals("Y"))
+		if (yesorno.equalsIgnoreCase("Y"))
 		{
 			placeOrder();
-		}
-		else
-		{
-			System.out.println("****Okay! Back to Homepage!");
+			Welcome.getClient().clearShoppingCart();
 		}
 	}
 	
 	public void placeOrder()
 	{
+	    scanner.nextLine();
 		double totalprice = 0.0; 
-		System.out.println("************** Placing Order ****************");
-		System.out.println("****Step 1: Confirm User Information");
-		System.out.println("****Please enter your name: ");
-		String name = scanner.next();
-		System.out.println("****Please enter your address: ");
-		String add = scanner.next();
-		System.out.println("_____________________________________________________________________________\n");
-		System.out.println("****Step 2: Payment method: ");
-		String cardid = scanner.next();
-		System.out.println("_____________________________________________________________________________\n");
-		System.out.println("****Step 3: Shipping method: "); 
-		System.out.println("****Please select one from the following by enter the correct number: ");
-		System.out.println("****1. Overnight Shipping: $4.99 ");
-		System.out.println("****2. Rush Shipping: $2.99 ");
-		System.out.println("****3. Standard Shipping: $1.99 ");
-		String shipmentmethod = scanner.next();
+		System.out.println("\n************** Placing Order ****************");
+		System.out.println("Step 1: Confirm User Information");
+		System.out.print("Please enter your name: ");
+		String name = scanner.nextLine();
+		System.out.print("Please enter your address: ");
+		String add = scanner.nextLine();
+		System.out.println("_______________________________________________________________________\n");
+		System.out.print("Step 2: Payment method: ");
+		String cardid = scanner.nextLine();
+		System.out.println("________________________________________________________________________\n");
+		System.out.println("Step 3: Shipping method: "); 
+		System.out.println("1) Overnight Shipping: $4.99 ");
+		System.out.println("2) Rush Shipping: $2.99 ");
+		System.out.println("3) Standard Shipping: $1.99 ");
+	      System.out.print("\nPlease select one of the following options: ");
+		String shipmentmethod = scanner.nextLine();
 		
-		System.out.println("****Okay, " + name + "! You are all set here is your order confirmation: ");
+		System.out.println("\nOrder Confirmation: ");
 		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i ++)
 		{
-			System.out.print("Product Name: " + Welcome.getClient().getshoppingcart().get(i).getName());
-			System.out.print("    Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
-			System.out.print("    Quantity: " + Welcome.getClient().getquantities().get(i) + "\n");
+			System.out.println("Product Name: " + Welcome.getClient().getshoppingcart().get(i).getName());
+			System.out.println("    Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
+			System.out.println("    Quantity: " + Welcome.getClient().getquantities().get(i) + "\n");
 			totalprice += (Welcome.getClient().getshoppingcart().get(i).getUnitPrice())*(Welcome.getClient().getquantities().get(i)); 
 		}	
 		
 		if (shipmentmethod.equals("1"))
 		{
-			System.out.println("Overnight shhipping: $4.99");
+			System.out.println("Overnight shipping: $4.99");
 			totalprice += 4.99;
 		}
 		else if (shipmentmethod.equals("2"))
 		{
-			System.out.println("Overnight shhipping: $2.99");
+			System.out.println("Overnight shipping: $2.99");
 			totalprice += 2.99;
 		}
 		else if (shipmentmethod.equals("3"))
 		{
-			System.out.println("Overnight shhipping: $1.99");
+			System.out.println("Overnight shipping: $1.99");
 			totalprice += 1.99;
 		}
 		else // assume the user has entered the invalid input. 
 		{
-			System.out.println("Overnight shhipping: $4.99");
+			System.out.println("Overnight shipping: $4.99");
 			totalprice += 4.99;
 		}
 		
-		System.out.println("Tax: " + totalprice*0.09);
+		System.out.printf("Tax: $%.2f", totalprice*0.09);
+		System.out.println();
 		totalprice*=1.09; 
-		System.out.println("Total price: " + totalprice);
-		System.out.println("****Press any key to back to homepage! ");
-		String anykey = scanner.next();
+		System.out.printf("Total price: $%.2f", totalprice);
+		System.out.print("\n\nPress any key to back to homepage! ");
+		scanner.nextLine();
 	}
 }
