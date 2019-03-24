@@ -195,7 +195,7 @@ public class User {
 	 * @postcondition The productlist will be sorted by the primary key. 
 	 * @return the temporary BST will be returned to keep the original BST sorted in its original order 
 	 */
-	public static BST displayProductPrimarily()
+	public static BST displayProductPrimary()
 	{
 		// sort product by primary key
 		BST temp = new BST(productlist);

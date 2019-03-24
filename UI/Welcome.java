@@ -166,17 +166,18 @@ public class Welcome {
 			{
 				String choice;
 				System.out.println("**** Would you like to list all the products by product name or by product ID? ");
-				System.out.println("**** Press n/N for name and i/I for ID");
+				System.out.println("**** Press (N) for name and (I) for ID");
 				choice = scanner.next();
 				if (choice.equalsIgnoreCase("n"))
 				{
-					BST temp = User.displayProductPrimarily(); 
+					BST temp = User.displayProductPrimary(); 
 					for (int i = 0; i < temp.getProducts().size(); i++)
 					{
 						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
+						System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
 						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-						System.out.printf("Product Price: $%.2d\n" , temp.getProducts().get(i).getUnitPrice());
-						System.out.printf("Product Cost: $%.2d\n", temp.getProducts().get(i).getCost());
+						System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
+						//System.out.printf("Product Cost: $%.2d\n", temp.getProducts().get(i).getCost());
 						System.out.println("--------------------------------------------------------------");
 					}
 				}
@@ -186,22 +187,24 @@ public class Welcome {
 					for (int i = 0; i < temp.getProducts().size(); i++)
 					{
 						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
+						System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
 						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-						System.out.println("Product Price: " + temp.getProducts().get(i).getUnitPrice());
-						System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
+						System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
+						//System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
 						System.out.println("--------------------------------------------------------------");
 					}		
 				}
 				else
 				{
 					System.out.println("---- Invalid input! Assume you are going to list by product name. ");
-					BST temp = User.displayProductPrimarily(); 
+					BST temp = User.displayProductPrimary(); 
 					for (int i = 0; i < temp.getProducts().size(); i++)
 					{
 						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
+						System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
 						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-						System.out.println("Product Price: " + temp.getProducts().get(i).getUnitPrice());
-						System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
+						System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
+						//System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
 						System.out.println("--------------------------------------------------------------");
 					}
 				}
@@ -209,9 +212,8 @@ public class Welcome {
 			}
 			else
 			{
-				System.out.println("----Sorry, invalid output. Try again. ");
-				input = scanner.next();
-				//continue; 
+				System.out.println("Sorry, invalid output. Try again. ");
+				input = scanner.next(); 
 			}
 		}
 	}
