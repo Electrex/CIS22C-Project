@@ -186,9 +186,9 @@ public class Welcome {
 					BST temp = User.displayProductSecondary(); 
 					for (int i = 0; i < temp.getProducts().size(); i++)
 					{
+						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
 						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
 						System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
-						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
 						System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
 						//System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
 						System.out.println("--------------------------------------------------------------");

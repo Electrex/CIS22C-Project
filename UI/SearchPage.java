@@ -32,7 +32,7 @@ public class SearchPage {
 			}
 			else  
 			{
-			    System.out.println("Invalid option! Please enter again.");
+			    System.out.println("Invalid option! Please try again.");
 				continue;
 			}
 		}
@@ -55,18 +55,20 @@ public class SearchPage {
 			
 			else if (searchedoutput != null)
 			{
-				System.out.println("Product name: $" + searchedoutput.getName());
-				System.out.println("Product ID: $" + searchedoutput.getProductId());
-				System.out.println("Product Price: $" + searchedoutput.getCost()); 
+				System.out.println("Product name: " + searchedoutput.getName());
+				System.out.println("Product description: " + searchedoutput.getDescription());
+				System.out.println("Product ID: " + searchedoutput.getProductId());
+				System.out.println("Product price: $" + searchedoutput.getUnitPrice()); 
 				System.out.println("Would you like to add this to the shopping cart? ");
-				boolean isvalid = false;
+				boolean isvalid = true;
 				while (!isvalid)
 				{
-					System.out.println("****Y for Yes and N for No. ");
+					System.out.println("(Y) for Yes and (N) for No. ");
 					String yesorno = scanner.nextLine();
 					if (yesorno.equalsIgnoreCase("y"))
 					{
-						System.out.println("**** Enter the amount of this product you would like to put into the shopping cart: ");
+						System.out.printf("How many %s would like to put into the shopping cart? ", searchedoutput.getName());
+						System.out.println();
 						String quantity = scanner.nextLine();
 						if (Integer.parseInt(quantity) >= 1)
 						{
@@ -74,22 +76,22 @@ public class SearchPage {
 						}
 						else
 						{
-							System.out.println("----Invalid input, please try again! ");
+							System.out.println("Invalid input, please try again! ");
 						}
 					}
 					else if (yesorno.equalsIgnoreCase("n"))
 					{
-						System.out.println("**** Okay! Back to homepage");
+						System.out.println("Okay! Going back to the homepage...");
 					} 
 					else
 					{ 
-						System.out.println("----Invalid input, please try again! ");
+						System.out.println("Invalid input, please try again! ");
 					}
 				}
 			}
 			else
 			{
-				System.out.println("There are no product with this name. ");
+				System.out.println("There are no products with this name. ");
 			}
 		}
 	}
@@ -110,13 +112,14 @@ public class SearchPage {
 			
 			if (User.secondaryProductSearch(id) != null)
 			{
-				System.out.println("Product name: $" + User.secondaryProductSearch(id).getName());
-				System.out.println("Product ID: $" + User.secondaryProductSearch(id).getProductId());
-				System.out.println("Product Price: $" + User.secondaryProductSearch(id).getCost());
+				System.out.println("Product ID: " + User.secondaryProductSearch(id).getProductId());
+				System.out.println("Product name: " + User.secondaryProductSearch(id).getName());
+				System.out.println("Product description: " + User.secondaryProductSearch(id).getDescription());
+				System.out.println("Product price: $" + User.secondaryProductSearch(id).getUnitPrice()); 
 			}
 			else
 			{
-				System.out.println("There are no product with this ID. ");
+				System.out.println("There are no products with this ID. ");
 			}
 		}
 	}
