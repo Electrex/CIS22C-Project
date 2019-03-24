@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import Modules.Customer;
 import Modules.Employee;
 import Modules.Order;
+import User.Server;
+import User.User;
 
 import org.junit.Test;
 
@@ -13,7 +15,7 @@ import IO.CustomerIO;
 
 public class CustomerTestCases {
 
-	@Test
+/*	@Test
 	public void testForCustomerFirstName() {
 		Customer customer = new Customer();
 		customer.setFirstName("tom");
@@ -36,8 +38,21 @@ public class CustomerTestCases {
 		assertEquals(customer.getUsername(),"Hawking YH");
 		
 	}
+*/	
+	@Test
+    public void testForSearchCustomer() {
+        Customer customer = new Customer("Claire", "Gute");
+        Server server = new Server();
+        String [] files = {"Customer.csv", 
+                "Employee.csv", 
+                "Orders.csv", 
+                "Product.csv"}; 
+        User user = new User(files);
+        user.loaddata();
+        System.out.println(server.searchCustomer("Claire", "Gute"));
+    }
 	
-	
+	/*
 	@Test
 	public void testForCustomerAddress() {
 		Customer customer = new Customer();
@@ -90,5 +105,5 @@ public class CustomerTestCases {
 		boolean expected = false;
 		assertEquals(CustomerIO.getcustomerfilecontent().isEmpty(), expected);
 	}
-	
+	*/
 }

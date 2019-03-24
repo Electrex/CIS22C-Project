@@ -122,9 +122,9 @@ public class Server {
 	/******
 	 * Search the customer by the full name 
 	 * If the customer name is not found or is in a different format, then return null. 
-	 * @param firstname
-	 * @param lastname
-	 * @return
+	 * @param firstname Customer's first name
+	 * @param lastname Customer's last name
+	 * @return Customer object with the key values
 	 */
 	public static Customer searchCustomer(String firstname, String lastname)
 	{

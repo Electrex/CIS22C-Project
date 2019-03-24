@@ -2,6 +2,7 @@ package UI;
 
 import java.util.Scanner;
 
+import IO.CustomerIO;
 import User.*;
 import Modules.*; 
 
@@ -31,11 +32,13 @@ public class LogIn {
 				System.out.println("\nSign Up");
 				System.out.println("-------");
 				Customer temp = SignUp();
+				int index = Client.verifyLogInInformationCustomer(temp.getUsername(), temp.getPassword());
+				Welcome.getClient().login(temp.getUsername(), temp.getPassword(), index);
 				successlogin = true;      
 			}
 			else if (ls.equals("2"))
 			{
-				System.out.println("\nLog In");
+			    System.out.println("\nLog In");
 				System.out.println("------");
 				while (!isvalid)
 				{
@@ -57,7 +60,7 @@ public class LogIn {
 					}
 					else
 					{
-						System.out.println("\nInvalid username or password. Please try again.");
+						System.out.println("\nInvalid username or password. Please try again.\n");
 						continue; 
 					}
 				}
@@ -85,7 +88,7 @@ public class LogIn {
                     }
                     else
                     {
-                        System.out.println("\nInvalid username or password. Please try again.");
+                        System.out.println("\nInvalid username or password. Please try again.\n");
                         continue; 
                     }
                 }
@@ -117,8 +120,6 @@ public class LogIn {
 		System.out.print("Confirm Password: ");
 		passwordconfirmation = scanner.nextLine();
 		
-		boolean isvalid = false;
-		
 		while(!password.equals(passwordconfirmation))
 		{
 		    System.out.println("\nPasswords do not match, please re-enter your password. ");
@@ -128,8 +129,11 @@ public class LogIn {
             passwordconfirmation = scanner.nextLine();
 		}
 		
-		System.out.println("\nAccount created!\n\n");
+		System.out.println("\nAccount created!");
         Client.createnewaccount(firstname, lastname, username, password, address);
+        String temp = firstname + "," + lastname + "," + address + "," + username + "," + password;
+        CustomerIO.getcustomerfilecontent().add(temp);
+        CustomerIO.getcustomerlogininfo().add(username + "," + password);
         Customer newCustomer = new Customer(firstname, lastname, address, username, password);
         return newCustomer;
 		

@@ -103,6 +103,15 @@ public class Customer implements Comparable<Customer> {
     }
     
     /**
+     * Accesses the customer's password
+     * @return the customer's password
+     */
+    public String getPassword()
+    {
+        return password;
+    }
+    
+    /**
      * Accesses the customer's orders
      * @return the customer's orders
      */
@@ -216,20 +225,14 @@ public class Customer implements Comparable<Customer> {
         {
             return 0;
         }
-        else if(!c.getFullName().equals(this.getFullName())) 
+        else if(c.getFullName().equals(this.getFullName())) 
         {
-            if(this.getFullName().compareTo(c.getFullName()) < 0)
-            {
-                return -1;
-            }
-            else
-            {
-                return 1;
-            }
+            System.out.println("hello");
+            return 0;
         }
         else
         {
-            if(this.username.compareTo(c.username) < 0)
+            if(this.getFullName().compareTo(c.getFullName()) < 0)
             {
                 return -1;
             }

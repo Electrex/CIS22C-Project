@@ -219,7 +219,7 @@ public class Welcome {
 	public void employeeloggedinmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-		System.out.println("Welcome Employee!"); 
+		System.out.println("\nWelcome Employee!"); 
 		System.out.println("\nMenu Options");
 	    System.out.println("------------");      
 		System.out.println("S: Search for a product");  

@@ -54,33 +54,32 @@ public class EmployeeMenus {
 	
 	public void searchcustomer()
 	{
-		System.out.println("****Would you like to list out all the customers or search for a specific customer: ");
-		System.out.print("****Enter L to list out and S to search");
+		System.out.print("\nPress (L) to list out all customers or (S) to search for a specific customer: ");
 		String choice = scanner.next();
 		
 		
 		while(!choice.equalsIgnoreCase("L") && !choice.equalsIgnoreCase("S"))
 		{
-		    System.out.println("Invalid input!");
-		    System.out.print("****Enter L to list out and S to search");
+		    System.out.println("\nInvalid input!");
+		    System.out.print("\nPress (L) to list out all customers or (S) to search for a specific customer: ");
 	        choice = scanner.next();
 		}
-		
 		
 		if (choice.equalsIgnoreCase("L"))
 		{
 			User.getcustomers().toString(); 
 		}
+		
 		else if (choice.equalsIgnoreCase("S"))
 		{
 			String fname, lname; 
 			while (true)
 			{
-				System.out.println("****Please enter customer's firstname or press q to quit: ");
+				System.out.print("\nEnter customer's first name or press q to quit: ");
 				fname = scanner.next();
 				if (fname.equalsIgnoreCase("q"))
 					break;
-				System.out.println("****Please enter customer's lastname or press q to quit: ");
+				System.out.print("Enter customer's last name or press q to quit: ");
 				lname = scanner.next();
 				if (lname.equalsIgnoreCase("q"))
 					break;
@@ -88,7 +87,8 @@ public class EmployeeMenus {
 				if (Server.searchCustomer(fname, lname) != null)
 					System.out.println(Server.searchCustomer(fname, lname).toString());
 				else
-					System.out.println("----The customer does not exist!");
+					System.out.println("\nThe customer " + fname + " " + lname + " does not exist!");
+				    System.out.println("Please enter the customer's information again.");
 			}
 		}
 	}

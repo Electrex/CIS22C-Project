@@ -108,7 +108,7 @@ public class Client {
 	 */
 	public void placeOrder(String shipType)
 	{
-		Order o = new Order(shoppingcart, quantities, customer.getFullName(), shipType, false);
+		Order o = new Order(shoppingcart, quantities, customer.getFullName(), shipType);
 		User.adddata("p", o);  // MAY NEED TO CHANGE THIS 
 		customer.insertOrder(o);
 		shoppingcart.clear();     
