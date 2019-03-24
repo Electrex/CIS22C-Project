@@ -142,7 +142,7 @@ public class SearchPage {
                 
                 while (isvalid)
                 {
-                    System.out.print("Would you like to add this to the shopping cart (Y/N)? ");
+                    System.out.print("\nWould you like to add this to the shopping cart (Y/N)? ");
                     String yesorno = scanner.nextLine();
                     
                     if (yesorno.equalsIgnoreCase("y"))

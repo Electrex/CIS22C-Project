@@ -137,7 +137,8 @@ public class OrderIO {
 				quantities.add(Integer.parseInt(ordersfilecontent.get(i)[7])); 
 			}
 		}
-
+		
+		
 		return orderslist; 
 	}
 	
