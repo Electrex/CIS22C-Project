@@ -7,10 +7,11 @@ import org.junit.Test;
 import ADT.PriorityQueue;
 
 public class PriorityQueueTestCases {
-
+	
+	
 	@Test
 	public void testSizeofPriorityQueue() {
-		PriorityQueue<String> obj = new PriorityQueue<>();
+		PriorityQueue<String> obj = new PriorityQueue<String>();
 		int expected = 0;
 		assertEquals(obj.get_size(),expected);
 	}
@@ -18,14 +19,19 @@ public class PriorityQueueTestCases {
 	
 	@Test
 	public void testPriorityQueueInsertElements() {
-		PriorityQueue<String> obj = new PriorityQueue<>();
+		PriorityQueue<String> obj = new PriorityQueue<String>();
 		obj.insert("tom");
+		System.out.println(obj.get_size());
 		obj.insert("clark");
+		System.out.println(obj.get_size());
 		obj.insert("jimmy");
+		System.out.println(obj.get_size());
 		int expected = 3;
 		assertEquals(obj.get_size(),expected);
+		System.out.println(obj);
+		obj.displayArray();
 	}
-	/*
+	
 	@Test
 	public void testPriorityQueueRemoveElements() {
 		PriorityQueue<String> obj = new PriorityQueue<>();
@@ -36,7 +42,7 @@ public class PriorityQueueTestCases {
 		int expected = 2;
 		assertEquals(obj.get_size(),expected);
 	}
-	
+	/*
 	@Test
 	public void testPriorityQueueFindMaximum() {
 		PriorityQueue<String> obj = new PriorityQueue<>();

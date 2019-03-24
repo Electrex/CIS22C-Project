@@ -17,12 +17,11 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	 * Given a valid max heap (except for a single node i), heapify processes the 
 	 * tree with the max-heapify algorithm to rearrange node i and its 
 	 * descendants to satisfy the max-heap property.
-	 * @precondition Given a valid max heap (except for a single node)
-	 * @postcondition A is valid max heap
-	 * @param A, a tree which is already a valid Max Heap (except for node i)
-	 * @param i
+	 * @precondition Given a valid max heap (except for a single node), Precondition: left(i) and right(i) are both valid max heaps
+	 * @postcondition valid max heap
+	 * @param i, the invalid index
 	 */
-	private void heapify(int i){
+	private void heapify(int length, int i){
 		
 		int index_of_max = i;
 		int left = get_left(i); //get the index of the left child of A[i] and store as l
@@ -30,14 +29,14 @@ public class PriorityQueue<T extends Comparable<T>>  {
 
 	
 		//Check if l is off the end of the array (heap) AND compare A[i] to its left child
-		if (left <= get_size() && heap.get(left).compareTo(heap.get(i)) > 0) {
+		if (left <= length && heap.get(left).compareTo(heap.get(i)) > 0) {
 	
 		    index_of_max = left; //update index_of_max if left is bigger
 		}
 	
 		//Check if r is off the end of the array (heap) AND compare A[r] to current max value
 	
-		if (right <= get_size() && heap.get(right).compareTo(heap.get(index_of_max)) > 0) {
+		if (right <= length && heap.get(right).compareTo(heap.get(index_of_max)) > 0) {
 	
 			index_of_max = right; //update index_of_max if right is bigger
 		}
@@ -48,12 +47,19 @@ public class PriorityQueue<T extends Comparable<T>>  {
 		    heap.set(index_of_max, newMax); //swap, so now A[i] stored at A[index_of_max]
 		    heap.set(i, oldMax);
 	
-		    heapify(index_of_max); //recursively move through tree until restore heap property
+		    heapify(length, index_of_max); //recursively move through tree until restore heap property
 		}
 	}
 	
+	/**
+	 * Helper algorithm of heap insert
+	 * Compares the new key to its parent and swaps if necessary, and keeps swapping until the heap property is restored (bubbles up)
+	 * @postcondition heap property restored for i and i's children
+	 * @param i, index
+	 * @param key, new value
+	 */
 	private void heapIncreaseKey(int i, T key) {
-	    if(key.compareTo(heap.get(i)) > 0) {
+	    if(heap.get(i) == null || key.compareTo(heap.get(i)) > 0) {
 
 	        heap.set(i, key); //write over existing value at i with key
 
@@ -73,6 +79,10 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	
 	/**Constructors*/
 	
+    /**
+     * Default constructor for PriorityQueue (Heap)
+     * sets heap_size to 0, initializes heap's arrayList, and fills index 0 with null
+     */
 	public PriorityQueue(){
 		heap_size = 0;
 		heap = new ArrayList<T>();
@@ -81,38 +91,62 @@ public class PriorityQueue<T extends Comparable<T>>  {
 
 	/**Mutators*/
 	
+	/**
+	 * Takes an unordered array (heap instance var), and turns it into a valid Heap
+	 * Starts in the middle of the array and swaps nodes where parents are smaller than children (bubbles values down)
+	 * until values have reached their correct location (uses heapify helper algorithm to do the bubbling)
+	 * runtime of O(n)
+	 * @postcondition a valid Heap
+	 */
 	public void build_heap() {
 
 		int n = get_size();
 
 		for (int i = get_size()/2; i >= 1; i--) {//start at floor(n/2); we can ignore leaf nodes
 
-			System.out.printf("Calling MaxH with %d as i\n", i);
-			heapify(i); //call heapify helper function
+			heapify(n, i); //call heapify helper function
 		}
 	}
 	
+	/**
+	 * Inserts the value at the bottom of the heap, as far left as possible (at the very end of the array)
+	 * Calls heapIncreaseKey helper
+	 * @postcondition a valid heap, heap_size++
+	 * @param key
+	 */
 	public void insert(T key) {	
-		
-		//TODO do we need to increment if get_size is automatic with ArrayList.size?
-	   // Heap_size(A)++ //adding a new value to the heap
-	   // A[get_size()] = infinity //make space at end of array for new value
-		heap_size++;
-		heap.add(null);
+
+		heap_size++; //adding a new value to the heap
+		heap.add(null); //make space at end of array for new value
 		
 		heapIncreaseKey(get_size(), key); //start at the last index, i=Heap_size(A)
 	}
 	
+	/**
+	 * Removes value at index location in heap and restores heap property
+	 * @precondition a non-empty heap (heap_size >= 1)
+	 * @postcondition a valid heap, heap_size--
+	 * @param index
+	 */
 	public void remove(int index) {
-		//TODO remove - no notes on this method?? 
-		heap.remove(index);
-		heap_size--;
-		build_heap();	
+
+		if (index > 0) {
+			heap.remove(index);
+			heap_size--;
+			build_heap();	
+		}
 	}
 	
+	/**
+	 * Returns a sorted ArrayList. Exchanges the right most bottom key with root (swap),
+	 * then rebuilds the heap (heapify) and repeats
+	 * @precondition a valid heap
+	 * @postcondition restores heap to a valid heap
+	 * @return sorted ArrayList of values to display lowest to highest priority
+	 */
 	public ArrayList<T> sort(){
-		//TODO sort
-	    int n = get_size();
+		
+		int n = get_size();
 	    T first;
 	    
 	    for (int i = n; i >= 2; i--) {
@@ -124,44 +158,80 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	        
 	    	n--; //consider your heap to be one smaller
 
-	        heapify(1); //restore max heap property
+	        heapify(n, 1); //restore max heap property
 	    }	
-		return heap;
+	    
+	    ArrayList<T> sortedHeap = new ArrayList<T>(heap);
+	    build_heap();
+	    
+		return sortedHeap;
 	}
 	
 	 /**Accessors*/
 	
+	
+	/**
+	 * Returns the max element of the heap (root, index 1)
+	 * @precondition a valid heap
+	 * @return returns max element (root)
+	 */
 	public T get_max() {
 		
 		//root heap[1]
 		return heap.get(1);
 	}
 	
+	/**
+	 * Returns the parent of the element at i
+	 * @precondition a valid heap
+	 * @param index i
+	 * @return parent of i
+	 */
 	public int get_parent(int i) {
 		
 		// A[i] = A[floor(i/2)]
 		return (int) i / 2;
 	}
 	
+	/**
+	 * Returns the left child of the element at i
+	 * @precondition a valid heap
+	 * @param i
+	 * @return left child
+	 */
 	public int get_left(int i) {
 		
 		//A[2i]
 		return (int) i * 2;
 	}
 	
+	/**
+	 * Returns the right child of the element at i
+	 * @precondition a valid heap
+	 * @param index i 
+	 * @return right child
+	 */
 	public int get_right(int i) {
 		
 		//A[2i + 1]
 		return (int) (i * 2) + 1;
 	}
 	
-
+	/**
+	 * Returns the size of the heap
+	 * @return heap_size
+	 */
 	public int get_size() {
 		
 		//return heap.size() - 1;
 		return heap_size;
 	}
 	
+	/**
+	 * Returns element at index i in heap
+	 * @param i
+	 * @return element at i
+	 */
 	public T get_element(int i) {
 		
 		return heap.get(i);
@@ -170,18 +240,25 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	
 	 /**Additional Operations*/
 	
+	/**
+	 * Returns PriorityQueue info as a String
+	 * @return String of heap info
+	 */
 	@Override
 	public String toString() {
-		//TODO toString - how do we want to convert to string?
-		return "PriorityQueue [sort()=" + sort() + ", get_max()=" + get_max() + ", get_size()=" + get_size() + "]";
+		return "PriorityQueue: \nheap = " + heap + "\nsort() = " + sort() +"\nget_max() = " + get_max() + "\nget_size() = " + get_size();
 	}
 	
-	
+	/**
+	 * Prints the heap's priority queue to screen (high to low - reverse of sort())
+	 */
 	public void displayArray() {
-		//TODO how do we want to display Orders in PriorityQueue displayArray?
-		for (int i=1; i <= get_size(); i++) {
-			//System.out.println(i + ": " + heap.get(i).getOrderDate() + " + " + heap.get(i).getShipmentType());
-			System.out.println(i + ": " + heap.get(i));
+		
+		ArrayList<T> sorted = sort();
+		
+		int priority_num = 1;
+		for (int i=get_size(); i >= 1; i--) {
+			System.out.println(priority_num++ + ": " + sorted.get(i));
 		}
 	}
 
