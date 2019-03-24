@@ -88,13 +88,15 @@ public class Welcome {
 	
 	public void guestmenus()
 	{
-		String input = ""; boolean isvalid = false; 
-		System.out.println("\n");
-		System.out.println("Welcome Guest!"); 
-		System.out.println("**** Please choose one of the options from the following: ");
-		System.out.println("**** S: Search for a product");            
-		System.out.println("**** L: Log In or Create an Account ");   
-		System.out.println("**** Q: Quit ");                              
+		String input = ""; boolean isvalid = false;
+		System.out.println("\nWelcome Guest!\n"); 
+		System.out.println("Menu Options");
+		System.out.println("------------");
+		System.out.println("S: Search for a product");            
+		System.out.println("L: Log In or Create an Account ");   
+		System.out.println("Q: Quit ");  
+		System.out.print("\nPlease choose one of the options: ");
+		  
 		input = scanner.next();
 		while (!isvalid)
 		{
@@ -117,7 +119,8 @@ public class Welcome {
 			}
 			else
 			{
-				System.out.println("---- Sorry, invalid output. Try again. ");
+				System.out.println("\nInvalid input!");
+				System.out.print("Please choose one of the options: ");
 				input = scanner.next();
 			}
 		}
@@ -126,15 +129,15 @@ public class Welcome {
 	public void loggedinmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-
-		System.out.println("\n\n\n\n");
-		System.out.println("Welcome Customer  "); 
-		System.out.println("**** Please choose one of the options from the following: ");     
-		System.out.println("**** S: Search for a product");     
-		System.out.println("**** L: List Products ");
-		System.out.println("**** V: View my shopping cart");  
-		System.out.println("**** Q: Log out");
-		System.out.println("**** O: View my orders");     
+		System.out.println("\nWelcome Customer!"); 
+		System.out.println("\nMenu Options");
+        System.out.println("------------");    
+		System.out.println("S: Search for a product");     
+		System.out.println("L: List Products ");
+		System.out.println("V: View my shopping cart");  
+		System.out.println("Q: Log out");
+		System.out.println("O: View my orders");   
+		System.out.print("\nPlease choose one of the options: "); 
 		
 		input = scanner.next();
 		while (!isvalid)
@@ -216,15 +219,16 @@ public class Welcome {
 	public void employeeloggedinmenus()
 	{
 		String input = ""; boolean isvalid = false; 
-		System.out.println("\n\n\n\n");
-		System.out.println("Welcome Employee   "); 
-		System.out.println("**** Please choose one of the option from the following: ");     
-		System.out.println("**** S: Search for a product");  
-		System.out.println("**** A: Add a product");  
-		System.out.println("**** L: List out products");  
-		System.out.println("**** C: Search for a customer");  
-		System.out.println("**** D: Ship order");
-		System.out.println("**** Q: Log out");
+		System.out.println("Welcome Employee!"); 
+		System.out.println("\nMenu Options");
+	    System.out.println("------------");      
+		System.out.println("S: Search for a product");  
+		System.out.println("A: Add a product");  
+		System.out.println("L: List out products");  
+		System.out.println("C: Search for a customer");  
+		System.out.println("D: Ship order");
+		System.out.println("Q: Log out");
+		System.out.print("\nPlease choose one of the option from the following: ");  
 
 		EmployeeMenus menu = new EmployeeMenus();
 		input = scanner.next();

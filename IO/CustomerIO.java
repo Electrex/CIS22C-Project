@@ -15,6 +15,7 @@ import User.*;
 public class CustomerIO {
 	
 	private Hash<Customer> customerlist; 
+	private static ArrayList<String> customerlogininfo;
 	private static ArrayList<String> customerfileinfo;
 	private String filename; 
 	private Scanner scanner; 
@@ -25,6 +26,7 @@ public class CustomerIO {
 		filename = fname; 
 		customerlist = new Hash<Customer>(50);
 		scanner = new Scanner(System.in);
+		customerlogininfo = new ArrayList<String>();
 		customerfileinfo = new ArrayList<String>();
 	}
 	
@@ -33,6 +35,7 @@ public class CustomerIO {
 		filename = fname; 
 		customerlist = list;
 		scanner = new Scanner(System.in);
+		customerlogininfo = new ArrayList<String>();
 		customerfileinfo = new ArrayList<String>();
 	}
 	
@@ -64,6 +67,7 @@ public class CustomerIO {
 				// split line at space to break apart vertices u & v
 				String[] vertices = line.split(",");
 				customerlist.insert(new Customer(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4])); 
+				customerlogininfo.add(vertices[3] + "," + vertices[4]);
 				customerfileinfo.add(line);
 			}
 			buff.close();
@@ -71,6 +75,11 @@ public class CustomerIO {
 			System.out.println("readfile(): Problem reading file. " + e.toString());
 		}
 		return customerlist; 
+	}
+	
+	public static ArrayList<String> getcustomerlogininfo()
+	{
+	    return customerlogininfo;
 	}
 	
 	public static ArrayList<String> getcustomerfilecontent()

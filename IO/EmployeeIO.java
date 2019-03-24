@@ -38,7 +38,7 @@ public class EmployeeIO {
 	 */
 	public List<Employee> readfile()
 	{
-		boolean readable = false;
+		boolean readable = true;
 		BufferedReader buff;
 		FileReader filereader;
 

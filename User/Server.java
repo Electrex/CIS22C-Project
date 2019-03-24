@@ -106,14 +106,16 @@ public class Server {
 	 * @return true if the passed in username and password is found
 	 * 		   false if the passed in username and password is not found 
 	 */
-	public static boolean verifyLogInInformation(String username, String password)
-	{	
+	public static boolean verifyLogInInformationEmployee(String username, String password)
+	{
+	    
 		Employee searchvalue1 = new Employee(username, password);
 		for (int i = 0; i < User.getemployees().getLength(); i++)
-			if (User.getemployees().linearSearch(searchvalue1) != -1)
-				return true;
-			else
-				continue;
+		{
+		    if (User.getemployees().linearSearch(searchvalue1) != -1)
+                return true;
+		}
+		
 		return false;
 	}
 	
