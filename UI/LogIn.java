@@ -28,8 +28,9 @@ public class LogIn {
 			
 			if (ls.equals("1"))
 			{
-				System.out.println("**********Sign Up**********");
-				SignUp();
+				System.out.println("\nSign Up");
+				System.out.println("-------");
+				Customer temp = SignUp();
 				successlogin = true;      
 			}
 			else if (ls.equals("2"))
@@ -56,7 +57,7 @@ public class LogIn {
 					}
 					else
 					{
-						System.out.println("---- Invalid password, please retry! ");
+						System.out.println("\nInvalid username or password. Please try again.");
 						continue; 
 					}
 				}
@@ -84,7 +85,7 @@ public class LogIn {
                     }
                     else
                     {
-                        System.out.println("---- Invalid password, please retry! ");
+                        System.out.println("\nInvalid username or password. Please try again.");
                         continue; 
                     }
                 }
@@ -95,17 +96,17 @@ public class LogIn {
 			}
 			else
 			{
-				System.out.println("---- Invalid input. Please retry . . . ");
+				System.out.println("Invalid input. Please retry");
 			}
 		}
 	}
 	
-	public void SignUp()
+	public Customer SignUp()
 	{
 		String firstname, lastname, address, username, password, passwordconfirmation; 
 		System.out.print("First Name: " );
 		firstname = scanner.nextLine();
-		System.out.print("Last Name/Family Name: ");
+		System.out.print("Last Name: ");
 		lastname = scanner.nextLine();
 		System.out.print("Address: ");
 		address = scanner.nextLine();
@@ -117,19 +118,40 @@ public class LogIn {
 		passwordconfirmation = scanner.nextLine();
 		
 		boolean isvalid = false;
-		while(!isvalid)
+		
+		while(!password.equals(passwordconfirmation))
+		{
+		    System.out.println("\nPasswords do not match, please re-enter your password. ");
+            System.out.print("Password: ");
+            password = scanner.nextLine();
+            System.out.print("Confirm Password: ");
+            passwordconfirmation = scanner.nextLine();
+		}
+		
+		System.out.println("\nAccount created!\n\n");
+        Client.createnewaccount(firstname, lastname, username, password, address);
+        Customer newCustomer = new Customer(firstname, lastname, address, username, password);
+        return newCustomer;
+		
+		/*while(!isvalid)
 		{
 			if (password.equals(passwordconfirmation))
 			{
-				System.out.println(" \nYou are all set! \n\n");
+				System.out.println("\nAccount created!\n\n");
 				Client.createnewaccount(firstname, lastname, username, password, address);
+				Customer newCustomer = new Customer(firstname, lastname, address, username, password);
 				isvalid = true;  
 			}
 			else
 			{
-				System.out.println("---- Passwords do not match, please re-enter your password. ");
-				passwordconfirmation = scanner.nextLine();   
+				System.out.println("\nPasswords do not match, please re-enter your password. ");
+				System.out.print("Password: ");
+		        password = scanner.nextLine();
+		        System.out.print("Confirm Password: ");
+		        passwordconfirmation = scanner.nextLine();
 			}
 		}
+		
+		*/
 	}
 }
