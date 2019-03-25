@@ -14,6 +14,7 @@ public class ShoppingCart {
 	{
 		System.out.println("\n\n********** " + Welcome.getClient().getcustomer().getFullName() + "'s Order **********");
 		PriorityQueue<Order> allcusorders = Welcome.getClient().getcustomer().getOrders();
+		System.out.println(Welcome.getClient().getcustomer().getOrders().get_size());
 		PriorityQueue<Order> shippedorders = new PriorityQueue<Order>();
 		PriorityQueue<Order> unshippedorders = new PriorityQueue<Order>();
 		
@@ -104,13 +105,38 @@ public class ShoppingCart {
 		double totalprice = 0.0; 
 		System.out.println("\n************** Placing Order ****************");
 		System.out.println("Step 1: Confirm User Information");
-		System.out.print("Please enter your name: ");
-		String name = scanner.nextLine();
-		if (name.equalsIgnoreCase())
+		String fname = "",lname = "";
+		while (true)
+		{
+			System.out.print("Please enter your firstname: ");
+			fname = scanner.nextLine();
+			if (!fname.equalsIgnoreCase(Welcome.getClient().getcustomer().getFirstName()))
+				System.out.println("This is not your firstname, try again! ");
+			else 
+			{
+				fname = fname.replace(fname.charAt(0), Character.toUpperCase(fname.charAt(0)));
+				break;
+			}
+		}
+		
+		while (true)
+		{
+			System.out.print("Please enter your lastname: ");
+			lname = scanner.nextLine();
+			if (!lname.equalsIgnoreCase(Welcome.getClient().getcustomer().getLastName()))
+				System.out.println("This is not your lastname, try again! ");
+			else 
+			{
+				lname = lname.replace(lname.charAt(0), Character.toUpperCase(lname.charAt(0)));
+				break;
+			}
+		}
+		
 		System.out.print("Please enter your address: ");
 		String add = scanner.nextLine();
 		System.out.println("______________________________________________________________\n");
 		System.out.print("Step 2: Payment method: ");
+		System.out.println("Please enter your card number. ");
 		String cardid = scanner.nextLine();
 		System.out.println("______________________________________________________________\n");
 		System.out.println("Step 3: Shipping method: "); 
@@ -170,7 +196,7 @@ public class ShoppingCart {
 		}
 		
 		ArrayList<Product> copy = new ArrayList<Product>(Welcome.getClient().getshoppingcart());
-		Order currentOrder = new Order(copy, Welcome.getClient().getquantities(), name, shipmentmethod);
+		Order currentOrder = new Order(copy, Welcome.getClient().getquantities(), fname + " " + lname, shipmentmethod);
         Welcome.getClient().getcustomer().insertOrder(currentOrder);
 		User.adddata("p", currentOrder);
         
@@ -181,7 +207,5 @@ public class ShoppingCart {
 		System.out.println("\nThank you for your order!");
 		System.out.print("\nPress any key to back to homepage! ");
 		scanner.nextLine();
-		
-		
 	}
 }

@@ -84,7 +84,7 @@ public class ProductIO {
 		
 		for (int i = 0; i < User.getproducts().getProducts().size(); i ++)
 		{
-			filewriter.write(User.getproducts().getProducts().get(i).toString()); 
+			filewriter.write(productlist.getProducts().get(i).toString()); 
 			//System.out.print(User.getproducts().getProducts().get(i).toString());
 		}
 		

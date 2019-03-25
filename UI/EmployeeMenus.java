@@ -19,7 +19,7 @@ public class EmployeeMenus {
 		String in; 
 		
 		PriorityQueue<Order> unshippedorders = Server.viewOrders();
-		for (int i = 1; i < unshippedorders.get_size(); i ++)
+		for (int i = 1; i < unshippedorders.get_size() + 1; i ++)
 		{
 			System.out.println("Customer Name: " + unshippedorders.get_element(i).getCustomerName());
 			System.out.println("Order ID: " + unshippedorders.get_element(i).getOrderID());
@@ -42,7 +42,9 @@ public class EmployeeMenus {
 				in = scanner.nextLine();
 				if (in.equalsIgnoreCase("s"))
 				{
-					Server.sendOrder(User.getorders().get_element(i));
+					for (int j = 1; j < User.getorders().get_size() + 1; j++)
+						if (User.getorders().get_element(j).equals(unshippedorders.get_element(i))) // equal
+							Server.sendOrder(User.getorders().get_element(j));
 					System.out.println("The order has shipped! \n\n");
 					isvalid = true; 
 				}
@@ -105,6 +107,7 @@ public class EmployeeMenus {
 				{
 				    System.out.println();
 				    Customer temp = Server.searchCustomer(fname, lname);
+				    System.out.println("Here is this customer's profile: ");
 				    temp.displayCustomer();
 				    break;
 				}

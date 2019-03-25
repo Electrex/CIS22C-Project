@@ -34,7 +34,11 @@ public class DashDriver {
     			"Products.csv"}; 
     	User user = new User(files);
     	user.loaddata();
-    	user.outputdata();
+    	for (int i = 0; i < User.getcustomers().getObjects().size(); i ++)
+    	{
+    		System.out.println(User.getcustomers().getObjects().get(i).getOrders());
+    	}
+    	//user.outputdata();
     	
  
     	/*
@@ -47,7 +51,7 @@ public class DashDriver {
 	
     public static void main(String[] args) throws Exception{
         
-        //debugger();
+        // debugger();
     	runner();
     	
     	

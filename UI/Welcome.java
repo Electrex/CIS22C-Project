@@ -101,7 +101,7 @@ public class Welcome {
 
         while(true)
         {
-            if(!input.equalsIgnoreCase("S") && !input.equalsIgnoreCase("L") && !input.equals("Q"))
+            if(!input.equalsIgnoreCase("S") && !input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("Q"))
             {
                 System.out.println("----Invalid input! Please enter again.\n");
                 System.out.println("Menu Options");
@@ -120,7 +120,7 @@ public class Welcome {
 
         while (!isvalid)
         {
-            if (input.equalsIgnoreCase("S"))
+            if (input.equalsIgnoreCase("s"))
             {	
                 isvalid = true;
                 new SearchPage().Search();

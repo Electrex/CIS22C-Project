@@ -49,6 +49,7 @@ public class CustomerIO {
 		boolean doneLoadingGraph = false;
 		BufferedReader buff;
 		FileReader filereader;
+		Customer custemp; 
 
 		try {
 			filereader = new FileReader(filename);
@@ -64,16 +65,31 @@ public class CustomerIO {
 				}
 				// split line at space to break apart vertices u & v
 				String[] vertices = line.split(",");
-				customerlist.insert(new Customer(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5])); 
+				custemp = new Customer(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
+				customerlist.insert(custemp); 
 				customerlogininfo.add(vertices[3] + "," + vertices[4]);
 				customerfileinfo.add(line);
+								
+				for (int i = 1; i < User.getorders().get_size() + 1; i ++)
+				{
+					if (User.getorders().get_element(i).getCustomerName().equals(custemp.getFullName())) // the order belongs to the customer
+					{
+						custemp.insertOrder(User.getorders().get_element(i));
+						//System.out.println(User.getorders().get_element(i).getCustomerName() + " == " + custemp.getFullName());
+					}
+					//else
+						//System.out.println(User.getorders().get_element(i).getCustomerName() + " != " + custemp.getFullName());
+				}
 			}
 			buff.close();
 		} catch (IOException e) {
 			System.out.println("readfile(): Problem reading file. " + e.toString());
 		}
+		
 		return customerlist; 
 	}
+	
+	
 	
 	public static ArrayList<String> getcustomerlogininfo()
 	{

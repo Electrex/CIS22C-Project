@@ -114,7 +114,7 @@ public class LogIn {
 		System.out.print("Address: ");
 		address = scanner.nextLine();
 		if (address.contains(","))
-			address.replaceAll(",", ""); // remove all the addresses 
+			address = address.replaceAll(",", ""); // remove all the addresses 
 		System.out.print("Phone Number: ");
 	    phonenumber = scanner.nextLine();
 		System.out.print("Username: ");
@@ -134,7 +134,7 @@ public class LogIn {
 		}
 		
 		System.out.println("\nAccount created!");
-        Client.createnewaccount(firstname, lastname, username, password, address, phonenumber);
+        Client.createnewaccount(firstname, lastname, address, username, password, phonenumber);
         String temp = firstname + "," + lastname + "," + address + "," + username + "," + password + "," + phonenumber;
         CustomerIO.getcustomerfilecontent().add(temp);
         CustomerIO.getcustomerlogininfo().add(username + "," + password);

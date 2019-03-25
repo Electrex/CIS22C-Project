@@ -42,9 +42,9 @@ public class User {
 		OrderIO ordio = new OrderIO(filename[2]);
 
 		employeelist = empio.readfile();
-		customerlist = cusio.readfile();
 		productlist = proio.readfile();
 		orderslist = ordio.readfile();
+		customerlist = cusio.readfile();
 	}
 	
 	
@@ -117,6 +117,12 @@ public class User {
 		{
 			case "b": 
 			case "B":
+				for (int i = 0; i < orderslist.get_size(); i++)
+					if (orderslist.get_element(i).getProduct().contains(data))
+					{
+						System.out.println("Removed this product from orderslist");
+						orderslist.get_element(i).getProduct().remove(orderslist.get_element(i).getProduct().indexOf(data));
+					}
 				productlist.remove((Product)(data));
 				break;
 			case "p":

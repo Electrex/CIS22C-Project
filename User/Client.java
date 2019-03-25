@@ -94,8 +94,9 @@ public class Client {
 	{
 		String [] cusprop; // customer properties 
 	    cusprop = CustomerIO.getcustomerfilecontent().get(index).split(","); 
-		customer = new Customer(cusprop[0], cusprop[1], cusprop[2], cusprop[3], cusprop[4], cusprop[5]); 
-											// fname      lname       username    password    address phonenumber     
+	    customer = Server.searchCustomer(cusprop[0], cusprop[1]);
+		// customer = new Customer(cusprop[0], cusprop[1], cusprop[2], cusprop[3], cusprop[4], cusprop[5]); 
+								// fname      lname       username    password    address   phonenumber     
 		isloggedin = true; 
 	}
 
