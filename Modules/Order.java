@@ -326,10 +326,11 @@ public class Order implements Comparable<Order> {
 		String components = "";
 
 		for (int j = 0; j < this.getProduct().size(); j++) {
+			components += orderID + ",";
 			if (this.getIsShipped())
-				components += "TRUE,";
+				components += "true,";
 			else
-				components += "FALSE,";
+				components += "false,";
 			components += this.getOrderDate() + ",";
 			components += this.getShipDate() + ",";
 			components += this.getShipmentType() + ",";

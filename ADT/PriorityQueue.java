@@ -88,25 +88,6 @@ public class PriorityQueue<T extends Comparable<T>>  {
 		heap = new ArrayList<T>();
 		heap.add(null); // fill in placeholder for index zero
 	}
-
-	/*******
-	 * Copy constructor
-	 * @param copy
-	 */
-	public PriorityQueue(PriorityQueue<T> copy) 
-	{
-        if(copy.heap_size == 0)
-        {
-    		heap_size = 0;
-    		heap = new ArrayList<T>();
-    		heap.add(null);    		
-        }
-        else
-        	for (int idx = 0; idx < copy.heap_size; idx ++)
-        		this.heap.set(idx, copy.get_element(idx));
-	}
-	
-	
 	
 	/**Mutators*/
 	
