@@ -230,11 +230,11 @@ public class OrderIO {
 		PrintWriter filewriter = new PrintWriter(output);
 		
 		
-		System.out.println("\n\nOrder");
+		//System.out.println("\n\nOrder");
 		for (int i = 1; i < User.getorders().get_size()+1; i ++)
 		{
 			filewriter.write(User.getorders().get_element(i).toString());
-			System.out.print(User.getorders().get_element(i));
+			// System.out.print(User.getorders().get_element(i));
 		}
 			
 		try {

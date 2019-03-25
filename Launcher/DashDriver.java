@@ -22,6 +22,7 @@ public class DashDriver {
     	user.loaddata();
     	Welcome initializer = new Welcome();
     	initializer.welcome();
+    	
     	user.outputdata(); // exit
 	}
 	
@@ -39,7 +40,7 @@ public class DashDriver {
 	
     public static void main(String[] args) throws Exception{
         
-    	debugger();
+         debugger();
     	//runner();
     	
     	

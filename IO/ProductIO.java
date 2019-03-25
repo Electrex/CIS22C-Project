@@ -82,11 +82,11 @@ public class ProductIO {
 		}   
 		PrintWriter filewriter = new PrintWriter(output);
 		
-		System.out.println("\n\nProducts");
+		// System.out.println("\n\nProducts");
 		for (int i = 0; i < User.getproducts().getProducts().size(); i ++)
 		{
 			filewriter.write(User.getproducts().getProducts().get(i).toString()); 
-			System.out.print(User.getproducts().getProducts().get(i).toString());
+			//System.out.print(User.getproducts().getProducts().get(i).toString());
 		}
 		
 		try {
