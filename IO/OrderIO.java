@@ -21,7 +21,7 @@ public class OrderIO {
 	private String filename; 
 	private Scanner scanner; 
 	private ArrayList<String[]> ordersfilecontent;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy HH:mm"); 
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yy HH:mm:ss"); 
 	
 	public OrderIO(String fname)
 	{
@@ -91,24 +91,26 @@ public class OrderIO {
 		Timestamp shipdate = null, orderdate = null; 
 		try 
 		{
-			if (!ordersfilecontent.get(0)[3].equals(""))
+			if (!ordersfilecontent.get(0)[3].equals("") || !ordersfilecontent.get(0)[3].equals("Not shipped yet"))
 				shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[3]).getTime());
+			else
+				shipdate = null;
 		} 
 		catch (ParseException e) 
 		{	
 			shipdate = null;
-			System.out.println("shipdate = null;");
 			//e.printStackTrace();
 		}
 		
 		try 
 		{
-			if (!ordersfilecontent.get(0)[2].equals(""))
+			if (!ordersfilecontent.get(0)[2].equals("") || !ordersfilecontent.get(0)[3].equals("Not shipped yet"))
 				orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(0)[2]).getTime());
+			else
+				orderdate = null;
 		} catch (ParseException e) 
 		{ 
 			orderdate = null;
-			System.out.println("orderdate = null;");
 			//e.printStackTrace(); 
 		}
 
@@ -137,24 +139,26 @@ public class OrderIO {
 				
 				try 
 				{
-					if (!ordersfilecontent.get(i)[3].equals(""))
+					if (!ordersfilecontent.get(i)[3].equals("") || !ordersfilecontent.get(i)[3].equals("Not shipped yet"))
 						shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(i)[3]).getTime());
+					else
+						shipdate = null;
 				} 
 				catch (ParseException e) 
 				{	
 					shipdate = null;
-					System.out.println("shipdate = null;");
 					//e.printStackTrace();
 				}
 				
 				try 
 				{
-					if (!ordersfilecontent.get(i)[2].equals(""))
+					if (!ordersfilecontent.get(i)[2].equals("") || !ordersfilecontent.get(i)[2].equals("Not shipped yet"))
 						orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(i)[2]).getTime());
+					else
+						orderdate = null;
 				} catch (ParseException e) 
 				{ 
 					orderdate = null;
-					System.out.println("orderdate = null;");
 					//e.printStackTrace(); 
 				}
 					
@@ -182,24 +186,26 @@ public class OrderIO {
 			productid = ordersfilecontent.get(lastele)[6];
 			try 
 			{
-				if (!ordersfilecontent.get(lastele)[3].equals(""))
+				if (!ordersfilecontent.get(lastele)[3].equals("") || !ordersfilecontent.get(lastele)[3].equals("Not shipped yet"))
 					shipdate = new Timestamp(sdf.parse(ordersfilecontent.get(lastele)[3]).getTime());
+				else
+					shipdate = null;
 			} 
 			catch (ParseException e) 
 			{	
 				shipdate = null;
-				System.out.println("shipdate = null;");
 				//e.printStackTrace();
 			}
 			
 			try 
 			{
-				if (!ordersfilecontent.get(lastele)[2].equals(""))
+				if (!ordersfilecontent.get(lastele)[2].equals("") || !ordersfilecontent.get(lastele)[3].equals("Not shipped yet"))
 					orderdate = new Timestamp(sdf.parse(ordersfilecontent.get(lastele)[2]).getTime());
+				else
+					orderdate = null;
 			} catch (ParseException e) 
 			{ 
 				orderdate = null;
-				System.out.println("orderdate = null;");
 				//e.printStackTrace(); 
 			}
 				
@@ -229,8 +235,6 @@ public class OrderIO {
 
 		PrintWriter filewriter = new PrintWriter(output);
 		
-
-		System.out.println("\n\nOrder");
 		for (int i = 1; i < User.getorders().get_size()+1; i ++)
 		{
 			filewriter.write(User.getorders().get_element(i).toString());

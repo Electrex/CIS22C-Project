@@ -15,7 +15,7 @@ public class EmployeeMenus {
 	
 	public void deliverorder()
 	{
-		System.out.println("****Sending Orders");
+		System.out.println("\n****************************Sending Orders****************************\n");
 		String in; 
 		
 		PriorityQueue<Order> unshippedorders = Server.viewOrders();
@@ -29,21 +29,26 @@ public class EmployeeMenus {
 			
 			for (int j = 0; j < unshippedorders.get_element(i).getProduct().size(); j++)
 			{
-				System.out.println("Product Name: " + unshippedorders.get_element(i).getProduct().get(j)
+				System.out.println("Product Name: " + unshippedorders.get_element(i).getProduct().get(j).getName()
 				+ " Product Quantities: " + unshippedorders.get_element(i).getQuantity().get(j));
 			}
-			System.out.println("_____________________________________________________________________________\n");
+			
+			System.out.println("__________________________________________________________________________________________\n\n");
 
 			boolean isvalid = false; 
 			while (!isvalid)
 			{
-				System.out.println("**** Press S to ship the order: ");
-				in = scanner.next();
-				if (in.equals("S"))
+				System.out.println("**** Press S to ship the order or press Q to move on. ");
+				in = scanner.nextLine();
+				if (in.equalsIgnoreCase("s"))
 				{
 					Server.sendOrder(User.getorders().get_element(i));
-					System.out.println("The order has shipped! ");
+					System.out.println("The order has shipped! \n\n");
 					isvalid = true; 
+				}
+				else if (in.equalsIgnoreCase("q"))
+				{
+					break; 
 				}
 				else
 				{
@@ -51,6 +56,8 @@ public class EmployeeMenus {
 				}
 			}
 		}
+		
+		System.out.println("\nAll orders are shipped");
 	}
 	
 	public void searchcustomer()

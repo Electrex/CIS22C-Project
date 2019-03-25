@@ -147,7 +147,7 @@ public class Server {
 	public static PriorityQueue<Order> viewOrders()
 	{	
 		PriorityQueue<Order> orders = new PriorityQueue<Order>();
-		for (int i = 0; i < User.getorders().get_size(); i++)
+		for (int i = 1; i < User.getorders().get_size() + 1; i++)
 		{
 			if (!((Order) User.getorders().get_element(i)).getIsShipped()) // it is false means that the order is not yet being shipped
 			{
