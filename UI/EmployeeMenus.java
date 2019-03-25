@@ -115,7 +115,7 @@ public class EmployeeMenus {
 		
 		String productname, productid, description, manufacturer; 
 		double productprice, productcost;
-		System.out.print("Please enter product's name: ");
+		System.out.print("\nPlease enter product's name: ");
 		productname = scanner.nextLine();
 		System.out.print("Please enter product's ID: ");		
 		productid = scanner.nextLine();
@@ -143,9 +143,9 @@ public class EmployeeMenus {
 				System.out.println("Please enter a valid cost.");
 			}
 		}
-		System.out.print("****Please enter product's description: ");		
+		System.out.print("Please enter product's description: ");		
 		description = scanner.nextLine();		
-		System.out.print("****Please enter product's manufacturer: ");		
+		System.out.print("Please enter product's manufacturer: ");		
 		manufacturer = scanner.nextLine();
 		
 		// String name, String productId, double cost, double unitPrice, String manufacturer, String description
@@ -155,13 +155,13 @@ public class EmployeeMenus {
 	public void searchproduct()
 	{
 		String choice;
-		System.out.println("\nPress (N) to search product by name or (I) to search product by ID: ");
+		System.out.print("\nPress (N) to search product by name or (I) to search product by ID: ");
 		choice = scanner.next();
 		
 		while(!choice.equalsIgnoreCase("n") && !choice.equalsIgnoreCase("i"))
 		{
 		    System.out.println("Invalid input!");
-		    System.out.println("Press (N) to search product by name or (I) to search product by ID: ");
+		    System.out.print("Press (N) to search product by name or (I) to search product by ID: ");
 		    choice = scanner.next();
 		}
 		
@@ -172,98 +172,76 @@ public class EmployeeMenus {
 			
 			while(true)
 			{
-				System.out.println("****Please enter the product name or press Q if you want to stop: ");
+				System.out.print("Please enter the product name or press Q if you want to stop: ");
 				name = scanner.next();
 				
-				if (!name.equalsIgnoreCase("q"))
+				if (name.equalsIgnoreCase("q"))
 				{
 					break; 
 				}
 				
 				if (User.primaryProductSearch(name) != null)
 				{
-					System.out.println("Product name: $" + User.primaryProductSearch(name).getName());
-					System.out.println("Product ID: $" + User.primaryProductSearch(name).getProductId());
+					System.out.println("\nProduct name: " + User.primaryProductSearch(name).getName());
+					System.out.println("Product ID: " + User.primaryProductSearch(name).getProductId());
 					System.out.println("Product Price: $" + User.primaryProductSearch(name).getUnitPrice());
-					System.out.println("Product cost: $" + User.primaryProductSearch(name).getCost());
-					System.out.println("****Press D to delete, press any other keys to move on");
-					if (scanner.next().equalsIgnoreCase("D"))
+					System.out.println("Product Cost: $" + User.primaryProductSearch(name).getCost());
+					System.out.print("\nPress D to delete or press any key to continue: ");
+					
+					scanner.nextLine();
+					String userAnswer = scanner.nextLine();
+					if (userAnswer.equalsIgnoreCase("D"))
 					{
-						System.out.println("Deleted!");
+						System.out.println("Deleted " + User.primaryProductSearch(name).getName() + "!\n");
 						User.removedata("b", User.primaryProductSearch(name));
+					}
+					else
+					{
+					    break;
 					}
 				}
 				else
 				{
-					System.out.println("----There are no products with this name. ");
+					System.out.println("There are no products with this name. ");
 				}
 			}
 		}
-		else if (choice.equalsIgnoreCase("i"))
+		else 
 		{
 			String id = "";
 			
 			while(true)
 			{
-				System.out.println("****Please enter the product ID or press Q if you want to stop: ");
+				System.out.print("Please enter the product ID or press Q if you want to stop: ");
 				id = scanner.next();
 				
-				if (!id.equalsIgnoreCase("q"))
+				if (id.equalsIgnoreCase("q"))
 				{
 					break; 
 				}
 				
 				if (User.secondaryProductSearch(id) != null)
 				{
-					System.out.println("Product name: $" + User.secondaryProductSearch(id).getName());
-					System.out.println("Product ID: $" + User.secondaryProductSearch(id).getProductId());
-					System.out.println("Product price: $" + User.primaryProductSearch(id).getUnitPrice());
-					System.out.println("Product cost: $" + User.primaryProductSearch(id).getCost());
-					System.out.println("****Press D to delete, press any other keys to move on");
-					if (scanner.next().equalsIgnoreCase("D"))
+					System.out.println("\nProduct name: " + User.secondaryProductSearch(id).getName());
+					System.out.println("Product ID: " + User.secondaryProductSearch(id).getProductId());
+					System.out.println("Product Price: $" + User.secondaryProductSearch(id).getUnitPrice());
+					System.out.println("Product Cost: $" + User.secondaryProductSearch(id).getCost());
+					System.out.print("\nPress D to delete or (Enter) to continue: ");
+					scanner.nextLine();
+					String userAnswer = scanner.nextLine();
+					if (userAnswer.equalsIgnoreCase("D"))
 					{
-						System.out.println("Deleted!");
-						User.removedata("b", User.secondaryProductSearch(id));
+					    System.out.println("Deleted " + User.secondaryProductSearch(id).getName() + "!\n");
+					    User.removedata("b", User.secondaryProductSearch(id));
+					}
+					else
+					{
+					    break;
 					}
 				}
 				else
 				{
-					System.out.println("----There are no products with this ID. ");
-				}
-			}			
-		}
-		else
-		{
-			System.out.println("----Wrong input! Assume you are going to search by product name. ");
-			
-			String name = "";
-			
-			while(true)
-			{
-				System.out.println("****Please enter the product name or press Q if you want to stop: ");
-				name = scanner.next();
-				
-				if (!name.equalsIgnoreCase("q"))
-				{
-					break; 
-				}
-				
-				if (User.primaryProductSearch(name) != null)
-				{
-					System.out.println("Product name: $" + User.primaryProductSearch(name).getName());
-					System.out.println("Product ID: $" + User.primaryProductSearch(name).getProductId());
-					System.out.println("Product Price: $" + User.primaryProductSearch(name).getUnitPrice());
-					System.out.println("Product cost: $" + User.primaryProductSearch(name).getCost());
-					System.out.println("****Press D to delete, press any other keys to move on");
-					if (scanner.next().equalsIgnoreCase("D"))
-					{
-						System.out.println("Deleted!");
-						User.removedata("b", User.primaryProductSearch(name));
-					}
-				}
-				else
-				{
-					System.out.println("----There are no product with this name. ");
+					System.out.println("There are no products with this ID. ");
 				}
 			}
 		}

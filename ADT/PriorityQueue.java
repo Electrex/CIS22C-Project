@@ -89,6 +89,25 @@ public class PriorityQueue<T extends Comparable<T>>  {
 		heap.add(null); // fill in placeholder for index zero
 	}
 
+	/*******
+	 * Copy constructor
+	 * @param copy
+	 */
+	public PriorityQueue(PriorityQueue<T> copy) 
+	{
+        if(copy.heap_size == 0)
+        {
+    		heap_size = 0;
+    		heap = new ArrayList<T>();
+    		heap.add(null);    		
+        }
+        else
+        	for (int idx = 0; idx < copy.heap_size; idx ++)
+        		this.heap.set(idx, copy.get_element(idx));
+	}
+	
+	
+	
 	/**Mutators*/
 	
 	/**
@@ -247,7 +266,7 @@ public class PriorityQueue<T extends Comparable<T>>  {
 	 * @return element at i
 	 */
 	public T get_element(int i) throws IndexOutOfBoundsException {
-		if (i <=0 || i > get_size())
+		if (i <= 0 || i > get_size())  
 			throw new IndexOutOfBoundsException("get_element(): Invalid Index! Not a valid heap index, cannot get element.");
 		
 		return heap.get(i);

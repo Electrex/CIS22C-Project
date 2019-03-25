@@ -61,11 +61,11 @@ public class SearchPage {
 				System.out.println("Product price: $" + searchedoutput.getUnitPrice()); 
 				System.out.println();
 				
-				boolean isvalid = true; 
+				boolean isvalid = true;
 				while (isvalid)
 				{
 				    System.out.print("Would you like to add this to the shopping cart (Y/N)? ");
-					String yesorno = scanner.nextLine(); 
+					String yesorno = scanner.nextLine();
 					
 					if (yesorno.equalsIgnoreCase("y"))
 					{
@@ -97,8 +97,6 @@ public class SearchPage {
 					}
 					else if (yesorno.equalsIgnoreCase("n"))
 					{
-
-						System.out.println("Okay! Going back to the homepage...");
 						isvalid = false;
 					} 
 					else
@@ -125,23 +123,71 @@ public class SearchPage {
 		
 		while(true)
 		{
-			System.out.println("Please enter the product ID or press Q if you want to stop: ");
+			System.out.print("\nPlease enter the product ID or press Q if you want to stop: ");
 			id = scanner.nextLine();
 			
-			if (!id.equalsIgnoreCase("q"))
+			if (id.equalsIgnoreCase("q"))
 			{
 				break; 
 			}
 			
 			if (User.secondaryProductSearch(id) != null)
 			{
-				System.out.println("Product ID: " + User.secondaryProductSearch(id).getProductId());
+				System.out.println("\nProduct ID: " + User.secondaryProductSearch(id).getProductId());
 				System.out.println("Product name: " + User.secondaryProductSearch(id).getName());
 				System.out.println("Product description: " + User.secondaryProductSearch(id).getDescription());
 				System.out.println("Product price: $" + User.secondaryProductSearch(id).getUnitPrice()); 
-				System.out.println();
 
-			}
+                boolean isvalid = true;
+                
+                while (isvalid)
+                {
+                    System.out.print("\nWould you like to add this to the shopping cart (Y/N)? ");
+                    String yesorno = scanner.nextLine();
+                    
+                    if (yesorno.equalsIgnoreCase("y"))
+                    {
+                        String quantity = "";
+                        
+                        while(true)
+                        {
+                            try
+                            {
+                                System.out.printf("\nHow many %s would like to put into the shopping cart? ", User.secondaryProductSearch(id).getName());
+                                quantity = scanner.nextLine();
+                                
+                                if(Integer.parseInt(quantity) <= 0)
+                                {
+                                    throw new NumberFormatException();
+                                }
+                                Welcome.getClient().addtoshoppingcart(User.secondaryProductSearch(id), Integer.parseInt(quantity));
+                                
+                                System.out.println("\n" + quantity + " " + User.secondaryProductSearch(id).getName() + " have been placed in your shopping cart!");
+                                isvalid = false;
+                                break;
+                            }
+                            catch(NumberFormatException e)
+                            {
+                              System.out.println("Please enter a valid quantity");
+                              quantity = scanner.nextLine();
+                            }
+                        }
+                    }
+                    else if (yesorno.equalsIgnoreCase("n"))
+                    {
+                        isvalid = false;
+                    } 
+                    else
+                    { 
+                        System.out.println("Invalid input, please try again! ");
+                        System.out.println();
+                        continue;
+
+                    }
+                }
+                
+                break;
+            }
 			else
 			{
 				System.out.println("There are no products with this ID. ");

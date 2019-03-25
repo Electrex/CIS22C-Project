@@ -44,7 +44,13 @@ public class User {
 		employeelist = empio.readfile();
 		customerlist = cusio.readfile();
 		productlist = proio.readfile();
+		//orderslist = new PriorityQueue<Order>(ordio.readfile());
 		orderslist = ordio.readfile();
+		
+    	for (int i = 1; i < orderslist.get_size() + 1; i++)
+		{
+			System.out.println(orderslist.get_element(i));		
+		}	
 	}
 	
 	
@@ -89,6 +95,7 @@ public class User {
 			case "p":
 			case "P":
 				orderslist.insert((Order)(data));
+				System.out.println("Inserted");
 				break;
 			case "h":
 			case "H":
@@ -180,14 +187,17 @@ public class User {
 	 */
 	public static Product secondaryProductSearch(String input) // should be ID number 
 	{
-		BST temp = productlist;
-		temp.sortBySecondary();
+	    BST temp = new BST(productlist);
+	    temp.sortBySecondary();
 
-		if (temp.searchBySecondary(new Product("", input, 0.0, 0.0, "", ""))) // if it can be found
-			for (int i = 0; i < temp.getProducts().size(); i ++)
-				if (temp.getProducts().get(i).getName().equals(input)) // if product ID == the ID inputed.    
-					return temp.getProducts().get(i);
-		return null; 
+	    for (int i = 0; i < temp.getProducts().size(); i++)
+	    {
+	        if (temp.getProducts().get(i).getProductId().equals(input)) // if product ID == the ID inputed.  
+	        {
+	            return temp.getProducts().get(i);
+	        }
+	    }
+	    return null; 
 	}
 	
 	/*******
