@@ -115,6 +115,7 @@ public class CustomerIO {
 		
 		//System.out.println("\n\nCustomer");
 		//System.out.print(User.getcustomers().toString());
+
 		
 		try {
 			output.close();

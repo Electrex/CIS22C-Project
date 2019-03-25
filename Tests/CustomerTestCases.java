@@ -15,7 +15,7 @@ import IO.CustomerIO;
 
 public class CustomerTestCases {
 
-/*	@Test
+	@Test
 	public void testForCustomerFirstName() {
 		Customer customer = new Customer();
 		customer.setFirstName("tom");
@@ -38,7 +38,7 @@ public class CustomerTestCases {
 		assertEquals(customer.getUsername(),"Hawking YH");
 		
 	}
-*/	
+	
 	@Test
     public void testForSearchCustomer() {
         Customer customer = new Customer("Claire", "Gute");
@@ -52,7 +52,7 @@ public class CustomerTestCases {
         System.out.println(server.searchCustomer("Claire", "Gute"));
     }
 	
-	/*
+
 	@Test
 	public void testForCustomerAddress() {
 		Customer customer = new Customer();
@@ -63,7 +63,7 @@ public class CustomerTestCases {
 	
 	@Test
 	public void testForCustomerPasswordVerification() {
-		Customer customer = new Customer("Tom","Rider","CityABC","Hawking","admin123");
+		Customer customer = new Customer("Tom","Rider","CityABC","Hawking","admin123", "4085551234");
 		boolean expected = true;
 		assertEquals(customer.verifyPassword("admin123"),expected);
 		
@@ -72,7 +72,7 @@ public class CustomerTestCases {
 	@Test
 	public void testForDuplicateCustomer() {
 		
-		Customer customer = new Customer("Tom","Rider","CityABC","Hawking","admin123");
+		Customer customer = new Customer("Tom","Rider","CityABC","Hawking","admin123", "4085551234");
 		Customer customer2 = new Customer();
 		int expected = 0;
 		assertEquals(customer.compareTo(customer2),expected);
@@ -81,7 +81,7 @@ public class CustomerTestCases {
 	@Test
 	public void testTotalOrdersTakenByCustomer() {
 		
-		Customer customer = new Customer("Tom","Rider","CityABC","Hawking","admin123");
+		Customer customer = new Customer("Tom","Rider","CityABC","Hawking","admin123", "4085551234");
 		Order order = new Order();
 		customer.insertOrder(order);
 		int expected = 1;
@@ -105,5 +105,5 @@ public class CustomerTestCases {
 		boolean expected = false;
 		assertEquals(CustomerIO.getcustomerfilecontent().isEmpty(), expected);
 	}
-	*/
+
 }
