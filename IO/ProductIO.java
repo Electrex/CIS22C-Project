@@ -76,7 +76,7 @@ public class ProductIO {
 		FileWriter output = new FileWriter(filename);   
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		for (int i = 0; i < User.getproducts().getProducts().size(); i ++)
+		for (int i = 0; i < User.getproducts().getProducts().size(); i++)
 			filewriter.write(User.getproducts().getProducts().get(i).toString()); 
 			
 		try {

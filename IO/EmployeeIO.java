@@ -74,7 +74,13 @@ public class EmployeeIO {
 		FileWriter output = new FileWriter(filename);   
 		PrintWriter filewriter = new PrintWriter(output); 
 		
-		filewriter.write(User.getemployees().toString()); 
+		User.getemployees().pointIterator();
+		
+		for(int i = 0; i < User.getemployees().getLength(); i++)
+		{
+		    filewriter.write(User.getemployees().getIterator().toString());
+		    User.getemployees().advanceIterator();
+		} 
 			
 		try {
 			output.close();
