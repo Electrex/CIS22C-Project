@@ -44,13 +44,7 @@ public class User {
 		employeelist = empio.readfile();
 		customerlist = cusio.readfile();
 		productlist = proio.readfile();
-		//orderslist = new PriorityQueue<Order>(ordio.readfile());
 		orderslist = ordio.readfile();
-		
-    	for (int i = 1; i < orderslist.get_size() + 1; i++)
-		{
-			System.out.println(orderslist.get_element(i));		
-		}	
 	}
 	
 	
@@ -64,14 +58,10 @@ public class User {
 		OrderIO ordio = new OrderIO(filename[2], orderslist);
 		ProductIO proio = new ProductIO(filename[3], productlist);
 		
-		try {
-			ordio.rewritefile();
-			empio.rewritefile();
-			cusio.rewritefile();
-			proio.rewritefile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		ordio.rewritefile();
+		empio.rewritefile();
+		cusio.rewritefile();
+		proio.rewritefile();
 	}
 	
 	/******

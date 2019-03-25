@@ -104,6 +104,7 @@ public class CustomerIO {
 		FileWriter output = null;
 		try {
 			output = new FileWriter(filename);
+			//output = new FileWriter("customeroutput.csv");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}   
@@ -111,7 +112,11 @@ public class CustomerIO {
 		PrintWriter filewriter = new PrintWriter(output); 
 		
 		filewriter.write(User.getcustomers().toString()); 
-			
+		
+		//System.out.println("\n\nCustomer");
+		//System.out.print(User.getcustomers().toString());
+
+		
 		try {
 			output.close();
 		} catch (IOException e) {

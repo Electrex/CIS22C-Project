@@ -171,7 +171,8 @@ public class ShoppingCart {
 		ArrayList<Product> copy = new ArrayList<Product>(Welcome.getClient().getshoppingcart());
 		Order currentOrder = new Order(copy, Welcome.getClient().getquantities(), name, shipmentmethod);
         Welcome.getClient().getcustomer().insertOrder(currentOrder);
-		
+		User.adddata("p", currentOrder);
+        
 		System.out.printf("Tax: $%.2f", totalprice*0.09);
 		System.out.println();
 		totalprice*=1.09; 

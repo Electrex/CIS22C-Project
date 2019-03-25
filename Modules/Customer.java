@@ -302,7 +302,7 @@ public class Customer implements Comparable<Customer> {
     @Override
     public String toString()
     {
-        String result = firstName + "," + lastName + "," + address + "," + username + "," + password + "," + phoneNumber + "\n";
+        String result = firstName + "," + lastName + "," + username + "," + password + "," + address + "," + phoneNumber + "\n";
         return result;
     }
 }

@@ -22,6 +22,7 @@ public class DashDriver {
     	user.loaddata();
     	Welcome initializer = new Welcome();
     	initializer.welcome();
+    	
     	user.outputdata(); // exit
 	}
 	
@@ -33,7 +34,9 @@ public class DashDriver {
     			"Products.csv"}; 
     	User user = new User(files);
     	user.loaddata();
+    	user.outputdata();
     	
+ 
     	/*
     	for (int i = 0; i < User.getorders().get_size(); i++)
 		{
@@ -44,7 +47,7 @@ public class DashDriver {
 	
     public static void main(String[] args) throws Exception{
         
-    	debugger();
+         debugger();
     	//runner();
     	
     	
