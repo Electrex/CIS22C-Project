@@ -4,7 +4,8 @@ package Launcher;
 import java.io.File;
 import java.util.Scanner;
 
-import ADT.*; 
+import ADT.*;
+import IO.OrderIO;
 import Modules.*;
 import UI.*; 
 import User.*; 
@@ -29,15 +30,22 @@ public class DashDriver {
     	String [] files = {"Customer.csv", 
     			"Employee.csv", 
     			"Orders.csv", 
-    			"Product.csv"}; 
+    			"Products.csv"}; 
     	User user = new User(files);
     	user.loaddata();
+    	
+    	/*
+    	for (int i = 0; i < User.getorders().get_size(); i++)
+		{
+			System.out.println(User.getorders().get_element(i));		
+		}
+		*/	
 	}
 	
     public static void main(String[] args) throws Exception{
         
-    	//debugger();
-    	runner();
+    	debugger();
+    	//runner();
     	
     	
     	/*

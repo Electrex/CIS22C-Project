@@ -44,7 +44,13 @@ public class User {
 		employeelist = empio.readfile();
 		customerlist = cusio.readfile();
 		productlist = proio.readfile();
+		//orderslist = new PriorityQueue<Order>(ordio.readfile());
 		orderslist = ordio.readfile();
+		
+    	for (int i = 1; i < orderslist.get_size() + 1; i++)
+		{
+			System.out.println(orderslist.get_element(i));		
+		}	
 	}
 	
 	
@@ -89,6 +95,7 @@ public class User {
 			case "p":
 			case "P":
 				orderslist.insert((Order)(data));
+				System.out.println("Inserted");
 				break;
 			case "h":
 			case "H":
