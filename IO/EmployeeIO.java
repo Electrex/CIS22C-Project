@@ -69,13 +69,22 @@ public class EmployeeIO {
 	* overwrite the entire file. 
 	 * @throws IOException 
 	*/
-	public void rewritefile() throws IOException
+	public void rewritefile() 
 	{
-		FileWriter output = new FileWriter(filename);   
+		FileWriter output = null;
+		try {
+			output = new FileWriter(filename);
+			//output = new FileWriter("employeeoutput.csv");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}   
 		PrintWriter filewriter = new PrintWriter(output); 
 		
 		filewriter.write(User.getemployees().toString()); 
-			
+		
+		System.out.println("\n\nEmployee");
+		System.out.print(User.getemployees().toString());
+		
 		try {
 			output.close();
 		} catch (IOException e) {

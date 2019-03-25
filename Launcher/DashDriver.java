@@ -33,13 +33,8 @@ public class DashDriver {
     			"Products.csv"}; 
     	User user = new User(files);
     	user.loaddata();
-    	
-    	/*
-    	for (int i = 0; i < User.getorders().get_size(); i++)
-		{
-			System.out.println(User.getorders().get_element(i));		
-		}
-		*/	
+		
+    	user.outputdata();
 	}
 	
     public static void main(String[] args) throws Exception{

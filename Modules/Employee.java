@@ -61,7 +61,7 @@ public class Employee implements Comparable<Employee>{
      * in the resulting String
      */
     @Override public String toString() {
-        String result = username + "," + password + "\n";
+        String result = username + "," + password + "," + fullname;
         return result;
     }
     

@@ -70,15 +70,25 @@ public class ProductIO {
 	* overwrite the entire file. 
 	 * @throws IOException 
 	*/
-	public void rewritefile() throws IOException
+	public void rewritefile() 
 	{
-		boolean isinvalid = true;           
-		FileWriter output = new FileWriter(filename);   
-		PrintWriter filewriter = new PrintWriter(output); 
+		FileWriter output = null;
+		try {
+			//output = new FileWriter("productoutput.csv");
+			output = new FileWriter(filename);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}   
+		PrintWriter filewriter = new PrintWriter(output);
 		
+		System.out.println("\n\nProducts");
 		for (int i = 0; i < User.getproducts().getProducts().size(); i ++)
+		{
 			filewriter.write(User.getproducts().getProducts().get(i).toString()); 
-			
+			System.out.print(User.getproducts().getProducts().get(i).toString());
+		}
+		
 		try {
 			output.close();
 		} catch (IOException e) {

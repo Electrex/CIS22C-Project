@@ -73,6 +73,7 @@ public class OrderIO {
 			System.out.println("readfile(): Problem reading file. " + e.toString());
 		}
 		
+		
 		ArrayList<Integer> orderID = new ArrayList<Integer>();
 		ArrayList<Product> products = new ArrayList<Product>();
 		ArrayList<Integer> quantities = new ArrayList<Integer>();
@@ -124,14 +125,16 @@ public class OrderIO {
 			else // not in the same order
 			{
 				orderslist.insert(new Order(lastorderid, products, quantities, customer, orderdate, shipdate, shiptype, isshipped));
-				products.clear();
-				quantities.clear();
+				products = new ArrayList<Product>();
+				quantities = new ArrayList<Integer>();
+
 				
 				lastorderid = orderID.get(i);
 				isshipped = Boolean.parseBoolean((ordersfilecontent.get(i)[1])); 
 				shiptype = ordersfilecontent.get(i)[4];
 				customer = ordersfilecontent.get(i)[5];
 				productid = ordersfilecontent.get(i)[6];
+				
 				try 
 				{
 					if (!ordersfilecontent.get(i)[3].equals(""))
@@ -210,28 +213,28 @@ public class OrderIO {
 	
 	/********
 	* overwrite the entire file. 
+	 * @throws IOException 
 	*/
-	public void rewritefile()
+	public void rewritefile() 
 	{
 		boolean isinvalid = true;  
 		FileWriter output = null;
-		
-		try
-		{
-			output = new FileWriter(filename);   
+		try {
+			output = new FileWriter(filename);
+			//output = new FileWriter("orderoutput.csv");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		catch(IOException e) 
-		{
-			e.printStackTrace();
-		}
+
+		PrintWriter filewriter = new PrintWriter(output);
 		
 		
-		PrintWriter filewriter = new PrintWriter(output); 
-		
-		for (int i = 0; i < User.getorders().get_size(); i ++)
+		System.out.println("\n\nOrder");
+		for (int i = 1; i < User.getorders().get_size()+1; i ++)
 		{
 			filewriter.write(User.getorders().get_element(i).toString());
-			System.out.println(User.getorders().get_element(i).toString());
+			System.out.print(User.getorders().get_element(i));
 		}
 			
 		try {
