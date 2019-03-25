@@ -106,6 +106,7 @@ public class ShoppingCart {
 		System.out.println("Step 1: Confirm User Information");
 		System.out.print("Please enter your name: ");
 		String name = scanner.nextLine();
+		if (name.equalsIgnoreCase())
 		System.out.print("Please enter your address: ");
 		String add = scanner.nextLine();
 		System.out.println("______________________________________________________________\n");
@@ -147,7 +148,7 @@ public class ShoppingCart {
 		for (int i = 0; i < Welcome.getClient().getshoppingcart().size(); i++)
 		{
 			System.out.println("Product Name: " + Welcome.getClient().getshoppingcart().get(i).getName());
-			System.out.println("    Product price: " + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
+			System.out.println("    Product price: $" + Welcome.getClient().getshoppingcart().get(i).getUnitPrice());
 			System.out.println("    Quantity: " + Welcome.getClient().getquantities().get(i) + "\n");
 			totalprice += (Welcome.getClient().getshoppingcart().get(i).getUnitPrice())*(Welcome.getClient().getquantities().get(i)); 
 		}	

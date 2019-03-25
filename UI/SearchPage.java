@@ -61,8 +61,8 @@ public class SearchPage {
 				System.out.println("Product price: $" + searchedoutput.getUnitPrice()); 
 				System.out.println();
 				
-				boolean isvalid = true;
-				while (isvalid)
+				boolean isvalid = Welcome.getClient().isloggedin();
+				while (isvalid == true)
 				{
 				    System.out.print("Would you like to add this to the shopping cart (Y/N)? ");
 					String yesorno = scanner.nextLine();
@@ -104,7 +104,6 @@ public class SearchPage {
 						System.out.println("Invalid input, please try again! ");
 						System.out.println();
 					    continue;
-
 					}
 				}
 				
@@ -138,7 +137,7 @@ public class SearchPage {
 				System.out.println("Product description: " + User.secondaryProductSearch(id).getDescription());
 				System.out.println("Product price: $" + User.secondaryProductSearch(id).getUnitPrice()); 
 
-                boolean isvalid = true;
+                boolean isvalid = Welcome.getClient().isloggedin();
                 
                 while (isvalid)
                 {

@@ -85,7 +85,6 @@ public class User {
 			case "p":
 			case "P":
 				orderslist.insert((Order)(data));
-				System.out.println("Inserted");
 				break;
 			case "h":
 			case "H":

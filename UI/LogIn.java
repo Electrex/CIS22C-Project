@@ -113,6 +113,8 @@ public class LogIn {
 		lastname = scanner.nextLine();
 		System.out.print("Address: ");
 		address = scanner.nextLine();
+		if (address.contains(","))
+			address.replaceAll(",", ""); // remove all the addresses 
 		System.out.print("Phone Number: ");
 	    phonenumber = scanner.nextLine();
 		System.out.print("Username: ");

@@ -97,20 +97,20 @@ public class Welcome {
         System.out.println("Q: Quit ");  
         System.out.print("\nPlease choose one of the options: ");
 
-        input = scanner.next();
+        input = scanner.nextLine();
 
         while(true)
         {
             if(!input.equalsIgnoreCase("S") && !input.equalsIgnoreCase("L") && !input.equals("Q"))
             {
-                System.out.println("Invalid input! Please enter again.\n");
+                System.out.println("----Invalid input! Please enter again.\n");
                 System.out.println("Menu Options");
                 System.out.println("------------");
                 System.out.println("S: Search for a product");            
                 System.out.println("L: Log In or Create an Account ");   
                 System.out.println("Q: Quit ");  
-                System.out.print("\nPlease choose one of the options: ");
-                input = scanner.next();
+                System.out.print("\n****Please choose one of the options: ");
+                input = scanner.nextLine();
             }
             else
             {
@@ -141,7 +141,7 @@ public class Welcome {
             {
                 System.out.println("\nInvalid input!");
                 System.out.print("Please choose one of the options: ");
-                input = scanner.next();
+                input = scanner.nextLine();
             }
         }
     }
@@ -159,7 +159,7 @@ public class Welcome {
         System.out.println("Q: Log out");
         System.out.print("\nPlease choose one of the options: "); 
 
-        input = scanner.next();
+        input = scanner.nextLine();
 
         while(true)
         {
@@ -175,7 +175,7 @@ public class Welcome {
                 System.out.println("Q: Log out");
                 System.out.print("\nPlease choose one of the options: "); 
 
-                input = scanner.next();
+                input = scanner.nextLine();
             }
             else
             {
@@ -210,7 +210,7 @@ public class Welcome {
             {
                 String choice;
                 System.out.print("\nPress (N) to list all products by name or (I) to list all products by ID: ");
-                choice = scanner.next();
+                choice = scanner.nextLine();
 
                 while(true)
                 {
@@ -218,7 +218,7 @@ public class Welcome {
                     {
                         System.out.println("Invalid input! Please enter again.");
                         System.out.print("\nPress (N) to list all products by name or (I) to list all products by ID: ");
-                        choice = scanner.next();
+                        choice = scanner.nextLine();
                     }
                     else
                     {
@@ -274,7 +274,7 @@ public class Welcome {
         System.out.print("\nPlease choose one of the option from the following: ");  
 
         EmployeeMenus menu = new EmployeeMenus();
-        input = scanner.next();
+        input = scanner.nextLine();
         while (!isvalid)
         {
             if (input.equalsIgnoreCase("S"))
@@ -311,7 +311,7 @@ public class Welcome {
             else
             {
                 System.out.println("----Sorry, invalid output. Try again. ");
-                input = scanner.next();
+                input = scanner.nextLine();
                 //continue; 
             }
         }
