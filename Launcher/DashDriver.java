@@ -22,6 +22,7 @@ public class DashDriver {
     	user.loaddata();
     	Welcome initializer = new Welcome();
     	initializer.welcome();
+    	
     	user.outputdata(); // exit
 	}
 	
@@ -33,7 +34,6 @@ public class DashDriver {
     			"Products.csv"}; 
     	User user = new User(files);
     	user.loaddata();
-<<<<<<< HEAD
     	user.outputdata();
     	
  
@@ -43,15 +43,11 @@ public class DashDriver {
 			System.out.println(User.getorders().get_element(i));		
 		}
 		*/	
-=======
-		
-    	user.outputdata();
->>>>>>> 75b3a7061cd7f2a6cd1c6175b82d0487cd302f0e
 	}
 	
     public static void main(String[] args) throws Exception{
         
-    	debugger();
+         debugger();
     	//runner();
     	
     	

@@ -113,8 +113,9 @@ public class CustomerIO {
 		
 		filewriter.write(User.getcustomers().toString()); 
 		
-		System.out.println("\n\nCustomer");
-		System.out.print(User.getcustomers().toString());
+		//System.out.println("\n\nCustomer");
+		//System.out.print(User.getcustomers().toString());
+
 		
 		try {
 			output.close();
