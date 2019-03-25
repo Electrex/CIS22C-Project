@@ -250,10 +250,27 @@ public class EmployeeMenus {
 	public void listproduct()
 	{
 		String choice;
-	    System.out.println("\nPress (N) to search product by name or (I) to search product by ID: ");
+	    System.out.print("\nPress (N) to search product by name or (I) to search product by ID: ");
 		choice = scanner.next();
+		
+		  while(true)
+          {
+              if(!choice.equalsIgnoreCase("n") && !choice.equalsIgnoreCase("i"))
+              {
+                  System.out.println("Invalid input! Please enter again.");
+                  System.out.print("\nPress (N) to list all products by name or (I) to list all products by ID: ");
+                  choice = scanner.next();
+              }
+              else
+              {
+                  break;
+              }
+          }
+		  
+		  
 		if (choice.equalsIgnoreCase("n"))
 		{
+		    System.out.println();
 			BST temp = User.getproducts();
 			temp.sortByPrimary();
 			for (int i = 0; i < temp.getProducts().size(); i++)
@@ -265,8 +282,9 @@ public class EmployeeMenus {
 				System.out.println("--------------------------------------------------------------");
 			}
 		}
-		else if (choice.equalsIgnoreCase("i"))
+		else
 		{
+		    System.out.println();
 			BST temp = User.getproducts();
 			temp.sortBySecondary();
 			for (int i = 0; i < temp.getProducts().size(); i++)

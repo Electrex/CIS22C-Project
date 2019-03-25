@@ -45,235 +45,275 @@ For employee user:
  * @author albertliu
  */
 public class Welcome {
-	
-	private Scanner scanner; 
-	private static Client client;
-	private static Server server;
-	private boolean exit;
-	
-	public Welcome()
-	{
-		scanner = new Scanner(System.in); 
-		client = new Client();
-		server = new Server();
-		exit = false;
-	}
-	
-	public static Client getClient()
-	{
-		return client; 
-	}
-	
-	public static Server getServer()
-	{
-		return server; 
-	}
-	
-	public void welcome()
-	{
-		System.out.println("********************* Welcome to Dash! *********************");
-		start();
-	}
-	
-	public void start()
-	{
-		while(exit == false)
-			if (client.isloggedin())
-				loggedinmenus(); 
-			else if (server.isloggedin())
-				employeeloggedinmenus();
-			else 
-				guestmenus(); 
-	}
-	
-	public void guestmenus()
-	{
-		String input = ""; boolean isvalid = false;
-		System.out.println("\nWelcome Guest!\n"); 
-		System.out.println("Menu Options");
-		System.out.println("------------");
-		System.out.println("S: Search for a product");            
-		System.out.println("L: Log In or Create an Account ");   
-		System.out.println("Q: Quit ");  
-		System.out.print("\nPlease choose one of the options: ");
-		  
-		input = scanner.next();
-		while (!isvalid)
-		{
-			if (input.equalsIgnoreCase("S"))
-			{	
-				isvalid = true;
-				new SearchPage().Search();
-			}
-			else if (input.equalsIgnoreCase("l"))
-			{
-				isvalid = true;
-				new LogIn().logIn();
-			}
-			else if (input.equalsIgnoreCase("q"))
-			{
-				isvalid = true;
-				exit = true; 
-				System.out.println("Goodbye!");
-				break;
-			}
-			else
-			{
-				System.out.println("\nInvalid input!");
-				System.out.print("Please choose one of the options: ");
-				input = scanner.next();
-			}
-		}
-	}
-	
-	public void loggedinmenus()
-	{
-		String input = ""; boolean isvalid = false; 
-		System.out.println("\nWelcome customer, " + client.getcustomer().getFullName()); 
-		System.out.println("\nMenu Options");
-        System.out.println("------------");    
-		System.out.println("S: Search for a product");     
-		System.out.println("L: List Products ");
-		System.out.println("V: View my shopping cart");  
-		System.out.println("O: View my orders");   
-		System.out.println("Q: Log out");
-		System.out.print("\nPlease choose one of the options: "); 
-		
-		input = scanner.next();
-		while (!isvalid)
-		{
-			if (input.equalsIgnoreCase("S"))
-			{	
-				isvalid = true;
-				new SearchPage().Search();
-			}
-			else if (input.equalsIgnoreCase("V"))
-			{
-			    new ShoppingCart().displayshoppingcart();
-				isvalid = true;
-			}
-			else if (input.equalsIgnoreCase("Q"))
-			{
-				isvalid = true;
-				client.logout();
-				System.out.println("You have successfully logged out.");
-			}
-			else if (input.equalsIgnoreCase("O"))
-			{
-				new ShoppingCart().viewOrder();
-				isvalid = true;
-			}
-			else if (input.equalsIgnoreCase("L"))
-			{
-				String choice;
-				System.out.println("**** Would you like to list all the products by product name or by product ID? ");
-				System.out.println("**** Press (N) for name and (I) for ID");
-				choice = scanner.next();
-				if (choice.equalsIgnoreCase("n"))
-				{
-					BST temp = User.displayProductPrimary(); 
-					for (int i = 0; i < temp.getProducts().size(); i++)
-					{
-						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
-						System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
-						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-						System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
-						//System.out.printf("Product Cost: $%.2d\n", temp.getProducts().get(i).getCost());
-						System.out.println("--------------------------------------------------------------");
-					}
-				}
-				else if (choice.equalsIgnoreCase("i"))
-				{
-					BST temp = User.displayProductSecondary(); 
-					for (int i = 0; i < temp.getProducts().size(); i++)
-					{
-						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
-						System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
-						System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
-						//System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
-						System.out.println("--------------------------------------------------------------");
-					}		
-				}
-				else
-				{
-					System.out.println("---- Invalid input! Assume you are going to list by product name. ");
-					BST temp = User.displayProductPrimary(); 
-					for (int i = 0; i < temp.getProducts().size(); i++)
-					{
-						System.out.println("Product Name: " + temp.getProducts().get(i).getName());
-						System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
-						System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
-						System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
-						//System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
-						System.out.println("--------------------------------------------------------------");
-					}
-				}
-				isvalid = true; 
-			}
-			else
-			{
-				System.out.println("Sorry, invalid output. Try again. ");
-				input = scanner.next(); 
-			}
-		}
-	}
-	
-	public void employeeloggedinmenus()
-	{
-		String input = ""; boolean isvalid = false; 
-		System.out.println("\nWelcome employee, " + server.getemployee().getFullname()); 
-		System.out.println("\nMenu Options");
-	    System.out.println("------------");      
-		System.out.println("S: Search for a product");  
-		System.out.println("A: Add a product");  
-		System.out.println("L: List out products");  
-		System.out.println("C: Search for a customer");  
-		System.out.println("D: Ship order");
-		System.out.println("Q: Log out");
-		System.out.print("\nPlease choose one of the option from the following: ");  
 
-		EmployeeMenus menu = new EmployeeMenus();
-		input = scanner.next();
-		while (!isvalid)
-		{
-			if (input.equalsIgnoreCase("S"))
-			{	
-				menu.searchproduct();
-				isvalid = true;
-			}
-			else if (input.equalsIgnoreCase("A"))
-			{	
-				menu.addproduct();
-				isvalid = true;
-			}
-			else if (input.equalsIgnoreCase("C"))
-			{
-				menu.searchcustomer();
-				isvalid = true;
-			}
-			else if (input.equalsIgnoreCase("D"))
-			{
-				isvalid = true;
-				menu.deliverorder();
-			}			
-			else if (input.equalsIgnoreCase("L"))
-			{
-				menu.listproduct();
-				isvalid = true;
-			}
-			else if (input.equalsIgnoreCase("Q"))
-			{
-				server.logout();
-				System.out.println("You have successfully logged out.");
-				isvalid = true;
-			}
-			else
-			{
-				System.out.println("----Sorry, invalid output. Try again. ");
-				input = scanner.next();
-				//continue; 
-			}
-		}
-	}
+    private Scanner scanner; 
+    private static Client client;
+    private static Server server;
+    private boolean exit;
+
+    public Welcome()
+    {
+        scanner = new Scanner(System.in); 
+        client = new Client();
+        server = new Server();
+        exit = false;
+    }
+
+    public static Client getClient()
+    {
+        return client; 
+    }
+
+    public static Server getServer()
+    {
+        return server; 
+    }
+
+    public void welcome()
+    {
+        System.out.println("********************* Welcome to Dash! *********************");
+        start();
+    }
+
+    public void start()
+    {
+        while(exit == false)
+            if (client.isloggedin())
+                loggedinmenus(); 
+            else if (server.isloggedin())
+                employeeloggedinmenus();
+            else 
+                guestmenus(); 
+    }
+
+    public void guestmenus()
+    {
+        String input = ""; boolean isvalid = false;
+        System.out.println("\nWelcome Guest!\n"); 
+        System.out.println("Menu Options");
+        System.out.println("------------");
+        System.out.println("S: Search for a product");            
+        System.out.println("L: Log In or Create an Account ");   
+        System.out.println("Q: Quit ");  
+        System.out.print("\nPlease choose one of the options: ");
+
+        input = scanner.next();
+
+        while(true)
+        {
+            if(!input.equalsIgnoreCase("S") && !input.equalsIgnoreCase("L") && !input.equals("Q"))
+            {
+                System.out.println("Invalid input! Please enter again.\n");
+                System.out.println("Menu Options");
+                System.out.println("------------");
+                System.out.println("S: Search for a product");            
+                System.out.println("L: Log In or Create an Account ");   
+                System.out.println("Q: Quit ");  
+                System.out.print("\nPlease choose one of the options: ");
+                input = scanner.next();
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        while (!isvalid)
+        {
+            if (input.equalsIgnoreCase("S"))
+            {	
+                isvalid = true;
+                new SearchPage().Search();
+            }
+            else if (input.equalsIgnoreCase("l"))
+            {
+                isvalid = true;
+                new LogIn().logIn();
+            }
+            else if (input.equalsIgnoreCase("q"))
+            {
+                isvalid = true;
+                exit = true; 
+                System.out.println("Goodbye!");
+                break;
+            }
+            else
+            {
+                System.out.println("\nInvalid input!");
+                System.out.print("Please choose one of the options: ");
+                input = scanner.next();
+            }
+        }
+    }
+
+    public void loggedinmenus()
+    {
+        String input = ""; boolean isvalid = false; 
+        System.out.println("\nWelcome customer, " + client.getcustomer().getFullName()); 
+        System.out.println("\nMenu Options");
+        System.out.println("------------");    
+        System.out.println("S: Search for a product");     
+        System.out.println("L: List Products ");
+        System.out.println("V: View my shopping cart");  
+        System.out.println("O: View my orders");   
+        System.out.println("Q: Log out");
+        System.out.print("\nPlease choose one of the options: "); 
+
+        input = scanner.next();
+
+        while(true)
+        {
+            if(!input.equalsIgnoreCase("S") && !input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("V") && !input.equalsIgnoreCase("O") && !input.equalsIgnoreCase("Q"))
+            {
+                System.out.println("Invalid input! Please enter again.\n");
+                System.out.println("Menu Options");
+                System.out.println("------------");    
+                System.out.println("S: Search for a product");     
+                System.out.println("L: List Products ");
+                System.out.println("V: View my shopping cart");  
+                System.out.println("O: View my orders");   
+                System.out.println("Q: Log out");
+                System.out.print("\nPlease choose one of the options: "); 
+
+                input = scanner.next();
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        while (!isvalid)
+        {
+            if (input.equalsIgnoreCase("S"))
+            {	
+                isvalid = true;
+                new SearchPage().Search();
+            }
+            else if (input.equalsIgnoreCase("V"))
+            {
+                new ShoppingCart().displayshoppingcart();
+                isvalid = true;
+            }
+            else if (input.equalsIgnoreCase("Q"))
+            {
+                isvalid = true;
+                client.logout();
+                System.out.println("You have successfully logged out.");
+            }
+            else if (input.equalsIgnoreCase("O"))
+            {
+                new ShoppingCart().viewOrder();
+                isvalid = true;
+            }
+            else 
+            {
+                String choice;
+                System.out.print("\nPress (N) to list all products by name or (I) to list all products by ID: ");
+                choice = scanner.next();
+
+                while(true)
+                {
+                    if(!choice.equalsIgnoreCase("n") && !choice.equalsIgnoreCase("i"))
+                    {
+                        System.out.println("Invalid input! Please enter again.");
+                        System.out.print("\nPress (N) to list all products by name or (I) to list all products by ID: ");
+                        choice = scanner.next();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                if (choice.equalsIgnoreCase("n"))
+                {
+                    System.out.println();
+                    BST temp = User.displayProductPrimary(); 
+                    for (int i = 0; i < temp.getProducts().size(); i++)
+                    {
+                        System.out.println("Product Name: " + temp.getProducts().get(i).getName());
+                        System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
+                        System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
+                        System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
+                        //System.out.printf("Product Cost: $%.2d\n", temp.getProducts().get(i).getCost());
+                        System.out.println("--------------------------------------------------------------");
+                    }
+                }
+                else
+                {
+                    System.out.println();
+                    BST temp = User.displayProductSecondary(); 
+                    for (int i = 0; i < temp.getProducts().size(); i++)
+                    {
+                        System.out.println("Product ID: " + temp.getProducts().get(i).getProductId());
+                        System.out.println("Product Name: " + temp.getProducts().get(i).getName());
+                        System.out.println("Product Description: " + temp.getProducts().get(i).getDescription());
+                        System.out.printf("Product Price: $%.2f\n" , temp.getProducts().get(i).getUnitPrice());
+                        //System.out.println("Product Cost: " + temp.getProducts().get(i).getCost());
+                        System.out.println("--------------------------------------------------------------");
+                    }		
+                }
+                isvalid = true; 
+            }
+        }
+    }
+
+    public void employeeloggedinmenus()
+    {
+        String input = ""; boolean isvalid = false; 
+        System.out.println("\nWelcome employee, " + server.getemployee().getFullname()); 
+        System.out.println("\nMenu Options");
+        System.out.println("------------");      
+        System.out.println("S: Search for a product");  
+        System.out.println("A: Add a product");  
+        System.out.println("L: List out products");  
+        System.out.println("C: Search for a customer");  
+        System.out.println("D: Ship order");
+        System.out.println("Q: Log out");
+        System.out.print("\nPlease choose one of the option from the following: ");  
+
+        EmployeeMenus menu = new EmployeeMenus();
+        input = scanner.next();
+        while (!isvalid)
+        {
+            if (input.equalsIgnoreCase("S"))
+            {	
+                menu.searchproduct();
+                isvalid = true;
+            }
+            else if (input.equalsIgnoreCase("A"))
+            {	
+                menu.addproduct();
+                isvalid = true;
+            }
+            else if (input.equalsIgnoreCase("C"))
+            {
+                menu.searchcustomer();
+                isvalid = true;
+            }
+            else if (input.equalsIgnoreCase("D"))
+            {
+                isvalid = true;
+                menu.deliverorder();
+            }			
+            else if (input.equalsIgnoreCase("L"))
+            {
+                menu.listproduct();
+                isvalid = true;
+            }
+            else if (input.equalsIgnoreCase("Q"))
+            {
+                server.logout();
+                System.out.println("You have successfully logged out.");
+                isvalid = true;
+            }
+            else
+            {
+                System.out.println("----Sorry, invalid output. Try again. ");
+                input = scanner.next();
+                //continue; 
+            }
+        }
+    }
 }
