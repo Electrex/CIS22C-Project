@@ -133,8 +133,8 @@ public class Product implements Comparable<Product>{
                 + "," + productId
                 + "," + cost
                 + "," + unitPrice
-                + "," + description
-                + "," + manufacturer + "\n";
+                + "," + manufacturer
+                + "," + description + "\n";
         return result;
     }
 

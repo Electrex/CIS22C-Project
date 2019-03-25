@@ -303,6 +303,7 @@ public class Customer implements Comparable<Customer> {
     public String toString()
     {
         String result = firstName + "," + lastName + "," + username + "," + password + "," + address + "," + phoneNumber;
+
         return result;
     }
 }
