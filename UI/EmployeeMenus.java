@@ -13,6 +13,33 @@ public class EmployeeMenus {
 	
 	private Scanner scanner = new Scanner(System.in); 
 	
+	public void listorders() {
+		
+		ArrayList<Order> unshippedorders = Server.viewOrders().sort();
+		for (int i = unshippedorders.size()-1; i >= 1; i--) {
+			
+			System.out.println("Customer Name: " + unshippedorders.get(i).getCustomerName());
+			System.out.println("Order ID: " + unshippedorders.get(i).getOrderID());
+			System.out.println("Order Date: " + unshippedorders.get(i).getOrderDate());
+			System.out.println("Shipment Date: " + unshippedorders.get(i).getShipDate());
+			System.out.println("Shipment Type: " + unshippedorders.get(i).getShipmentType());
+			
+			for (int j = 0; j < unshippedorders.get(i).getProduct().size(); j++)
+			{
+				System.out.println("Product Name: " + unshippedorders.get(i).getProduct().get(j).getName()
+				+ " Product Quantities: " + unshippedorders.get(i).getQuantity().get(j));
+			}
+			
+			System.out.println("__________________________________________________________________________________________\n\n");
+			
+			
+		}
+		
+		
+	}
+	
+	
+	
 	public void deliverorder()
 	{
 		System.out.println("\n****************************Sending Orders****************************\n");

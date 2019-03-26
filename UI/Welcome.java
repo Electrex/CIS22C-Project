@@ -269,7 +269,8 @@ public class Welcome {
         System.out.println("A: Add a product");  
         System.out.println("L: List out products");  
         System.out.println("C: Search for a customer");  
-        System.out.println("D: Ship order");
+        System.out.println("V: View orders by priority");
+        System.out.println("D: Ship an order");
         System.out.println("Q: Log out");
         System.out.print("\nPlease choose one of the option from the following: ");  
 
@@ -296,7 +297,12 @@ public class Welcome {
             {
                 isvalid = true;
                 menu.deliverorder();
-            }			
+            }	
+            else if (input.equalsIgnoreCase("V"))
+            {
+                isvalid = true;
+                menu.listorders();
+            }	
             else if (input.equalsIgnoreCase("L"))
             {
                 menu.listproduct();
